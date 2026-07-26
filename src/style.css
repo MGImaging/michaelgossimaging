@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --color-forest-50: #f3f7f4;
+  --color-forest-100: #e2ebe4;
+  --color-forest-200: #c5d7ca;
+  --color-forest-300: #9bb9a4;
+  --color-forest-400: #6f967a;
+  --color-forest-500: #4f7a5c;
+  --color-forest-600: #3b6148;
+  --color-forest-700: #304e3b;
+  --color-forest-800: #283f31;
+  --color-forest-900: #213429;
+  --color-forest-950: #111c16;
+  --color-sand-50: #faf7f2;
+  --color-sand-100: #f3ece0;
+  --color-sand-200: #e6d7c0;
+  --color-sand-300: #d5bc97;
+  --color-sand-400: #c49d6d;
+  --color-sand-500: #b88452;
+  --color-moss-400: #8fa86a;
+  --color-moss-500: #738c4f;
+  --color-moss-600: #5a6f3d;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-forest-900);
+  background-color: var(--color-sand-50);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Subtle grain overlay for organic feel */
+.grain::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Mobile nav open state */
+.nav-open {
+  max-height: 20rem;
+  opacity: 1;
+}
+
+.nav-closed {
+  max-height: 0;
+  opacity: 0;
+}
