@@ -1,0 +1,10 @@
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,Arial,sans-serif;color:#222;line-height:1.5}
+.sb{background:#ffd54a;color:#000;text-align:center;padding:8px;font-weight:700;font-size:14px}
+header{background:#1d2a35;color:#fff;padding:12px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+header a{color:#fff;text-decoration:none}.brand{font-weight:800;font-size:20px}nav a{margin:0 8px;display:inline-block;padding:6px 0}
+main{max-width:960px;margin:auto;padding:20px 16px}.hero{background:#eef2f5;padding:32px 16px;text-align:center}
+.btn{display:inline-block;background:#c8501e;color:#fff;padding:12px 20px;border-radius:6px;text-decoration:none;margin:6px;font-weight:700}
+.btn.alt{background:#1d2a35}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.card{border:1px solid #ddd;border-radius:8px;padding:16px}.ph{background:#ddd;border:2px dashed #999;color:#555;display:flex;align-items:center;justify-content:center;height:150px;border-radius:8px}
+footer{background:#1d2a35;color:#ccc;padding:16px;text-align:center;font-size:14px}footer a{color:#fff}
+@media(max-width:600px){header{flex-direction:column}nav a{margin:0 6px}}
