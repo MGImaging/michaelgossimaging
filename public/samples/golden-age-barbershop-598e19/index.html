@@ -7,30 +7,73 @@
   <title>Home | Golden Age Barbershop</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;700&family=Yeseva+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Yeseva+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="logo.jpg">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <div class="sample">Sample made by Michael Goss Imaging, not your live site.</div>
-  <header class="shop">
-    <a href="index.html"><img src="logo.jpg" width="454" height="454" alt="Golden Age Barbershop logo"></a>
-    <a class="name" href="index.html">Golden Age</a>
-    <p>Barbershop · Dickinson</p>
+  <header class="top">
+    <a class="wordmark" href="index.html"><span>Golden Age</span><small>Barbershop</small></a>
+    <nav aria-label="Primary">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="shop.html">The chair</a>
+      <a href="visit.html">Visit</a>
+    </nav>
   </header>
-  <nav aria-label="Primary">
-    <a href="index.html" aria-current="page">Home</a>
-    <a href="shop.html">The chair</a>
-    <a href="visit.html">Visit</a>
-  </nav>
   <main id="main">
-    <section class="glass">
-      <h1>A straight cut on 7th Street West</h1>
-      <p>Golden Age Barbershop is at 30 7th Street West in Dickinson, North Dakota. Come in through the west entrance, Door A.</p>
-      <p>Dave is the barber. Call the shop to set a time.</p>
-      <a class="call" href="tel:+17014953684">Call (701) 495-3684</a>
+    <section class="hero">
+      <img src="chairs.jpg" width="744" height="992" alt="Barber chairs inside Golden Age Barbershop">
+      <div class="ticket">
+        <p class="kicker">Dickinson, North Dakota</p>
+        <h1>A straight cut on 7th Street West</h1>
+        <p>Golden Age Barbershop is at 30 7th Street West. Come in through the west entrance, Door A. Dave is the barber. Call the shop to set a time.</p>
+        <a class="call" href="tel:+17014953684">Call (701) 495-3684</a>
+        <a class="ghost" href="shop.html">See the chair</a>
+      </div>
+    </section>
+    <section class="wrap">
+      <h2>At the chair</h2>
+      <div class="services">
+        <article>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 4l4 6-4 6M17 4l-4 6 4 6"/></svg>
+          <h3>Haircut</h3>
+          <p>A cut in the chair. Call ahead so Dave can hold a time.</p>
+        </article>
+        <article>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 19c4-1 6-6 7-14 1 8 3 13 7 14"/><path d="M8 19h8"/></svg>
+          <h3>Haircut and shave</h3>
+          <p>The cut and a shave, booked as one visit.</p>
+        </article>
+        <article>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 16l8-8 4 4-8 8H4v-4z"/><path d="M12 8l4-4 2 2-4 4"/></svg>
+          <h3>Shave only</h3>
+          <p>A shave on its own, if that is all you need.</p>
+        </article>
+      </div>
+    </section>
+    <section class="wrap">
+      <h2>The shop</h2>
+      <div class="gallery">
+        <a href="shop.jpg"><img src="shop.jpg" width="1000" height="750" alt="Chairs and mirrors at Golden Age Barbershop"></a>
+        <a href="interior.jpg"><img src="interior.jpg" width="992" height="744" alt="The shop floor at Golden Age Barbershop"></a>
+        <a href="entrance.jpg"><img src="entrance.jpg" width="744" height="992" alt="Inside the entrance at Golden Age Barbershop"></a>
+        <a href="chairs.jpg"><img src="chairs.jpg" width="744" height="992" alt="A closer look at the barber chairs"></a>
+      </div>
+    </section>
+    <section class="wrap">
+      <h2>Find the shop</h2>
+      <p>Photos of the chairs, the mirrors, and the entrance are on the shop’s Facebook page.</p>
+      <p><a href="https://www.facebook.com/105916065415352" target="_blank" rel="noopener">Golden Age on Facebook</a></p>
     </section>
   </main>
+  <footer class="foot">
+    <p><strong>Golden Age Barbershop</strong><br>30 7th St W, Door A<br>Dickinson, ND 58601</p>
+    <p><a href="tel:+17014953684">(701) 495-3684</a><br><a href="https://www.facebook.com/105916065415352" target="_blank" rel="noopener">Facebook</a></p>
+  </footer>
+  <div class="dock">
+    <a href="tel:+17014953684">Call</a>
+    <a href="visit.html">Visit</a>
+  </div>
 </body>
 </html>

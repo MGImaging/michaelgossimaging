@@ -7,37 +7,56 @@
   <title>Grooming | Boss Pet Grooming</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="logo.jpg">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <div class="sample">Sample made by Michael Goss Imaging, not your live site.</div>
-  <header class="band">
-    <a href="index.html"><img src="logo.jpg" width="720" height="723" alt="Boss Pet Grooming logo"></a>
+  <header class="top">
+    <a class="brand" href="index.html">
+      <img src="logo.jpg" width="720" height="723" alt="Boss Pet Grooming logo">
+      <div><strong>Boss</strong><span>Pet Grooming</span></div>
+    </a>
+    <nav aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="grooming.html" aria-current="page">Grooming</a>
+      <a href="visit.html">Visit</a>
+    </nav>
   </header>
-  <nav aria-label="Primary">
-    <a href="index.html">Home</a>
-    <a href="grooming.html" aria-current="page">Grooming</a>
-    <a href="visit.html">Visit</a>
-  </nav>
   <main id="main">
-    <section class="stage">
-      <div>
-        <h1>Bath, cut, <em>nails</em></h1>
-        <p>These are the services clients book at the salon. Call to talk through what your dog needs.</p>
-      </div>
+    <section class="hero">
+      <h1>Bath, cut, <em>nails</em></h1>
+      <p class="lede">Call the salon and say what your dog needs. These are the visits people ask for.</p>
     </section>
     <section class="sheet">
       <h2>At the salon</h2>
       <ul class="rows">
-        <li>Bath</li>
-        <li>Haircut</li>
-        <li>Nail trim</li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 14c1 3 4 5 6 5s5-2 6-5"/><path d="M8 10h.01M16 10h.01"/><path d="M7 6c2-2 8-2 10 0"/></svg>
+          <span>Bath</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 5l4 6-4 6M17 5l-4 6 4 6"/></svg>
+          <span>Haircut</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 18l6-12 6 12"/><path d="M8 14h8"/></svg>
+          <span>Nail trim</span>
+        </li>
       </ul>
       <p><a class="call" href="tel:+17016902500">Call (701) 690-2500</a></p>
+      <p><a href="mailto:bosspetgrooming@hotmail.com">bosspetgrooming@hotmail.com</a></p>
     </section>
   </main>
+  <footer class="foot">
+    <p><strong>Boss Pet Grooming, LLC</strong><br>34 Villard St W<br>Dickinson, ND 58601</p>
+    <p><a href="tel:+17016902500">(701) 690-2500</a><br><a href="mailto:bosspetgrooming@hotmail.com">bosspetgrooming@hotmail.com</a></p>
+  </footer>
+  <div class="dock">
+    <a href="tel:+17016902500">Call</a>
+    <a href="mailto:bosspetgrooming@hotmail.com">Email</a>
+  </div>
 </body>
 </html>

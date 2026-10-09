@@ -17,50 +17,59 @@
   <header class="top">
     <a class="brand" href="index.html">
       <img src="logo.jpg" width="500" height="500" alt="Casa Monarca logo">
-      <div>
-        <strong>Casa Monarca</strong>
-        <span>Dickinson bakery</span>
-      </div>
+      <div><strong>Casa Monarca</strong><span>Dickinson bakery</span></div>
     </a>
+    <nav aria-label="Primary">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="visit.html">Visit</a>
+    </nav>
   </header>
-  <nav aria-label="Primary">
-    <a href="index.html" aria-current="page">Home</a>
-    <a href="menu.html">Menu</a>
-    <a href="visit.html">Visit</a>
-  </nav>
   <main id="main">
-    <section class="hero">
-      <div>
+    <section class="hero" style="background-image:url('hero.jpg')">
+      <div class="hero-copy">
         <h1>Casa <em>Monarca</em></h1>
-        <p class="lede">Mexican pastry, coffee, and boba on 2nd Avenue East in Dickinson, North Dakota.</p>
-        <p class="actions">
-          <a class="call" href="tel:+17014839394">Call (701) 483-9394</a>
-          <a class="ghost" href="menu.html">See the menu</a>
-        </p>
+        <p>Mexican pastry, coffee, and boba on 2nd Avenue East in Dickinson, North Dakota.</p>
+        <a class="btn" href="tel:+17014839394">Call (701) 483-9394</a>
+        <a class="btn-ghost" href="menu.html">See the case</a>
       </div>
-      <img class="portrait" src="logo.jpg" width="500" height="500" alt="">
     </section>
-    <section class="panel">
-      <h2>A family shop</h2>
-      <p>Casa Monarca is Adriana Heredia’s bakery. She and her daughter-in-law, Brianna Gil, named the shop together, after the monarch butterfly.</p>
-      <p>Adriana taught herself to bake after she moved to Dickinson in 2013. She sold from a cottage kitchen called A'mores Pastry before the shop opened in May 2025.</p>
+    <section class="wrap split">
+      <div>
+        <h2>A family bakery</h2>
+        <p>Casa Monarca is Adriana Heredia’s shop. She and her daughter-in-law, Brianna Gil, named it together, after the monarch butterfly. Adriana says that migration matches her own move in search of a new life.</p>
+        <p>She taught herself to bake after moving to Dickinson in 2013, first from a cottage kitchen called A'mores Pastry. The shop on 2nd Avenue East opened in May 2025.</p>
+      </div>
+      <div class="card">
+        <h3>Who you will meet</h3>
+        <p><strong>Adriana Heredia</strong> bakes the pastries, flan, cakes, and coffee.</p>
+        <p><strong>Brianna Gil</strong> makes the boba, lattes, and other flavored drinks.</p>
+        <p><a class="btn" href="tel:+17014839394">Order by phone</a></p>
+      </div>
     </section>
-    <section class="panel people">
-      <article>
-        <h3>Adriana Heredia</h3>
-        <p>Owner and baker. Her case holds Mexican-style pastries, flan, cakes, and coffee.</p>
-      </article>
-      <article>
-        <h3>Brianna Gil</h3>
-        <p>Co-owner. She makes the boba, lattes, and other flavored drinks.</p>
-      </article>
+    <section class="wrap">
+      <h2>From the case</h2>
+      <div class="gallery">
+        <a href="cookies.jpg"><img src="cookies.jpg" alt="Adriana Heredia with a tray of cookies at Casa Monarca"></a>
+        <a href="conchas.jpg"><img src="conchas.jpg" alt="Conchas at Casa Monarca"></a>
+        <a href="bread.jpg"><img src="bread.jpg" alt="Fresh bread at Casa Monarca"></a>
+      </div>
     </section>
-    <section class="panel">
-      <h2>Custom cakes</h2>
-      <p>Custom cakes need about a week’s notice. Call the shop to place an order.</p>
-      <p class="actions"><a class="call" href="tel:+17014839394">Call (701) 483-9394</a></p>
+    <section class="wrap press">
+      <h2>In the news</h2>
+      <p>The Dickinson Press and KFYR-TV both visited the bakery after it opened.</p>
+      <p><a href="https://www.thedickinsonpress.com/lifestyle/casamonarca-bakery-brings-bold-flavor-and-family-spirit-to-dickinson">Dickinson Press, June 2025</a></p>
+      <p><a href="https://www.kfyrtv.com/2025/06/16/dickinson-woman-opens-bakery-after-immigrating-us-mexico-nearly-13-years-ago/">KFYR-TV, June 16, 2025</a></p>
+      <p><a href="https://www.thedickinsonpress.com/news/local/one-year-later-casa-monarca-celebrates-first-anniversary-despite-business-challenges">Dickinson Press, first anniversary</a></p>
     </section>
   </main>
-  <footer>11 2nd Ave E, Dickinson, ND 58601</footer>
+  <footer class="foot">
+    <p><strong>Casa Monarca</strong><br>11 2nd Ave E, Dickinson, ND 58601</p>
+    <p><a href="tel:+17014839394">(701) 483-9394</a><br><a href="https://www.facebook.com/652085087985614">Facebook</a></p>
+  </footer>
+  <div class="dock">
+    <a href="tel:+17014839394">Call</a>
+    <a href="visit.html">Visit</a>
+  </div>
 </body>
 </html>
