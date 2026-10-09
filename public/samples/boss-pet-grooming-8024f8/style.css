@@ -1,0 +1,99 @@
+:root {
+  --black: #101010;
+  --gold: #c6a15b;
+  --ivory: #f7f1e6;
+  --blush: #e7c9cf;
+  --ink: #1a1a1a;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--ivory);
+  font-family: "Manrope", sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+a { color: inherit; }
+img { max-width: 100%; height: auto; display: block; }
+.sample {
+  background: var(--gold);
+  color: var(--black);
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.5rem 0.75rem;
+}
+.skip { position: absolute; left: 0.4rem; top: -3rem; background: #fff; color: #000; }
+.skip:focus { top: 2.3rem; z-index: 4; }
+.band {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1rem 1.05rem 0.4rem;
+}
+.band img {
+  width: min(220px, 62vw);
+  background: #fff;
+}
+nav { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; padding: 0.2rem 1.05rem 1rem; }
+nav a {
+  color: var(--gold);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+nav a[aria-current="page"] { box-shadow: inset 0 -1px 0 var(--gold); }
+main { padding: 0 1.05rem 2.5rem; }
+.stage h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  font-size: clamp(3rem, 12vw, 6.2rem);
+  line-height: 0.88;
+  margin: 0.2rem 0 0.7rem;
+}
+.stage h1 em { font-style: italic; color: var(--blush); }
+.sheet {
+  background: var(--ivory);
+  color: var(--ink);
+  padding: 1.15rem 1rem 1.3rem;
+  margin-top: 1.2rem;
+}
+.sheet h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  font-size: 2.1rem;
+  margin: 0 0 0.4rem;
+}
+.sheet + .sheet { margin-top: 0.7rem; }
+.call {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0.7rem 1rem;
+  background: var(--gold);
+  color: var(--black);
+  text-decoration: none;
+  font-weight: 700;
+}
+.rows { margin: 0.4rem 0 0; padding: 0; list-style: none; }
+.rows li {
+  padding: 0.55rem 0;
+  border-top: 1px solid rgba(26, 26, 26, 0.15);
+}
+@media (min-width: 860px) {
+  .band {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 1.2rem 2rem 0;
+  }
+  nav { padding: 0 2rem 1rem; justify-content: flex-end; }
+  main { padding: 0 2rem 3rem; }
+  .stage { max-width: 40rem; }
+}
