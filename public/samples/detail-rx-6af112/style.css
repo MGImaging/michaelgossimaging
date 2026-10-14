@@ -307,7 +307,7 @@ blockquote { margin: 0; font-size: 1.15rem; }
   .top, .hero-copy, .wrap, .foot { padding-left: 2rem; padding-right: 2rem; }
   .hero { min-height: 100vh; }
   .grid.packages { grid-template-columns: repeat(3, 1fr); }
-  .split { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 1rem; align-items: start; }
+  .cols { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 1rem; align-items: start; }
   .gallery { grid-template-columns: 1.35fr 1fr; }
   .gallery figure:first-child { grid-row: span 2; }
   .gallery img, .gallery figure:first-child img { height: 100%; min-height: 220px; }
