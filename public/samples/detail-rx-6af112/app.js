@@ -58,44 +58,29 @@ function animate() {
   if (reduce || !window.gsap || !window.ScrollTrigger) return;
   gsap.registerPlugin(ScrollTrigger);
   const chars = document.querySelectorAll(".split .ch");
-  gsap.from(chars, { y: 40, opacity: 0, stagger: 0.02, duration: 0.7, ease: "power3.out", delay: 0.15 });
-  gsap.from(".hero-copy .kicker, .hero-copy .lede, .hero-copy .cta", {
-    y: 24, opacity: 0, stagger: 0.08, duration: 0.6, delay: 0.45
+  gsap.from(chars, { y: 28, opacity: 0, stagger: 0.015, duration: 0.45, ease: "power3.out", delay: 0.08 });
+  gsap.from(".hero-copy .kicker, .hero-copy .lede, .hero-copy .hero-actions", {
+    y: 16, opacity: 0, stagger: 0.06, duration: 0.4, delay: 0.2
   });
-  gsap.to(".sheen", { xPercent: 120, duration: 1.6, delay: 0.2, ease: "power2.inOut" });
+  gsap.to(".sheen", { xPercent: 120, duration: 1.05, delay: 0.12, ease: "power2.inOut" });
   gsap.utils.toArray(".reveal").forEach((el) => {
     gsap.from(el, {
-      scrollTrigger: { trigger: el, start: "top 85%" },
-      y: 28,
+      scrollTrigger: { trigger: el, start: "top 88%" },
+      y: 18,
       opacity: 0,
-      duration: 0.6
+      duration: 0.4
     });
   });
   gsap.utils.toArray(".course").forEach((course) => {
-    gsap.from(course.querySelectorAll(".dish"), {
-      scrollTrigger: { trigger: course, start: "top 82%" },
-      y: 16,
+    const items = course.querySelectorAll(".pkg, .dish");
+    if (!items.length) return;
+    gsap.from(items, {
+      scrollTrigger: { trigger: course, start: "top 84%" },
+      y: 12,
       opacity: 0,
-      stagger: 0.07,
-      duration: 0.5,
+      stagger: 0.05,
+      duration: 0.35,
       ease: "power2.out"
-    });
-  });
-  document.querySelectorAll(".count").forEach((el) => {
-    const end = Number(el.dataset.count);
-    const obj = { val: 0 };
-    ScrollTrigger.create({
-      trigger: el,
-      start: "top 88%",
-      once: true,
-      onEnter() {
-        gsap.to(obj, {
-          val: end,
-          duration: 1.1,
-          ease: "power2.out",
-          onUpdate() { el.textContent = Math.round(obj.val).toLocaleString("en-US"); }
-        });
-      }
     });
   });
   const steps = [...document.querySelectorAll(".step")];
@@ -109,19 +94,18 @@ function animate() {
       steps.forEach((el, n) => el.classList.toggle("is-on", n === i));
     }
     show(0);
-    const trigger = ScrollTrigger.create({
+    ScrollTrigger.create({
       trigger: "#process",
       start: "top top",
-      end: "+=" + steps.length * 70 + "%",
+      end: "+=" + steps.length * 55 + "%",
       pin: true,
-      scrub: 0.4,
+      scrub: 0.25,
       onUpdate(self) {
         const i = Math.min(steps.length - 1, Math.floor(self.progress * steps.length));
         show(i);
       }
     });
     document.querySelector("#process").dataset.pinned = "true";
-    void trigger;
   }
   const magnet = document.querySelector(".magnet");
   if (magnet && window.matchMedia("(pointer: fine)").matches) {
@@ -129,9 +113,9 @@ function animate() {
       const rect = magnet.getBoundingClientRect();
       const x = event.clientX - (rect.left + rect.width / 2);
       const y = event.clientY - (rect.top + rect.height / 2);
-      gsap.to(magnet, { x: x * 0.28, y: y * 0.4, duration: 0.25 });
+      gsap.to(magnet, { x: x * 0.22, y: y * 0.28, duration: 0.2 });
     });
-    magnet.addEventListener("mouseleave", () => gsap.to(magnet, { x: 0, y: 0, duration: 0.4 }));
+    magnet.addEventListener("mouseleave", () => gsap.to(magnet, { x: 0, y: 0, duration: 0.3 }));
   }
 }
 
