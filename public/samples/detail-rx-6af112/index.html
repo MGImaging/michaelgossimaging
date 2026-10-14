@@ -17,10 +17,9 @@
   <header class="top">
     <a class="brand" href="#main"><span class="wordmark">Detail <span>Rx</span></span></a>
     <nav aria-label="Primary">
+      <a href="#menu">Menu</a>
       <a href="#work">Work</a>
-      <a href="#packages">Packages</a>
-      <a href="#estimate">Estimate</a>
-      <a href="#book">Book</a>
+      <a href="#area">Area</a>
     </nav>
   </header>
   <main id="main">
@@ -32,7 +31,7 @@
         <h1 class="split">Gloss, brought back.</h1>
         <p class="lede">Detail Rx, LLC is Breanden Bailey’s mobile shop. Interior and exterior detailing, paint correction, ceramic coatings, leatherwork, carpet cleaning, and odor removal.</p>
         <p>
-          <a class="cta magnet" href="#book">Request a time</a>
+          <a class="cta magnet" href="#menu">See the menu</a>
           <a class="ghost" href="tel:+17204414880">Call (720) 441-4880</a>
         </p>
       </div>
@@ -48,84 +47,152 @@
       </div>
     </section>
 
-    <section class="wrap" id="packages">
-      <h2 class="reveal">Published packages</h2>
-      <div class="grid packages">
-        <article class="card reveal">
-          <h3>Gold</h3>
-          <p class="price">$<span class="count" data-count="449">449</span></p>
-          <p class="muted">3 hours 30 minutes. Interior and exterior.</p>
-        </article>
-        <article class="card reveal">
-          <h3>Platinum</h3>
-          <p class="price">$<span class="count" data-count="749">749</span></p>
-          <p class="muted">6 hours. Interior and exterior.</p>
-        </article>
-        <article class="card reveal">
-          <h3>Enhancement</h3>
-          <p class="price">$<span class="count" data-count="495">495</span></p>
-          <p class="muted">Starting at. Essential Detail, a single-stage machine polish, and a paint sealant. For gloss and light swirls.</p>
-        </article>
-        <article class="card reveal">
-          <span class="tag">Most popular</span>
-          <h3>Multi-stage</h3>
-          <p class="price">$<span class="count" data-count="1095">1,095</span></p>
-          <p class="muted">Starting at. Full decontamination, multi-stage correction, an interior reset, and a high-grade sealant.</p>
-        </article>
-        <article class="card reveal">
-          <h3>Ceramic upgrade</h3>
-          <p class="price">$<span class="count" data-count="300">300</span>+</p>
-          <p class="muted">Add a coating after correction. More gloss, less wash marring, and resistance to contaminants, chemicals, and UV.</p>
-        </article>
-        <article class="card reveal">
-          <h3>Coatings</h3>
-          <p>1 year $995 · 5 year $1,495 · 7 year $1,995. A 25-year coating requires inspection. Coatings include a free hand wash four times a year.</p>
-        </article>
-      </div>
-    </section>
+    <section class="wrap" id="menu">
+      <p class="kicker reveal">Service menu</p>
+      <h2 class="reveal">The menu</h2>
+      <p class="muted menu-lead reveal">Published prices. Call or text to arrange a visit.</p>
+      <div class="menu-board">
+        <section class="course" aria-labelledby="course-details">
+          <h3 id="course-details">Details</h3>
+          <article class="dish" id="gold">
+            <div class="dish-line">
+              <h4>Gold</h4>
+              <span class="leaders" aria-hidden="true"></span>
+              <p class="dish-price">$449</p>
+            </div>
+            <p>Interior and exterior. 3 hours 30 minutes.</p>
+          </article>
+          <article class="dish" id="platinum">
+            <div class="dish-line">
+              <h4>Platinum</h4>
+              <span class="leaders" aria-hidden="true"></span>
+              <p class="dish-price">$749</p>
+            </div>
+            <p>Interior and exterior. 6 hours.</p>
+          </article>
+        </section>
 
-    <section class="wrap" id="estimate">
-      <div class="cols">
-        <div class="sheet reveal" id="estimator">
-          <h2>Starting-at estimate</h2>
-          <p class="muted">Only prices published by Detail Rx. Anything else is quoted on inspection.</p>
-          <label>Vehicle size</label>
-          <div class="choices">
-            <label><input type="radio" name="size" value="sedan" checked> Sedan</label>
-            <label><input type="radio" name="size" value="truck"> Truck</label>
-            <label><input type="radio" name="size" value="other"> Other</label>
-          </div>
-          <label for="service">Service</label>
-          <select id="service">
-            <option value="gold">Gold Level Package — $449</option>
-            <option value="platinum">Platinum Level Package — $749</option>
-            <option value="enhance">Enhancement Correction — starting at $495</option>
-            <option value="multi">Multi-Stage Correction — starting at $1,095</option>
-            <option value="c1">1 Year Ceramic Coating — $995</option>
-            <option value="c5">5 Year Ceramic Coating — $1,495</option>
-            <option value="c7">7 Year Ceramic Coating — $1,995</option>
-            <option value="c25">25 Year Coating — quoted on inspection</option>
-            <option value="detail">Interior and exterior detail — quoted on inspection</option>
-          </select>
-          <label>Add-ons</label>
-          <div class="choices">
-            <label><input type="checkbox" name="addon" value="engine"> Engine bay $50</label>
-            <label><input type="checkbox" name="addon" value="leather"> Leather clean $75</label>
-            <label><input type="checkbox" name="addon" value="restore"> Leather restoration, quoted</label>
-            <label><input type="checkbox" name="addon" value="top"> Convertible top $100</label>
-            <label><input type="checkbox" name="addon" value="odor"> Odor removal $100</label>
-            <label><input type="checkbox" name="addon" value="lights"> Headlights $100</label>
-            <label><input type="checkbox" name="addon" value="ceramic"> Ceramic upgrade, starting at $300</label>
-            <label><input type="checkbox" name="addon" value="correction"> Paint correction add-on, $250 sedan / $350 truck</label>
-          </div>
-        </div>
-        <div class="sheet reveal">
-          <p class="kicker">Estimate</p>
-          <p class="estimate" id="estimate-out">$449</p>
-          <p id="estimate-lines" class="muted"></p>
-          <p><a class="cta" href="#book">Request this</a></p>
-        </div>
+        <section class="course" aria-labelledby="course-correction">
+          <h3 id="course-correction">Paint correction</h3>
+          <article class="dish" id="enhancement">
+            <div class="dish-line">
+              <h4>Enhancement</h4>
+              <span class="leaders" aria-hidden="true"></span>
+              <p class="dish-price">from $495</p>
+            </div>
+            <p>Essential Detail, a single-stage machine polish, and a paint sealant. For gloss and light swirls.</p>
+          </article>
+          <article class="dish" id="multi">
+            <div class="dish-line">
+              <h4>Multi-Stage</h4>
+              <span class="leaders" aria-hidden="true"></span>
+              <p class="dish-price">from $1,095</p>
+            </div>
+            <p><span class="tag">Most popular</span> Full decontamination, multi-stage correction, an interior reset, and a high-grade sealant.</p>
+          </article>
+        </section>
+
+        <section class="course" aria-labelledby="course-ceramic">
+          <h3 id="course-ceramic">Ceramic coatings</h3>
+          <article class="dish">
+            <div class="dish-line">
+              <h4>1 year</h4>
+              <span class="leaders" aria-hidden="true"></span>
+              <p class="dish-price">$995</p>
+            </div>
+          </article>
+          <article class="dish">
+            <div class="dish-line">
+              <h4>5 year</h4>
+              <span class="leaders" aria-hidden="true"></span>
+              <p class="dish-price">$1,495</p>
+            </div>
+          </article>
+          <article class="dish">
+            <div class="dish-line">
+              <h4>7 year</h4>
+              <span class="leaders" aria-hidden="true"></span>
+              <p class="dish-price">$1,995</p>
+            </div>
+          </article>
+          <article class="dish">
+            <div class="dish-line">
+              <h4>25 year</h4>
+              <span class="leaders" aria-hidden="true"></span>
+              <p class="dish-price">By inspection</p>
+            </div>
+          </article>
+          <p class="course-note">Every coating includes a free hand wash four times a year.</p>
+        </section>
+
+        <section class="course" aria-labelledby="course-addons">
+          <h3 id="course-addons">Add-ons</h3>
+          <article class="dish">
+            <div class="dish-line">
+              <h4>Engine bay</h4>
+              <span class="leaders" aria-hidden="true"></span>
+              <p class="dish-price">$50</p>
+            </div>
+          </article>
+          <article class="dish">
+            <div class="dish-line">
+              <h4>Leather cleaning</h4>
+              <span class="leaders" aria-hidden="true"></span>
+              <p class="dish-price">$75</p>
+            </div>
+            <p>Cleaning and conditioning.</p>
+          </article>
+          <article class="dish">
+            <div class="dish-line">
+              <h4>Leather restoration</h4>
+              <span class="leaders" aria-hidden="true"></span>
+              <p class="dish-price">By condition</p>
+            </div>
+          </article>
+          <article class="dish">
+            <div class="dish-line">
+              <h4>Convertible top</h4>
+              <span class="leaders" aria-hidden="true"></span>
+              <p class="dish-price">$100</p>
+            </div>
+            <p>Clean and protect.</p>
+          </article>
+          <article class="dish">
+            <div class="dish-line">
+              <h4>Paint correction</h4>
+              <span class="leaders" aria-hidden="true"></span>
+              <p class="dish-price">$250 / $350</p>
+            </div>
+            <p>Sedans $250. Trucks $350.</p>
+          </article>
+          <article class="dish">
+            <div class="dish-line">
+              <h4>Odor removal</h4>
+              <span class="leaders" aria-hidden="true"></span>
+              <p class="dish-price">$100</p>
+            </div>
+          </article>
+          <article class="dish">
+            <div class="dish-line">
+              <h4>Headlights</h4>
+              <span class="leaders" aria-hidden="true"></span>
+              <p class="dish-price">$100</p>
+            </div>
+          </article>
+          <article class="dish">
+            <div class="dish-line">
+              <h4>Ceramic upgrade</h4>
+              <span class="leaders" aria-hidden="true"></span>
+              <p class="dish-price">$300+</p>
+            </div>
+            <p>More gloss, less wash marring, and resistance to contaminants, chemicals, and UV.</p>
+          </article>
+        </section>
       </div>
+      <p class="menu-close">
+        <a class="cta" href="tel:+17204414880">Call (720) 441-4880</a>
+        <a class="ghost" href="sms:+17204414880">Text the shop</a>
+      </p>
     </section>
 
     <section class="wrap" id="work">
@@ -182,26 +249,25 @@
         <article class="card">
           <h3>Swirls</h3>
           <p>Fine marks that dull the clear coat. Light swirls are the Enhancement Correction, starting at $495.</p>
-          <button type="button" data-pick="enhance">Use Enhancement in the estimate</button>
+          <a href="#enhancement">Enhancement on the menu</a>
         </article>
         <article class="card">
           <h3>Oxidation</h3>
           <p>Haze and neglected paint need more than a single polish. That is the Multi-Stage Correction, starting at $1,095.</p>
-          <button type="button" data-pick="multi">Use Multi-Stage in the estimate</button>
+          <a href="#multi">Multi-Stage on the menu</a>
         </article>
         <article class="card">
           <h3>Scratches</h3>
           <p>Light scratches in the clear can polish out. Scratches through the clear are touch-up work with Dr. ColorChip, quoted on inspection.</p>
-          <button type="button" data-pick="detail">Quote the touch-up</button>
         </article>
       </div>
     </section>
 
-    <section class="wrap">
+    <section class="wrap" id="area">
       <div class="cols">
         <div>
           <h2>After the coating</h2>
-          <p class="muted">General care, not a shop rulebook. Coatings booked here include a free hand wash four times a year.</p>
+          <p class="muted">General care. Every coating includes a free hand wash four times a year.</p>
           <ul class="tips">
             <li>Skip automatic brush washes. The brushes put swirls back into the finish.</li>
             <li>Wash with a pH-neutral soap and a clean mitt. Dry with clean towels.</li>
@@ -229,43 +295,6 @@
       <blockquote class="card">“Professional and efficient team! The paint correction done on my vehicle was flawless. Thank you, Breanden!”</blockquote>
     </section>
 
-    <section class="wrap" id="book">
-      <div class="sheet">
-        <h2>Request a time</h2>
-        <p class="muted">This sends a text or an email. It is a request, not a confirmed booking.</p>
-        <form id="book-form">
-          <label for="vehicle">Vehicle</label>
-          <input id="vehicle" name="vehicle" required placeholder="Year, make, color">
-          <label for="book-service">Service</label>
-          <select id="book-service" name="book-service" required>
-            <option value="gold">Gold Level Package</option>
-            <option value="platinum">Platinum Level Package</option>
-            <option value="enhance">Enhancement Correction</option>
-            <option value="multi">Multi-Stage Correction</option>
-            <option value="c1">1 Year Ceramic Coating</option>
-            <option value="c5">5 Year Ceramic Coating</option>
-            <option value="c7">7 Year Ceramic Coating</option>
-            <option value="c25">25 Year Coating</option>
-            <option value="detail">Interior and exterior detail</option>
-          </select>
-          <label for="date">Preferred date</label>
-          <input id="date" name="date" type="date" required>
-          <label for="time">Preferred time</label>
-          <input id="time" name="time" type="time" required>
-          <label for="location">Location</label>
-          <input id="location" name="location" required placeholder="Driveway address, or drop-off in Aurora">
-          <label for="notes">Notes</label>
-          <textarea id="notes" name="notes" placeholder="Anything the shop should know"></textarea>
-          <label for="photos">Photos, optional</label>
-          <input id="photos" name="photos" type="file" accept="image/*" multiple>
-          <p>
-            <button class="send" id="text-request" type="button">Text this request</button>
-            <button class="ghost" id="email-request" type="button">Email this request</button>
-          </p>
-          <p id="book-note" class="muted">Texts go to (720) 441-4880. Email goes to detailrxllc@gmail.com.</p>
-        </form>
-      </div>
-    </section>
   </main>
   <footer class="foot">
     <p><strong>Detail Rx, LLC</strong><br>Breanden Bailey<br>Drop-off: 648 South Kalispell Way<br>Aurora, CO 80017</p>
@@ -274,7 +303,7 @@
   <div class="dock">
     <a href="tel:+17204414880">Call</a>
     <a href="sms:+17204414880">Text</a>
-    <a href="#book">Book</a>
+    <a href="https://www.instagram.com/detail_rx_llc/" target="_blank" rel="noopener">Instagram</a>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>

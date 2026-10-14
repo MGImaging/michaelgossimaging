@@ -170,6 +170,63 @@ h3 { font-size: clamp(1.35rem, 6.4vw, 1.8rem); text-transform: uppercase; }
 }
 .creds p { margin: 0; color: var(--mute); }
 .grid { display: grid; gap: 0.75rem; }
+.menu-lead { max-width: 36rem; }
+.menu-board {
+  max-width: 42rem;
+  margin: 1.5rem 0 0;
+  padding: 0.3rem 1.1rem 1.15rem;
+  background:
+    linear-gradient(180deg, rgba(185, 243, 255, 0.06), transparent 5.5rem),
+    rgba(8, 11, 16, 0.94);
+  border: 1px solid rgba(185, 243, 255, 0.28);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+.course h3 {
+  margin: 1.55rem 0 0.2rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--ice);
+}
+.dish {
+  padding: 0.78rem 0.1rem;
+  border-bottom: 1px solid rgba(214, 228, 240, 0.1);
+  transition: background 0.25s ease, padding 0.25s ease;
+}
+.dish p { margin: 0.28rem 0 0; color: var(--mute); font-size: 0.92rem; }
+.dish-line { display: flex; align-items: baseline; gap: 0.55rem; }
+.dish-line h4 {
+  margin: 0;
+  flex: 0 1 auto;
+  font-family: "Big Shoulders Display", sans-serif;
+  font-size: clamp(1.25rem, 5vw, 1.7rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+.leaders {
+  flex: 1 1 1.25rem;
+  min-width: 1rem;
+  border-bottom: 1px dotted rgba(185, 243, 255, 0.45);
+  transform: translateY(-0.28rem);
+}
+.dish-price {
+  margin: 0;
+  flex: none;
+  font-family: "Big Shoulders Display", sans-serif;
+  font-size: clamp(1.2rem, 4.4vw, 1.55rem);
+  letter-spacing: 0.03em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.dish:hover { background: rgba(185, 243, 255, 0.06); padding-left: 0.4rem; padding-right: 0.4rem; }
+.dish:hover .dish-price { color: var(--ice); }
+.dish:hover .leaders { border-bottom-color: var(--ice); }
+.course-note { margin: 0.75rem 0 0; color: var(--mute); font-size: 0.92rem; }
+.menu-close { display: flex; flex-wrap: wrap; gap: 0.55rem; margin: 1.25rem 0 0; }
+.menu-close .ghost { margin-left: 0; }
+.dish .tag { margin: 0 0.4rem 0 0; vertical-align: 0.1em; }
 .card, .sheet {
   background: var(--panel);
   border: 1px solid var(--line);
@@ -225,12 +282,6 @@ textarea { min-height: 6rem; resize: vertical; }
   color: var(--silver);
 }
 .choices input { width: auto; }
-.estimate {
-  font-family: "Big Shoulders Display", sans-serif;
-  font-size: clamp(3rem, 10vw, 4.6rem);
-  line-height: 0.9;
-  margin: 0.2rem 0;
-}
 .ba {
   position: relative;
   height: min(72vw, 520px);
@@ -271,15 +322,11 @@ textarea { min-height: 6rem; resize: vertical; }
   display: block;
 }
 .paint { display: grid; gap: 0.7rem; }
-.paint button {
-  text-align: left;
-  background: transparent;
-  border: 0;
-  padding: 0;
-  color: var(--ice-2);
-  text-decoration: underline;
-  cursor: pointer;
+.paint a {
+  display: inline-flex;
+  align-items: center;
   min-height: 44px;
+  color: var(--ice-2);
 }
 .tips { margin: 0; padding-left: 1.1rem; }
 .tips li { margin: 0.35rem 0; }
@@ -310,7 +357,7 @@ blockquote { margin: 0; font-size: 1.15rem; }
 .dock a { flex: 1; border-radius: 0; }
 .dock a:first-child { background: var(--ice); color: var(--ink); }
 .dock a:nth-child(2) { background: #171c24; color: var(--silver); }
-.dock a:last-child { background: var(--hot); color: #fff; }
+.dock a:last-child { background: #10141b; color: var(--ice); }
 .map { width: 100%; height: 240px; border: 0; background: #111; }
 #step-visual { display: none; }
 @media (min-width: 900px) {
@@ -318,7 +365,7 @@ blockquote { margin: 0; font-size: 1.15rem; }
   .dock { display: none; }
   .top, .hero-copy, .wrap, .foot { padding-left: 2rem; padding-right: 2rem; }
   .hero { min-height: 100vh; }
-  .grid.packages { grid-template-columns: repeat(3, 1fr); }
+  .menu-board { padding-left: 1.6rem; padding-right: 1.6rem; }
   .cols { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 1rem; align-items: start; }
   .gallery { grid-template-columns: 1.35fr 1fr; }
   .gallery figure:first-child { grid-row: span 2; }
@@ -334,6 +381,6 @@ blockquote { margin: 0; font-size: 1.15rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .cta:hover, .send:hover { transform: none; }
+  .cta:hover, .send:hover, .dish:hover { transform: none; }
   .hero::after { background: linear-gradient(180deg, rgba(6, 7, 10, 0.25), rgba(6, 7, 10, 0.92)); }
 }
