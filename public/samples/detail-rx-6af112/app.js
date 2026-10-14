@@ -36,77 +36,59 @@ function areaCheck(event) {
 
 function slider() {
   const box = document.querySelector(".ba");
+  if (!box) return;
   const clip = box.querySelector(".clip");
   const range = box.querySelector("input");
   const handle = box.querySelector(".handle");
-  const before = clip.querySelector("img");
-  function size() {
-    before.style.width = box.clientWidth + "px";
-  }
   function move() {
     const value = range.value + "%";
     clip.style.width = value;
     handle.style.left = value;
   }
-  size();
   move();
   range.addEventListener("input", move);
-  window.addEventListener("resize", size);
 }
 
 function animate() {
   if (reduce || !window.gsap || !window.ScrollTrigger) return;
   gsap.registerPlugin(ScrollTrigger);
+  document.documentElement.classList.add("motion");
   const chars = document.querySelectorAll(".split .ch");
-  gsap.from(chars, { y: 28, opacity: 0, stagger: 0.015, duration: 0.45, ease: "power3.out", delay: 0.08 });
-  gsap.from(".hero-copy .kicker, .hero-copy .lede, .hero-copy .hero-actions", {
-    y: 16, opacity: 0, stagger: 0.06, duration: 0.4, delay: 0.2
+  gsap.to(chars, { y: 0, opacity: 1, stagger: 0.015, duration: 0.45, ease: "power3.out", delay: 0.08 });
+  gsap.to(".hero-copy .kicker, .hero-copy .lede, .hero-copy .hero-actions", {
+    y: 0, opacity: 1, stagger: 0.06, duration: 0.4, delay: 0.2
   });
   gsap.to(".sheen", { xPercent: 120, duration: 1.05, delay: 0.12, ease: "power2.inOut" });
   gsap.utils.toArray(".reveal").forEach((el) => {
-    gsap.from(el, {
+    gsap.to(el, {
       scrollTrigger: { trigger: el, start: "top 88%" },
-      y: 18,
-      opacity: 0,
+      y: 0,
+      opacity: 1,
       duration: 0.4
     });
   });
   gsap.utils.toArray(".course").forEach((course) => {
     const items = course.querySelectorAll(".pkg, .dish");
     if (!items.length) return;
-    gsap.from(items, {
+    gsap.to(items, {
       scrollTrigger: { trigger: course, start: "top 84%" },
-      y: 12,
-      opacity: 0,
+      y: 0,
+      opacity: 1,
       stagger: 0.05,
       duration: 0.35,
       ease: "power2.out"
     });
   });
-  const steps = [...document.querySelectorAll(".step")];
-  if (steps.length && window.innerWidth >= 800) {
-    const visual = document.querySelector("#step-visual");
-    function show(i) {
-      const step = steps[i];
-      visual.querySelector("b").textContent = String(i + 1).padStart(2, "0");
-      visual.querySelector("h3").textContent = step.dataset.title;
-      visual.querySelector("p").textContent = step.dataset.copy;
-      steps.forEach((el, n) => el.classList.toggle("is-on", n === i));
-    }
-    show(0);
+  document.querySelectorAll(".step").forEach((step) => {
     ScrollTrigger.create({
-      trigger: "#process",
-      start: "top top",
-      end: "+=" + steps.length * 55 + "%",
-      pin: true,
-      scrub: 0.25,
-      onUpdate(self) {
-        const i = Math.min(steps.length - 1, Math.floor(self.progress * steps.length));
-        show(i);
+      trigger: step,
+      start: "top 70%",
+      end: "bottom 40%",
+      onToggle(self) {
+        step.classList.toggle("is-on", self.isActive);
       }
     });
-    document.querySelector("#process").dataset.pinned = "true";
-  }
+  });
   const magnet = document.querySelector(".magnet");
   if (magnet && window.matchMedia("(pointer: fine)").matches) {
     magnet.addEventListener("mousemove", (event) => {
@@ -124,6 +106,7 @@ function splitHeading() {
   document.querySelectorAll(".split").forEach((el) => {
     const text = el.textContent.trim();
     el.textContent = "";
+    el.classList.add("is-ready");
     text.split(/\s+/).forEach((word, index) => {
       if (index) el.appendChild(document.createTextNode(" "));
       const wrap = document.createElement("span");
