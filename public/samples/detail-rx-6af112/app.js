@@ -232,14 +232,19 @@ function animate() {
 function splitHeading() {
   if (reduce) return;
   document.querySelectorAll(".split").forEach((el) => {
-    const text = el.textContent;
+    const text = el.textContent.trim();
     el.textContent = "";
-    [...text].forEach((ch) => {
-      const span = document.createElement("span");
-      span.className = "ch";
-      span.style.display = "inline-block";
-      span.textContent = ch === " " ? "\u00a0" : ch;
-      el.appendChild(span);
+    text.split(/\s+/).forEach((word, index) => {
+      if (index) el.appendChild(document.createTextNode(" "));
+      const wrap = document.createElement("span");
+      wrap.className = "word";
+      [...word].forEach((ch) => {
+        const span = document.createElement("span");
+        span.className = "ch";
+        span.textContent = ch;
+        wrap.appendChild(span);
+      });
+      el.appendChild(wrap);
     });
   });
 }
