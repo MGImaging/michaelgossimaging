@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Detail Rx | Mobile detailing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700&family=Sora:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="logo.png">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="sample">Sample made by Michael Goss Imaging, not your live site.</div>
+  <header class="top">
+    <a class="brand" href="#main"><img src="logo.png" width="640" height="606" alt="Detail Rx logo"><strong>Detail Rx</strong></a>
+    <nav aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#packages">Packages</a>
+      <a href="#estimate">Estimate</a>
+      <a href="#book">Book</a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero">
+      <img class="hero-photo" src="hero.jpg" width="1080" height="1080" alt="Toyota Supra coated in Dr. Beasley's Nano-Resin MX">
+      <div class="sheen" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="kicker">Mobile detailing · Denver area</p>
+        <h1 class="split">Gloss, brought back.</h1>
+        <p class="lede">Detail Rx, LLC is Breanden Bailey’s mobile shop. Interior and exterior detailing, paint correction, ceramic coatings, leatherwork, carpet cleaning, and odor removal.</p>
+        <p>
+          <a class="cta magnet" href="#book">Request a time</a>
+          <a class="ghost" href="tel:+17204414880">Call (720) 441-4880</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="wrap reveal">
+      <div class="rail" aria-label="Services">
+        <span>Interior</span><span>Exterior</span><span>Paint correction</span><span>Ceramic coatings</span><span>Leatherwork</span><span>Carpet cleaning</span><span>Odor removal</span>
+      </div>
+      <div class="creds">
+        <p>Authorized Dr. Beasley's detailer for Colorado. Master certified in wetsanding and paint correction through the Rupes BigFoot Academy. Leather repair certified with Colourlock. Dr. ColorChip touch-up certified. XPEL small-film certified.</p>
+        <p>Recent work includes a 1957 MGA Roadster, a Toyota Supra in Dr. Beasley's Nano-Resin MX, and scratch repair finished with Dr. ColorChip and Rupes.</p>
+      </div>
+    </section>
+
+    <section class="wrap" id="packages">
+      <h2 class="reveal">Published packages</h2>
+      <div class="grid packages">
+        <article class="card reveal">
+          <h3>Gold</h3>
+          <p class="price">$<span class="count" data-count="449">449</span></p>
+          <p class="muted">3 hours 30 minutes. Interior and exterior.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Platinum</h3>
+          <p class="price">$<span class="count" data-count="749">749</span></p>
+          <p class="muted">6 hours. Interior and exterior.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Enhancement</h3>
+          <p class="price">$<span class="count" data-count="495">495</span></p>
+          <p class="muted">Starting at. Essential Detail, a single-stage machine polish, and a paint sealant. For gloss and light swirls.</p>
+        </article>
+        <article class="card reveal">
+          <span class="tag">Most popular</span>
+          <h3>Multi-stage</h3>
+          <p class="price">$<span class="count" data-count="1095">1,095</span></p>
+          <p class="muted">Starting at. Full decontamination, multi-stage correction, an interior reset, and a high-grade sealant.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Ceramic upgrade</h3>
+          <p class="price">$<span class="count" data-count="300">300</span>+</p>
+          <p class="muted">Add a coating after correction. More gloss, less wash marring, and resistance to contaminants, chemicals, and UV.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Coatings</h3>
+          <p>1 year $995 · 5 year $1,495 · 7 year $1,995. A 25-year coating requires inspection. Coatings include a free hand wash four times a year.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap" id="estimate">
+      <div class="split">
+        <div class="sheet reveal" id="estimator">
+          <h2>Starting-at estimate</h2>
+          <p class="muted">Only prices published by Detail Rx. Anything else is quoted on inspection.</p>
+          <label>Vehicle size</label>
+          <div class="choices">
+            <label><input type="radio" name="size" value="sedan" checked> Sedan</label>
+            <label><input type="radio" name="size" value="truck"> Truck</label>
+            <label><input type="radio" name="size" value="other"> Other</label>
+          </div>
+          <label for="service">Service</label>
+          <select id="service">
+            <option value="gold">Gold Level Package — $449</option>
+            <option value="platinum">Platinum Level Package — $749</option>
+            <option value="enhance">Enhancement Correction — starting at $495</option>
+            <option value="multi">Multi-Stage Correction — starting at $1,095</option>
+            <option value="c1">1 Year Ceramic Coating — $995</option>
+            <option value="c5">5 Year Ceramic Coating — $1,495</option>
+            <option value="c7">7 Year Ceramic Coating — $1,995</option>
+            <option value="c25">25 Year Coating — quoted on inspection</option>
+            <option value="detail">Interior and exterior detail — quoted on inspection</option>
+          </select>
+          <label>Add-ons</label>
+          <div class="choices">
+            <label><input type="checkbox" name="addon" value="engine"> Engine bay $50</label>
+            <label><input type="checkbox" name="addon" value="leather"> Leather clean $75</label>
+            <label><input type="checkbox" name="addon" value="restore"> Leather restoration, quoted</label>
+            <label><input type="checkbox" name="addon" value="top"> Convertible top $100</label>
+            <label><input type="checkbox" name="addon" value="odor"> Odor removal $100</label>
+            <label><input type="checkbox" name="addon" value="lights"> Headlights $100</label>
+            <label><input type="checkbox" name="addon" value="ceramic"> Ceramic upgrade, starting at $300</label>
+            <label><input type="checkbox" name="addon" value="correction"> Paint correction add-on, $250 sedan / $350 truck</label>
+          </div>
+        </div>
+        <div class="sheet reveal">
+          <p class="kicker">Estimate</p>
+          <p class="estimate" id="estimate-out">$449</p>
+          <p id="estimate-lines" class="muted"></p>
+          <p><a class="cta" href="#book">Request this</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" id="work">
+      <h2 class="reveal">Before and after</h2>
+      <p class="muted">A hood scratch repaired with wet sanding, Dr. ColorChip, and a Rupes polish.</p>
+      <div class="ba">
+        <img src="after.jpg" width="1080" height="1080" alt="Hood after scratch repair">
+        <div class="clip">
+          <img src="before.jpg" width="1080" height="1080" alt="Hood before scratch repair">
+        </div>
+        <div class="handle" aria-hidden="true"></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Drag to compare before and after">
+      </div>
+      <div class="cap"><span>Before</span><span>After</span></div>
+      <div class="gallery" style="margin-top:1rem">
+        <figure>
+          <img src="mga.jpg" width="1080" height="1080" alt="1957 MGA Roadster after paint correction">
+          <figcaption>1957 MGA Roadster. Paint correction, protection, and an interior detail.</figcaption>
+        </figure>
+        <figure>
+          <img src="porsche.jpg" width="1080" height="1080" alt="1977 Porsche 934/5 after detailing">
+          <figcaption>1977 Porsche 934/5.</figcaption>
+        </figure>
+        <figure>
+          <img src="touchup.jpg" width="1080" height="1080" alt="Black paint after a Dr. ColorChip touch-up">
+          <figcaption>High-gloss black touch-up with Dr. ColorChip.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="process-pin">
+        <div>
+          <p class="kicker">Correction</p>
+          <h2>Four steps</h2>
+          <div class="steps">
+            <article class="step" data-title="Decontamination" data-copy="A safe wash and decontamination removes bonded contaminants before any polishing."><b>01</b><h3>Decontamination</h3><p>A safe wash and decontamination removes bonded contaminants before any polishing.</p></article>
+            <article class="step" data-title="Paint inspection" data-copy="Paint condition and the severity of the defects are inspected under professional lighting."><b>02</b><h3>Paint inspection</h3><p>Paint condition and the severity of the defects are inspected under professional lighting.</p></article>
+            <article class="step" data-title="Machine correction" data-copy="Machine polishing removes swirls and oxidation and restores clarity and gloss. It does not hide defects with fillers."><b>03</b><h3>Machine correction</h3><p>Machine polishing removes swirls and oxidation and restores clarity and gloss. It does not hide defects with fillers.</p></article>
+            <article class="step" data-title="Protection" data-copy="Corrected paint is protected with a sealant or a ceramic coating."><b>04</b><h3>Protection</h3><p>Corrected paint is protected with a sealant or a ceramic coating.</p></article>
+          </div>
+        </div>
+        <div class="sheet" id="step-visual">
+          <b>01</b>
+          <h3>Decontamination</h3>
+          <p>A safe wash and decontamination removes bonded contaminants before any polishing.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" id="paint">
+      <h2>What is in the paint</h2>
+      <div class="paint">
+        <article class="card">
+          <h3>Swirls</h3>
+          <p>Fine marks that dull the clear coat. Light swirls are the Enhancement Correction, starting at $495.</p>
+          <button type="button" data-pick="enhance">Use Enhancement in the estimate</button>
+        </article>
+        <article class="card">
+          <h3>Oxidation</h3>
+          <p>Haze and neglected paint need more than a single polish. That is the Multi-Stage Correction, starting at $1,095.</p>
+          <button type="button" data-pick="multi">Use Multi-Stage in the estimate</button>
+        </article>
+        <article class="card">
+          <h3>Scratches</h3>
+          <p>Light scratches in the clear can polish out. Scratches through the clear are touch-up work with Dr. ColorChip, quoted on inspection.</p>
+          <button type="button" data-pick="detail">Quote the touch-up</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="split">
+        <div>
+          <h2>After the coating</h2>
+          <p class="muted">General care, not a shop rulebook. Coatings booked here include a free hand wash four times a year.</p>
+          <ul class="tips">
+            <li>Skip automatic brush washes. The brushes put swirls back into the finish.</li>
+            <li>Wash with a pH-neutral soap and a clean mitt. Dry with clean towels.</li>
+            <li>Give a fresh coating an easy first wash. Do not compound or polish over it.</li>
+            <li>Bird droppings and bugs come off sooner if they are not left to bake.</li>
+            <li>Use the four included hand washes to keep the coating clear.</li>
+          </ul>
+        </div>
+        <div>
+          <h2>Where we come to you</h2>
+          <form id="area-form">
+            <label for="place">City or ZIP</label>
+            <input id="place" name="place" autocomplete="address-level2" placeholder="Parker, or 80017">
+            <p><button class="cta" type="submit">Check</button></p>
+          </form>
+          <p class="result" id="area-out">Mobile service in Aurora, Denver, Parker, Highlands Ranch, Castle Rock, and Englewood.</p>
+          <iframe class="map" title="Map of the Aurora drop-off" loading="lazy" src="https://maps.google.com/maps?q=648+South+Kalispell+Way+Aurora+CO+80017&amp;z=15&amp;output=embed"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap quotes">
+      <blockquote class="card">“Absolutely thrilled with the exceptional service provided by Detail Rx, LLC. My car looks brand new inside out!”</blockquote>
+      <blockquote class="card">“Breanden went above and beyond to remove a stubborn odor from my car. Highly recommend their services!”</blockquote>
+      <blockquote class="card">“Professional and efficient team! The paint correction done on my vehicle was flawless. Thank you, Breanden!”</blockquote>
+    </section>
+
+    <section class="wrap" id="book">
+      <div class="sheet">
+        <h2>Request a time</h2>
+        <p class="muted">This sends a text or an email. It is a request, not a confirmed booking.</p>
+        <form id="book-form">
+          <label for="vehicle">Vehicle</label>
+          <input id="vehicle" name="vehicle" required placeholder="Year, make, color">
+          <label for="book-service">Service</label>
+          <select id="book-service" name="book-service" required>
+            <option value="gold">Gold Level Package</option>
+            <option value="platinum">Platinum Level Package</option>
+            <option value="enhance">Enhancement Correction</option>
+            <option value="multi">Multi-Stage Correction</option>
+            <option value="c1">1 Year Ceramic Coating</option>
+            <option value="c5">5 Year Ceramic Coating</option>
+            <option value="c7">7 Year Ceramic Coating</option>
+            <option value="c25">25 Year Coating</option>
+            <option value="detail">Interior and exterior detail</option>
+          </select>
+          <label for="date">Preferred date</label>
+          <input id="date" name="date" type="date" required>
+          <label for="time">Preferred time</label>
+          <input id="time" name="time" type="time" required>
+          <label for="location">Location</label>
+          <input id="location" name="location" required placeholder="Driveway address, or drop-off in Aurora">
+          <label for="notes">Notes</label>
+          <textarea id="notes" name="notes" placeholder="Anything the shop should know"></textarea>
+          <label for="photos">Photos, optional</label>
+          <input id="photos" name="photos" type="file" accept="image/*" multiple>
+          <p>
+            <button class="send" id="text-request" type="button">Text this request</button>
+            <button class="ghost" id="email-request" type="button">Email this request</button>
+          </p>
+          <p id="book-note" class="muted">Texts go to (720) 441-4880. Email goes to detailrxllc@gmail.com.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="foot">
+    <p><strong>Detail Rx, LLC</strong><br>Breanden Bailey<br>Drop-off: 648 South Kalispell Way<br>Aurora, CO 80017</p>
+    <p><a href="tel:+17204414880">(720) 441-4880</a><br><a href="mailto:detailrxllc@gmail.com">detailrxllc@gmail.com</a><br><a href="https://www.instagram.com/detail_rx_llc/" target="_blank" rel="noopener">Instagram @detail_rx_llc</a></p>
+  </footer>
+  <div class="dock">
+    <a href="tel:+17204414880">Call</a>
+    <a href="sms:+17204414880">Text</a>
+    <a href="#book">Book</a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
