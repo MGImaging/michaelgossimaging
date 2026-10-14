@@ -51,14 +51,16 @@ button, input, select, textarea { font: inherit; color: inherit; }
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
 }
-.brand { display: flex; align-items: center; gap: 0.55rem; text-decoration: none; }
-.brand img { width: 46px; height: 46px; object-fit: contain; }
-.brand strong {
+.brand { display: flex; align-items: center; text-decoration: none; min-height: 44px; }
+.wordmark {
   font-family: "Big Shoulders Display", sans-serif;
-  font-size: 1.45rem;
-  letter-spacing: 0.08em;
+  font-size: 1.85rem;
   font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
 }
+.wordmark span { color: var(--ice); }
 nav { display: flex; gap: 0.15rem 0.85rem; flex-wrap: wrap; }
 nav a {
   text-decoration: none;
