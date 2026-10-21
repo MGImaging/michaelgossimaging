@@ -28,8 +28,11 @@
 
   var carousel = document.getElementById("project-carousel");
   var viewport = document.getElementById("project-track");
-  if (!carousel || !viewport) return;
+  if (carousel && viewport) initCarousel(carousel, viewport);
+  initCompare();
+  initForm();
 
+  function initCarousel(carousel, viewport) {
   var slides = Array.prototype.slice.call(viewport.querySelectorAll(".slide"));
   var dots = Array.prototype.slice.call(carousel.querySelectorAll(".dot"));
   var prevBtn = carousel.querySelector(".car-prev");
@@ -50,13 +53,6 @@
     return viewport.clientWidth || 1;
   }
 
-  function captions() {
-    return slides.map(function (slide) {
-      var cap = slide.querySelector(".cap");
-      return cap ? cap.textContent.trim() : "";
-    });
-  }
-
   function render(i, announce) {
     index = Math.max(0, Math.min(total - 1, i));
     if (countEl) countEl.textContent = (index + 1) + " / " + total;
@@ -72,7 +68,7 @@
       slide.setAttribute("aria-hidden", n === index ? "false" : "true");
     });
     if (announce && live && index !== announced) {
-      live.textContent = (index + 1) + " of " + total + ". " + captions()[index];
+      live.textContent = "Photo " + (index + 1) + " of " + total + ".";
       announced = index;
     }
   }
@@ -159,4 +155,113 @@
   });
 
   render(0, false);
+  }
+
+  function initCompare() {
+    var root = document.getElementById("compare-widget");
+    if (!root) return;
+    var pairs = Array.prototype.slice.call(root.querySelectorAll(".pair"));
+    var prev = root.querySelector(".cmp-prev");
+    var next = root.querySelector(".cmp-next");
+    var count = root.querySelector(".cmp-count");
+    var live = document.getElementById("cmp-live");
+    var total = pairs.length;
+    var index = 0;
+
+    function setReveal(pair, value) {
+      var reveal = Math.max(0, Math.min(100, value));
+      var stage = pair.querySelector(".stage");
+      var handle = pair.querySelector(".handle");
+      var rounded = Math.round(reveal);
+      stage.style.setProperty("--reveal", reveal + "%");
+      if (!handle) return;
+      handle.setAttribute("aria-valuenow", String(rounded));
+      handle.setAttribute("aria-valuetext", rounded + " percent after");
+    }
+
+    function show(i, announce) {
+      index = Math.max(0, Math.min(total - 1, i));
+      pairs.forEach(function (pair, n) {
+        var on = n === index;
+        pair.hidden = !on;
+        if (!on) return;
+        pair.querySelectorAll("img").forEach(function (img) {
+          img.loading = "eager";
+        });
+      });
+      setReveal(pairs[index], 50);
+      if (prev) prev.disabled = index === 0;
+      if (next) next.disabled = index === total - 1;
+      if (count) count.textContent = (index + 1) + " / " + total;
+      if (announce && live) {
+        var label = pairs[index].querySelector(".pair-label");
+        live.textContent = (index + 1) + " of " + total + (label ? ". " + label.textContent.trim() : ".");
+      }
+    }
+
+    pairs.forEach(function (pair) {
+      var stage = pair.querySelector(".stage");
+      var handle = pair.querySelector(".handle");
+      var dragging = false;
+
+      function revealFromEvent(event) {
+        var rect = stage.getBoundingClientRect();
+        if (!rect.width) return;
+        setReveal(pair, ((event.clientX - rect.left) / rect.width) * 100);
+      }
+
+      stage.addEventListener("pointerdown", function (event) {
+        if (event.button !== undefined && event.button !== 0) return;
+        dragging = true;
+        if (stage.setPointerCapture) stage.setPointerCapture(event.pointerId);
+        revealFromEvent(event);
+        if (handle) handle.focus({ preventScroll: true });
+      });
+
+      stage.addEventListener("pointermove", function (event) {
+        if (!dragging) return;
+        revealFromEvent(event);
+      });
+
+      function endDrag() { dragging = false; }
+      stage.addEventListener("pointerup", endDrag);
+      stage.addEventListener("pointercancel", endDrag);
+
+      if (!handle) return;
+      handle.addEventListener("keydown", function (event) {
+        var current = Number(handle.getAttribute("aria-valuenow"));
+        if (!isFinite(current)) current = 50;
+        var step = event.shiftKey ? 10 : 5;
+        var nextValue = null;
+        if (event.key === "ArrowRight" || event.key === "ArrowUp") nextValue = current + step;
+        else if (event.key === "ArrowLeft" || event.key === "ArrowDown") nextValue = current - step;
+        else if (event.key === "Home") nextValue = 0;
+        else if (event.key === "End") nextValue = 100;
+        if (nextValue === null) return;
+        event.preventDefault();
+        setReveal(pair, nextValue);
+      });
+    });
+
+    pairs.forEach(function (pair) {
+      pair.querySelectorAll("img").forEach(function (img) {
+        img.setAttribute("draggable", "false");
+      });
+    });
+
+    if (prev) prev.addEventListener("click", function () { show(index - 1, true); });
+    if (next) next.addEventListener("click", function () { show(index + 1, true); });
+    show(0, false);
+  }
+
+  function initForm() {
+    var form = document.getElementById("sample-form");
+    var note = document.getElementById("form-note");
+    if (!form || !note) return;
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      note.hidden = false;
+      form.reset();
+    });
+  }
 })();
