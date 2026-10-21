@@ -2,13 +2,13 @@
 - [x] Verify that the copilot-instructions.md file in the .github directory is created.
 
 - [x] Clarify Project Requirements
-	Landscaping design business website using Tailwind CSS. Vite + vanilla HTML/JS multi-section marketing site. Brand: Goss Landscape Design (from workspace name).
+	Michael Goss Imaging offers web design and AI automation only. Vite + Tailwind CSS v4 marketing site. Do not restore landscape, pool, or rendering services. Do not publish files in design/logo-options/. Leave public/samples/ and the robots Disallow for /samples/ alone.
 
 - [x] Scaffold the Project
 	Vite vanilla JS scaffolded; Tailwind CSS v4 + @tailwindcss/vite installed.
 
 - [x] Customize the Project
-	Built Goss Landscape Design multi-section marketing site with Tailwind brand theme, mobile nav, contact form, and placeholder project cards.
+	Marketing site for web design and AI automation, with a contact form and no phone number.
 
 - [x] Install Required Extensions
 	No project-specific extensions required for Vite + Tailwind vanilla setup.
@@ -23,4 +23,4 @@
 	Dev server started via task. User can open http://localhost:5173/ in the browser.
 
 - [x] Ensure Documentation is Complete
-	README.md documents scripts, stack, and customization. Project is Vite + Tailwind CSS landscaping marketing site for Goss Landscape Design.
+	README.md documents scripts, stack, and the web design and AI automation positioning.

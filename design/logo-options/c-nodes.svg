@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" width="960" height="400" role="img" aria-label="Logo option C, nodes">
+  <rect width="960" height="400" fill="#101614"/>
+  <path d="M120 118h720" stroke="#243028" stroke-width="3"/>
+  <circle cx="160" cy="118" r="8" fill="none" stroke="#d7efe0" stroke-width="3"/>
+  <circle cx="320" cy="118" r="8" fill="none" stroke="#d7efe0" stroke-width="3"/>
+  <circle cx="480" cy="118" r="14" fill="#9dffc2"/>
+  <circle cx="640" cy="118" r="8" fill="none" stroke="#d7efe0" stroke-width="3"/>
+  <circle cx="800" cy="118" r="8" fill="none" stroke="#d7efe0" stroke-width="3"/>
+  <text x="120" y="250" fill="#f4f7f4" font-family="JetBrains Mono, Liberation Mono, monospace" font-size="92" font-weight="600" letter-spacing="18">MGI</text>
+  <text x="124" y="308" fill="#9dffc2" font-family="JetBrains Mono, Liberation Mono, monospace" font-size="20" letter-spacing="3">MICHAEL GOSS IMAGING</text>
+</svg>

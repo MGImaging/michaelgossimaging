@@ -1,19 +1,19 @@
-﻿# Michael Goss Imaging — Exterior 3D Landscape Rendering
+﻿# Michael Goss Imaging — Web design and AI automation
 
-Marketing website for **Michael Goss Imaging (MGI)**, an exterior-only 3D landscape rendering and outdoor living visualization studio. Built with **Vite** and **Tailwind CSS v4**.
+Marketing website for **Michael Goss Imaging (MGI)**. The studio offers web design and AI automation. Built with **Vite** and **Tailwind CSS v4**.
 
 ## Business positioning
 
-MGI creates exterior 3D stills and walkthroughs for pools, patios, hardscape, and outdoor living—for homeowners, pool builders, hardscape contractors, and builders. This is visualization work, not landscape architecture or design-build.
+Michael Goss designs the work, directs AI-assisted development, and tests the result. The site does not offer landscape or pool rendering. Logo options live in `design/logo-options/` and are not part of the deployed site.
 
 ## Features
 
 - Responsive single-page marketing site
-- Brand logo and hero banner from `public/images/`
-- Hero, services, pricing, process, projects, about, and contact sections
+- Text wordmark in the header while logo options are reviewed
+- Hero, services, work, about, and contact sections
 - Mobile navigation and sticky header
 - Quote request form (opens the visitor’s email client via `mailto:`)
-- Custom forest / sand / moss brand palette
+- Ink and paper palette with one blue accent
 - SEO package: meta/Open Graph/Twitter tags, JSON-LD schema, `robots.txt`, `sitemap.xml`
 - GitHub Pages deploy workflow + custom domain support
 
