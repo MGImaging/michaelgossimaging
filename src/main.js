@@ -3,9 +3,7 @@ import './style.css'
 const motionOn = document.documentElement.classList.contains('motion')
 
 if (motionOn) {
-  const wide = window.matchMedia('(min-width: 1000px)').matches
-  const coarse = window.matchMedia('(pointer: coarse)').matches
-  const desktopSmooth = wide && !coarse
+  const desktopSmooth = window.matchMedia('(min-width: 1000px) and (hover: hover) and (pointer: fine)').matches
 
   Promise.all([import('gsap'), import('gsap/ScrollTrigger')])
     .then(async ([{ default: gsap }, { ScrollTrigger }]) => {
@@ -67,7 +65,7 @@ if (motionOn) {
       })
 
       const mm = gsap.matchMedia()
-      mm.add('(min-width: 1000px)', () => {
+      mm.add('(min-width: 1000px) and (hover: hover) and (pointer: fine)', () => {
         const section = document.querySelector('.process')
         const sticky = document.querySelector('.process-sticky')
         const track = document.querySelector('.steps')
