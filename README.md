@@ -4,7 +4,7 @@ Marketing website for **Michael Goss Imaging (MGI)**. The studio offers web desi
 
 ## Business positioning
 
-Michael Goss designs the work, directs AI-assisted development, and tests the result. The site does not offer landscape or pool rendering. Logo options live in `design/logo-options/` and are not part of the deployed site.
+The public copy is first person: Mike designs the work, directs AI-assisted development, and tests the result. The site does not offer landscape or pool rendering. Logo options live in `design/logo-options/` and are not part of the deployed site.
 
 ## Features
 
