@@ -689,7 +689,7 @@ html.motion .process.pin-ready .steps .num {
 
 html.motion .process.pin-ready .steps strong { margin-top: auto; }
 
-@media (hover: hover) and (pointer: fine) {
+@media (min-width: 1000px) {
   html.motion .cursor {
     position: fixed;
     z-index: 80;
@@ -705,7 +705,9 @@ html.motion .process.pin-ready .steps strong { margin-top: auto; }
     pointer-events: none;
     transform: translate(-120px, -120px);
   }
+}
 
+@media (hover: hover) and (pointer: fine) {
   .shot:hover .open-label,
   .shot:focus-visible .open-label { opacity: 1; }
 

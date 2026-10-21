@@ -3,7 +3,9 @@ import './style.css'
 const motionOn = document.documentElement.classList.contains('motion')
 
 if (motionOn) {
-  const desktopSmooth = window.matchMedia('(min-width: 1000px) and (hover: hover) and (pointer: fine)').matches
+  const wide = window.matchMedia('(min-width: 1000px)').matches
+  const coarse = window.matchMedia('(pointer: coarse)').matches
+  const desktopSmooth = wide && !coarse
 
   Promise.all([import('gsap'), import('gsap/ScrollTrigger')])
     .then(async ([{ default: gsap }, { ScrollTrigger }]) => {
@@ -97,8 +99,7 @@ if (motionOn) {
         }
       })
 
-      const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches
-      if (fine) {
+      if (desktopSmooth) {
         const cursor = document.querySelector('.cursor')
         if (cursor) {
           const xTo = gsap.quickTo(cursor, 'x', { duration: 0.45, ease: 'power3.out' })
@@ -114,6 +115,7 @@ if (motionOn) {
           const yTo = gsap.quickTo(el, 'y', { duration: 0.35, ease: 'power3.out' })
           const limit = el.classList.contains('build') ? 16 : 8
           el.addEventListener('pointermove', (event) => {
+            if (event.pointerType === 'touch') return
             const rect = el.getBoundingClientRect()
             const dx = event.clientX - (rect.left + rect.width / 2)
             const dy = event.clientY - (rect.top + rect.height / 2)
