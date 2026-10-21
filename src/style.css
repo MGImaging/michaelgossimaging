@@ -821,7 +821,10 @@ nav a[href^="mailto"] {
 
 .contact-grid { display: grid; gap: 1.5rem; }
 
+.after-offer { margin: 1.15rem 0 0; }
+
 .contact form {
+  position: relative;
   display: grid;
   gap: 0.9rem;
   padding: clamp(1.2rem, 3vw, 2rem);
@@ -849,11 +852,92 @@ textarea {
 
 textarea { resize: vertical; }
 
+.hp {
+  display: none;
+}
+
+.choice {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.choice legend {
+  margin-bottom: 0.45rem;
+  padding: 0;
+  font-size: 0.95rem;
+}
+
+.segments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.segments label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.segments input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.segments span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.4rem 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+}
+
+.segments input:checked + span {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.segments input:focus-visible + span {
+  outline: 2px solid var(--sage);
+  outline-offset: 3px;
+}
+
+.form-mail { margin: 0; }
+
+.form-mail a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  overflow-wrap: anywhere;
+}
+
+button:disabled { opacity: 0.65; }
+
 #form-status {
   min-height: 1.4em;
   margin: 0;
   color: var(--muted);
 }
+
+#form-status.form-ok { color: var(--sage); font-weight: 500; }
+
+#form-status.form-error a { text-underline-offset: 0.18em; }
 
 .foot {
   padding: 1rem 0 max(1.5rem, env(safe-area-inset-bottom));

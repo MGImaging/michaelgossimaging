@@ -138,22 +138,64 @@ if (yearEl) yearEl.textContent = String(new Date().getFullYear())
 const form = document.querySelector('form')
 const status = document.getElementById('form-status')
 if (form && status) {
-  form.addEventListener('submit', (event) => {
+  const showSuccess = () => {
+    status.className = 'form-ok'
+    status.textContent = 'Got it, I’ll reply within one business day.'
+  }
+  const showError = () => {
+    status.className = 'form-error'
+    status.replaceChildren('That did not send. Email ')
+    const link = document.createElement('a')
+    link.href = 'mailto:michael@michaelgossimaging.com'
+    link.textContent = 'michael@michaelgossimaging.com'
+    status.append(link, '.')
+  }
+  form.addEventListener('submit', async (event) => {
     event.preventDefault()
     const data = new FormData(form)
-    const name = String(data.get('name') || '').trim()
-    const business = String(data.get('business') || '').trim()
-    const need = String(data.get('need') || '').trim()
-    const site = String(data.get('site') || '').trim()
-    if (!name || !business || !need) {
-      status.textContent = 'Name, business, and what you need are required.'
+    if (String(data.get('_honey') || '').trim()) {
+      showSuccess()
       return
     }
-    const lines = [`Name: ${name}`, `Business: ${business}`, '', need]
-    if (site) lines.push('', `Current site: ${site}`)
-    const body = lines.join('\n')
-    const mailto = `mailto:michael@michaelgossimaging.com?subject=${encodeURIComponent(`Goal from ${name} at ${business}`)}&body=${encodeURIComponent(body)}`
-    window.location.href = mailto
-    status.textContent = 'Opening your email app. If it does not open, use michael@michaelgossimaging.com.'
+    const name = String(data.get('name') || '').trim()
+    const email = String(data.get('email') || '').trim()
+    const need = String(data.get('need') || '').trim()
+    const message = String(data.get('message') || '').trim()
+    if (!name || !email || !need) {
+      status.className = 'form-error'
+      status.textContent = 'Name, email, and what you need are required.'
+      return
+    }
+    const button = form.querySelector('button')
+    if (button) button.disabled = true
+    status.className = ''
+    status.textContent = ''
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/michael@michaelgossimaging.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          need,
+          message,
+          _subject: 'New lead from michaelgossimaging.com',
+          _template: 'table',
+          _captcha: 'false',
+          _honey: '',
+        }),
+      })
+      const payload = await response.json().catch(() => null)
+      if (!response.ok || (payload && String(payload.success) === 'false')) throw new Error('send failed')
+      form.reset()
+      showSuccess()
+    } catch {
+      showError()
+    } finally {
+      if (button) button.disabled = false
+    }
   })
 }
