@@ -106,8 +106,19 @@ nav a {
 nav a:hover { text-decoration: underline; text-underline-offset: 0.25em; }
 
 main {
+  width: auto;
+  margin: 0;
+}
+
+.hero,
+#services,
+#process,
+#area,
+#contact,
+#project .section-head,
+#project .mosaic {
   width: min(1120px, calc(100% - 40px));
-  margin: 0 auto;
+  margin-inline: auto;
 }
 
 .hero {
@@ -254,9 +265,8 @@ blockquote p {
 .service-list .placeholder { margin-top: 12px; }
 
 .project-hero {
+  width: 100%;
   margin: 36px 0 0;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
 }
 
 .project-hero .frame,
@@ -299,7 +309,20 @@ blockquote p {
   margin-top: 6px;
 }
 
-.mosaic figure { margin: 0; min-width: 0; }
+.mosaic figure {
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 719px) {
+  .mosaic figure:last-child { grid-column: 1 / -1; }
+  .mosaic figure:last-child img {
+    height: 210px;
+    max-height: 210px;
+    object-position: center 46%;
+  }
+}
 
 .mosaic img {
   width: 100%;
@@ -430,7 +453,15 @@ blockquote p {
 @media (min-width: 720px) {
   .top { padding: 20px 40px 16px; }
   .brand { width: 220px; }
-  main { width: min(1120px, calc(100% - 80px)); }
+  .hero,
+  #services,
+  #process,
+  #area,
+  #contact,
+  #project .section-head,
+  #project .mosaic {
+    width: min(1120px, calc(100% - 80px));
+  }
   .hero {
     grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
     grid-template-areas: "copy photo";

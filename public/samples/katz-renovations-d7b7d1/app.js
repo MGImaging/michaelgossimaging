@@ -65,7 +65,10 @@
   nextBtn.addEventListener("click", function () { show(index + 1); });
 
   dialog.addEventListener("close", function () {
-    if (opener && typeof opener.focus === "function") opener.focus();
+    var back = opener;
+    window.setTimeout(function () {
+      if (back && typeof back.focus === "function") back.focus();
+    }, 0);
   });
 
   dialog.addEventListener("keydown", function (event) {
