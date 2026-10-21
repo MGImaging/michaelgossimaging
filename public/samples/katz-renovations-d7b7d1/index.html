@@ -96,30 +96,48 @@
         </blockquote>
         <p class="placeholder">Placeholder: the project post continues after “quartz countertops.”</p>
       </div>
-      <div class="gallery">
-        <figure class="wide" data-reveal>
-          <img src="cover.jpg" width="960" height="640" alt="White shaker kitchen with a center island, two stools, and wood floors.">
-          <figcaption>White shaker kitchen</figcaption>
+      <figure class="project-hero">
+        <a class="frame" href="cover.jpg" data-caption="Custom white shaker cabinetry, quartz countertops">
+          <span class="sr">View larger.</span>
+          <img src="cover.jpg" width="960" height="640" alt="White shaker kitchen with a center island, two stools, and wood floors." loading="lazy" decoding="async">
+          <span class="cap" aria-hidden="true">Custom white shaker cabinetry, quartz countertops</span>
+        </a>
+      </figure>
+      <div class="mosaic">
+        <figure>
+          <a class="frame" href="work-1.jpg" data-caption="Range wall">
+            <span class="sr">View larger.</span>
+            <img src="work-1.jpg" width="443" height="590" alt="Gray shaker cabinets, a herringbone tile backsplash, and a stainless gas range." loading="lazy" decoding="async">
+            <span class="cap" aria-hidden="true">Range wall</span>
+          </a>
         </figure>
-        <figure data-reveal>
-          <img src="work-1.jpg" width="443" height="590" alt="Gray shaker cabinets, a herringbone tile backsplash, and a stainless gas range.">
-          <figcaption>Range wall</figcaption>
+        <figure>
+          <a class="frame" href="work-2.jpg" data-caption="Peninsula">
+            <span class="sr">View larger.</span>
+            <img src="work-2.jpg" width="443" height="590" alt="Gray kitchen with a peninsula, two glass pendants, and a stainless refrigerator." loading="lazy" decoding="async">
+            <span class="cap" aria-hidden="true">Peninsula</span>
+          </a>
         </figure>
-        <figure data-reveal>
-          <img src="work-2.jpg" width="443" height="590" alt="Gray kitchen with a peninsula, two glass pendants, and a stainless refrigerator.">
-          <figcaption>Peninsula</figcaption>
+        <figure>
+          <a class="frame" href="work-3.jpg" data-caption="Island">
+            <span class="sr">View larger.</span>
+            <img src="work-3.jpg" width="443" height="590" alt="Gray island with a white and gray quartz countertop and a gas range behind it." loading="lazy" decoding="async">
+            <span class="cap" aria-hidden="true">Island</span>
+          </a>
         </figure>
-        <figure data-reveal>
-          <img src="work-3.jpg" width="443" height="590" alt="Gray island with a white and gray quartz countertop and a gas range behind it.">
-          <figcaption>Island</figcaption>
+        <figure>
+          <a class="frame" href="work-4.jpg" data-caption="Refrigerator wall">
+            <span class="sr">View larger.</span>
+            <img src="work-4.jpg" width="443" height="590" alt="Gray L-shaped kitchen with a stainless refrigerator and dishwasher." loading="lazy" decoding="async">
+            <span class="cap" aria-hidden="true">Refrigerator wall</span>
+          </a>
         </figure>
-        <figure data-reveal>
-          <img src="work-4.jpg" width="443" height="590" alt="Gray L-shaped kitchen with a stainless refrigerator and dishwasher.">
-          <figcaption>Refrigerator wall</figcaption>
-        </figure>
-        <figure data-reveal>
-          <img src="work-5.jpg" width="443" height="590" alt="Gray sink wall with a black faucet, herringbone tile, and a stainless dishwasher.">
-          <figcaption>Sink wall</figcaption>
+        <figure>
+          <a class="frame" href="work-5.jpg" data-caption="Sink wall">
+            <span class="sr">View larger.</span>
+            <img src="work-5.jpg" width="443" height="590" alt="Gray sink wall with a black faucet, herringbone tile, and a stainless dishwasher." loading="lazy" decoding="async">
+            <span class="cap" aria-hidden="true">Sink wall</span>
+          </a>
         </figure>
       </div>
     </section>
@@ -164,6 +182,21 @@
     <p>Katz Renovations · East Cobb, Georgia</p>
     <p><a href="tel:+17702960592">(770) 296-0592</a></p>
   </footer>
+  <dialog id="lightbox" aria-labelledby="lb-cap">
+    <button type="button" class="lb-close" aria-label="Close">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6 L18 18 M18 6 L6 18" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+    <button type="button" class="lb-prev" aria-label="Previous photo">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M14.5 5.5 L8 12 L14.5 18.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+    <button type="button" class="lb-next" aria-label="Next photo">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9.5 5.5 L16 12 L9.5 18.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+    <figure class="lb-figure">
+      <img id="lb-img" alt="">
+      <figcaption id="lb-cap" aria-live="polite"></figcaption>
+    </figure>
+  </dialog>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="app.js"></script>
