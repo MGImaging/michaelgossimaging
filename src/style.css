@@ -301,7 +301,8 @@ nav a[href^="mailto"] {
 
 .services,
 .method-sec,
-.standards {
+.standards,
+.websites {
   padding: clamp(2.75rem, 8vw, 7rem) 0;
   border-top: 1px solid var(--line);
 }
@@ -651,6 +652,12 @@ nav a[href^="mailto"] {
   gap: 1.15rem;
 }
 
+.quote-block {
+  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.quote-block .price-card { max-width: 42rem; }
+
 .card {
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -935,6 +942,18 @@ textarea { resize: vertical; }
     grid-template-columns: 1.2fr 0.8fr;
     align-items: stretch;
   }
+  .websites .price-card-main {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    column-gap: 2.5rem;
+    align-items: start;
+  }
+  .websites .price-card-main .deliver {
+    grid-column: 2;
+    grid-row: 1 / span 5;
+    margin-top: 0;
+  }
+  .websites .price-card-main .button { grid-column: 1; justify-self: start; }
   .habits { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .standards-grid { grid-template-columns: 1fr 1fr; }
   .card.spec-card { grid-column: 1 / -1; max-width: 40rem; }
