@@ -2,15 +2,7 @@ import './style.css'
 
 const motionOn = document.documentElement.classList.contains('motion')
 
-function showHeadline() {
-  document.querySelectorAll('.hero .line-inner').forEach((el) => {
-    el.style.transform = 'none'
-  })
-}
-
 if (motionOn) {
-  window.setTimeout(showHeadline, 2800)
-
   const desktopSmooth = window.matchMedia('(min-width: 1000px) and (hover: hover) and (pointer: fine)').matches
 
   Promise.all([import('gsap'), import('gsap/ScrollTrigger')])
@@ -40,17 +32,6 @@ if (motionOn) {
         })
         gsap.ticker.lagSmoothing(0)
         document.documentElement.style.scrollBehavior = 'auto'
-      }
-
-      const lines = gsap.utils.toArray('.hero .line-inner')
-      if (lines.length) {
-        gsap.fromTo(lines, { yPercent: 110 }, {
-          yPercent: 0,
-          duration: 1.05,
-          ease: 'power4.out',
-          stagger: 0.08,
-          delay: 0.12,
-        })
       }
 
       gsap.utils.toArray('[data-reveal]').forEach((el) => {
@@ -148,7 +129,7 @@ if (motionOn) {
 
       window.addEventListener('load', () => ScrollTrigger.refresh())
     })
-    .catch(showHeadline)
+    .catch(() => {})
 }
 
 const yearEl = document.getElementById('year')
