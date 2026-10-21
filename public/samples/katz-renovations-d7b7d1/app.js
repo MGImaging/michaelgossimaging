@@ -1,6 +1,10 @@
 (function () {
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (!reduce && window.gsap && window.ScrollTrigger) {
+  document.documentElement.classList.add("js");
+
+  var reduceQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  function prefersReduce() { return reduceQuery.matches; }
+
+  if (!prefersReduce() && window.gsap && window.ScrollTrigger) {
     document.documentElement.classList.add("motion");
     gsap.registerPlugin(ScrollTrigger);
     gsap.utils.toArray("[data-reveal]").forEach(function (el) {
@@ -22,90 +26,137 @@
     });
   }
 
-  var dialog = document.getElementById("lightbox");
-  var links = Array.prototype.slice.call(document.querySelectorAll("#project .frame"));
-  if (!dialog || typeof dialog.showModal !== "function" || !links.length) return;
+  var carousel = document.getElementById("project-carousel");
+  var viewport = document.getElementById("project-track");
+  if (!carousel || !viewport) return;
 
-  var img = document.getElementById("lb-img");
-  var cap = document.getElementById("lb-cap");
-  var closeBtn = dialog.querySelector(".lb-close");
-  var prevBtn = dialog.querySelector(".lb-prev");
-  var nextBtn = dialog.querySelector(".lb-next");
+  var slides = Array.prototype.slice.call(viewport.querySelectorAll(".slide"));
+  var dots = Array.prototype.slice.call(carousel.querySelectorAll(".dot"));
+  var prevBtn = carousel.querySelector(".car-prev");
+  var nextBtn = carousel.querySelector(".car-next");
+  var countEl = carousel.querySelector(".car-count");
+  var live = document.getElementById("car-live");
+  var total = slides.length;
   var index = 0;
-  var opener = null;
-  var touchX = null;
-  var touchOnButton = false;
+  var dragging = false;
+  var startX = 0;
+  var startScroll = 0;
+  var lastX = 0;
+  var lastTime = 0;
+  var velocity = 0;
+  var announced = 0;
 
-  function show(i) {
-    var count = links.length;
-    index = (i + count) % count;
-    var link = links[index];
-    var photo = link.querySelector("img");
-    img.src = link.getAttribute("href");
-    img.alt = photo ? photo.getAttribute("alt") || "" : "";
-    cap.textContent = link.getAttribute("data-caption") || "";
+  function width() {
+    return viewport.clientWidth || 1;
   }
 
-  function openAt(i, trigger) {
-    opener = trigger || null;
-    show(i);
-    if (!dialog.open) dialog.showModal();
-    closeBtn.focus();
-  }
-
-  links.forEach(function (link, i) {
-    link.addEventListener("click", function (event) {
-      event.preventDefault();
-      openAt(i, link);
+  function captions() {
+    return slides.map(function (slide) {
+      var cap = slide.querySelector(".cap");
+      return cap ? cap.textContent.trim() : "";
     });
+  }
+
+  function render(i, announce) {
+    index = Math.max(0, Math.min(total - 1, i));
+    if (countEl) countEl.textContent = (index + 1) + " / " + total;
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index === total - 1;
+    dots.forEach(function (dot, n) {
+      if (n === index) dot.setAttribute("aria-current", "true");
+      else dot.removeAttribute("aria-current");
+    });
+    slides.forEach(function (slide, n) {
+      var img = slide.querySelector("img");
+      if (img && Math.abs(n - index) <= 1) img.loading = "eager";
+      slide.setAttribute("aria-hidden", n === index ? "false" : "true");
+    });
+    if (announce && live && index !== announced) {
+      live.textContent = (index + 1) + " of " + total + ". " + captions()[index];
+      announced = index;
+    }
+  }
+
+  function go(i, smooth) {
+    var next = Math.max(0, Math.min(total - 1, i));
+    var behavior = smooth && !prefersReduce() ? "smooth" : "auto";
+    viewport.scrollTo({ left: next * width(), behavior: behavior });
+    render(next, true);
+  }
+
+  prevBtn.addEventListener("click", function () { go(index - 1, true); });
+  nextBtn.addEventListener("click", function () { go(index + 1, true); });
+  dots.forEach(function (dot, n) {
+    dot.addEventListener("click", function () { go(n, true); });
   });
 
-  closeBtn.addEventListener("click", function () { dialog.close(); });
-  prevBtn.addEventListener("click", function () { show(index - 1); });
-  nextBtn.addEventListener("click", function () { show(index + 1); });
-
-  dialog.addEventListener("close", function () {
-    var back = opener;
-    window.setTimeout(function () {
-      if (back && typeof back.focus === "function") back.focus();
-    }, 0);
+  carousel.addEventListener("keydown", function (event) {
+    if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+    if (event.altKey || event.ctrlKey || event.metaKey) return;
+    event.preventDefault();
+    go(index + (event.key === "ArrowRight" ? 1 : -1), true);
   });
 
-  dialog.addEventListener("keydown", function (event) {
-    var buttons = [closeBtn, prevBtn, nextBtn];
-    if (event.key === "ArrowRight") {
-      event.preventDefault();
-      show(index + 1);
-    } else if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      show(index - 1);
-    } else if (event.key === "Tab") {
-      var first = buttons[0];
-      var last = buttons[buttons.length - 1];
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
+  viewport.addEventListener("pointerdown", function (event) {
+    if (event.button !== undefined && event.button !== 0) return;
+    dragging = true;
+    startX = lastX = event.clientX;
+    startScroll = viewport.scrollLeft;
+    lastTime = performance.now();
+    velocity = 0;
+    viewport.classList.add("dragging");
+    if (viewport.setPointerCapture) viewport.setPointerCapture(event.pointerId);
+    carousel.focus({ preventScroll: true });
+  });
+
+  viewport.addEventListener("pointermove", function (event) {
+    if (!dragging) return;
+    var now = performance.now();
+    var dt = now - lastTime || 16;
+    velocity = (event.clientX - lastX) / dt;
+    lastX = event.clientX;
+    lastTime = now;
+    viewport.scrollLeft = startScroll - (event.clientX - startX);
+    render(Math.round(viewport.scrollLeft / width()), false);
+  });
+
+  function endDrag() {
+    if (!dragging) return;
+    dragging = false;
+    viewport.classList.remove("dragging");
+    var projected = prefersReduce() ? viewport.scrollLeft : viewport.scrollLeft - velocity * 180;
+    var next = Math.round(projected / width());
+    go(next, !prefersReduce());
+  }
+
+  viewport.addEventListener("pointerup", endDrag);
+  viewport.addEventListener("pointercancel", endDrag);
+
+  viewport.addEventListener("scroll", function () {
+    if (!dragging) return;
+    render(Math.round(viewport.scrollLeft / width()), false);
+  }, { passive: true });
+
+  if ("onscrollend" in viewport) {
+    viewport.addEventListener("scrollend", function () {
+      if (dragging) return;
+      var next = Math.round(viewport.scrollLeft / width());
+      var left = next * width();
+      if (Math.abs(viewport.scrollLeft - left) > 2) {
+        viewport.scrollTo({ left: left, behavior: prefersReduce() ? "auto" : "smooth" });
       }
-    }
+      render(next, true);
+    });
+  }
+
+  window.addEventListener("resize", function () {
+    viewport.scrollTo({ left: index * width(), behavior: "auto" });
   });
 
-  dialog.addEventListener("touchstart", function (event) {
-    if (!event.changedTouches || !event.changedTouches.length) return;
-    touchX = event.changedTouches[0].clientX;
-    touchOnButton = !!(event.target.closest && event.target.closest("button"));
-  }, { passive: true });
+  slides.forEach(function (slide) {
+    var img = slide.querySelector("img");
+    if (img) img.setAttribute("draggable", "false");
+  });
 
-  dialog.addEventListener("touchend", function (event) {
-    if (touchX == null || touchOnButton || !event.changedTouches || !event.changedTouches.length) {
-      touchX = null;
-      return;
-    }
-    var delta = event.changedTouches[0].clientX - touchX;
-    touchX = null;
-    if (Math.abs(delta) < 48) return;
-    show(delta < 0 ? index + 1 : index - 1);
-  }, { passive: true });
+  render(0, false);
 })();

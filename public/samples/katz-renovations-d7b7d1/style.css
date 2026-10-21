@@ -115,8 +115,7 @@ main {
 #process,
 #area,
 #contact,
-#project .section-head,
-#project .mosaic {
+#project .section-head {
   width: min(1120px, calc(100% - 40px));
   margin-inline: auto;
 }
@@ -264,28 +263,70 @@ blockquote p {
 
 .service-list .placeholder { margin-top: 12px; }
 
-.project-hero {
-  width: 100%;
-  margin: 36px 0 0;
-}
-
-.project-hero .frame,
-.mosaic .frame {
+.carousel {
   position: relative;
-  display: block;
-  color: #fff;
-  text-decoration: none;
-  height: 100%;
+  width: 100%;
+  margin-top: 36px;
+  background: #141414;
+  outline: none;
 }
 
-.project-hero img {
-  width: 100%;
-  height: min(68svh, 720px);
-  min-height: 240px;
-  object-fit: cover;
-  object-position: center 42%;
-  border: 0;
+.carousel:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
 }
+
+.carousel-viewport {
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  height: min(62svh, 680px);
+  min-height: 260px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  cursor: grab;
+}
+
+.carousel-viewport::-webkit-scrollbar { height: 8px; }
+
+html.js .carousel-viewport {
+  scroll-snap-type: none;
+  scrollbar-width: none;
+}
+
+html.js .carousel-viewport::-webkit-scrollbar { display: none; }
+
+html.js .carousel-viewport { touch-action: pan-y; }
+
+.carousel-viewport.dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+  user-select: none;
+}
+
+.slide {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+  margin: 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border: 0;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+.slide:first-child img { object-position: center 42%; }
 
 .cap {
   position: absolute;
@@ -293,73 +334,24 @@ blockquote p {
   right: 0;
   bottom: 0;
   margin: 0;
-  padding: 42px 16px 14px;
-  background: linear-gradient(to top, rgba(10, 10, 10, 0.62), rgba(10, 10, 10, 0));
+  padding: 56px 20px 64px;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.66), rgba(10, 10, 10, 0));
   color: #fff;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-style: normal;
   line-height: 1.35;
-  letter-spacing: 0.01em;
 }
 
-.mosaic {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
-  margin-top: 6px;
-}
+.car-prev,
+.car-next,
+.car-bar { display: none; }
 
-.mosaic figure {
-  margin: 0;
-  min-width: 0;
-  overflow: hidden;
-}
-
-@media (max-width: 719px) {
-  .mosaic figure:last-child { grid-column: 1 / -1; }
-  .mosaic figure:last-child img {
-    height: 210px;
-    max-height: 210px;
-    object-position: center 46%;
-  }
-}
-
-.mosaic img {
-  width: 100%;
-  height: 48vw;
-  min-height: 168px;
-  max-height: 240px;
-  object-fit: cover;
-  object-position: center;
-  border: 0;
-}
-
-.mosaic .cap {
-  padding: 32px 10px 8px;
-  font-size: 0.8125rem;
-}
-
-#lightbox {
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: #111;
-  color: #fff;
-}
-
-#lightbox[open] { display: block; }
-
-#lightbox::backdrop { background: rgba(0, 0, 0, 0.84); }
-
-.lb-close,
-.lb-prev,
-.lb-next {
+html.js .car-prev,
+html.js .car-next {
   position: absolute;
   z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -367,42 +359,72 @@ blockquote p {
   height: 44px;
   padding: 0;
   border: 0;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.16);
   color: #fff;
   cursor: pointer;
 }
 
-.lb-close { top: 12px; right: 12px; }
-.lb-prev { top: 50%; left: 12px; transform: translateY(-50%); }
-.lb-next { top: 50%; right: 12px; transform: translateY(-50%); }
+html.js .car-prev { left: 12px; }
+html.js .car-next { right: 12px; }
 
-#lightbox :focus-visible { outline-color: #fff; }
+html.js .car-prev:disabled,
+html.js .car-next:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
 
-.lb-figure {
+html.js .car-bar {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100%;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 8px 4px 20px;
+  pointer-events: none;
+}
+
+.car-count {
   margin: 0;
-  padding: 64px 64px 28px;
-}
-
-#lb-img {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: calc(100svh - 140px);
-  object-fit: contain;
-  border: 0;
-}
-
-#lb-cap {
-  margin: 14px 16px 0;
   color: #fff;
-  font-style: normal;
-  text-align: center;
-  max-width: 36rem;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+}
+
+.dots {
+  display: flex;
+  pointer-events: auto;
+}
+
+.dot {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.dot::before {
+  content: "";
+  display: block;
+  width: 7px;
+  height: 7px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.dot[aria-current="true"]::before {
+  background: #fff;
+}
+
+.carousel :focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 .steps {
@@ -458,8 +480,7 @@ blockquote p {
   #process,
   #area,
   #contact,
-  #project .section-head,
-  #project .mosaic {
+  #project .section-head {
     width: min(1120px, calc(100% - 80px));
   }
   .hero {
@@ -483,18 +504,6 @@ blockquote p {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 32px;
   }
-  .mosaic {
-    grid-template-columns: 1.15fr 1fr 1fr;
-    grid-auto-rows: 250px;
-    gap: 8px;
-    margin-top: 8px;
-  }
-  .mosaic figure:first-child { grid-row: span 2; }
-  .mosaic img {
-    height: 100%;
-    max-height: none;
-    min-height: 0;
-  }
 }
 
 @media (min-width: 1100px) {
@@ -511,4 +520,5 @@ blockquote p {
     opacity: 1 !important;
     transform: none !important;
   }
+  .carousel-viewport { scroll-behavior: auto; }
 }
