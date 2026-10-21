@@ -1,5 +1,41 @@
 import './style.css'
 
+const motionOn = document.documentElement.classList.contains('motion')
+if (motionOn) {
+  Promise.all([import('gsap'), import('gsap/ScrollTrigger')])
+    .then(([{ default: gsap }, { ScrollTrigger }]) => {
+      gsap.registerPlugin(ScrollTrigger)
+      gsap.utils.toArray('[data-reveal]').forEach((el) => {
+        gsap.from(el, {
+          y: 40,
+          autoAlpha: 0,
+          duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 88%',
+            once: true,
+          },
+        })
+      })
+      gsap.utils.toArray('.browser img').forEach((img) => {
+        const frame = img.closest('.browser')
+        if (!frame) return
+        gsap.fromTo(img, { scale: 1.07 }, {
+          scale: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: frame,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        })
+      })
+    })
+    .catch(() => {})
+}
+
 const yearEl = document.getElementById('year')
 if (yearEl) yearEl.textContent = String(new Date().getFullYear())
 

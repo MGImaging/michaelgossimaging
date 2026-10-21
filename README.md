@@ -10,6 +10,7 @@ The public copy is first person: Mike designs the work, directs AI-assisted deve
 
 - Responsive single-page marketing site
 - Animated Nodes logo in the header and hero, with a static fallback when motion or JavaScript is off
+- Scroll reveals with GSAP when motion is allowed; the page stays readable without JavaScript
 - Project screenshots of Spaces Media, BotScoreboard, and the portfolio
 - Website price of $1,000 one-time, and a custom quote for AI automation
 - Hero, work, process, pricing, about, and contact sections
