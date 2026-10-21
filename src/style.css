@@ -61,17 +61,24 @@ a { color: inherit; }
   backdrop-filter: blur(12px);
 }
 
-.wordmark {
+.brand {
   margin-right: auto;
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  text-decoration: none;
-  line-height: 1.1;
-  min-height: 44px;
   display: inline-flex;
   align-items: center;
+  min-height: 44px;
+  text-decoration: none;
+  max-width: 100%;
+}
+.logo-mark {
+  width: min(21.25rem, calc(100vw - 2.4rem));
+  height: auto;
+  display: block;
+}
+.logo-lockup {
+  width: min(100%, 32rem);
+  height: auto;
+  display: block;
+  margin: 0 0 1.5rem;
 }
 
 nav {
@@ -299,4 +306,65 @@ textarea { resize: vertical; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .card:hover, .work:hover { transform: none; }
+  .logo .line,
+  .logo .node,
+  .logo .word,
+  .logo .sub {
+    animation: none;
+    opacity: 1;
+    stroke-dashoffset: 0;
+    transform: none;
+  }
+}
+
+html.motion .logo .line {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: logo-draw 0.95s ease forwards;
+}
+html.motion .logo .node {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+  animation: logo-node 0.32s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+html.motion .logo .n1 { animation-delay: 0.12s; }
+html.motion .logo .n2 { animation-delay: 0.3s; }
+html.motion .logo .n3 { animation-delay: 0.48s; }
+html.motion .logo .n4 { animation-delay: 0.66s; }
+html.motion .logo .n5 { animation-delay: 0.84s; }
+html.motion .logo .n3 {
+  animation-name: logo-node, logo-pulse;
+  animation-duration: 0.32s, 2.4s;
+  animation-delay: 0.48s, 2s;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1), ease-in-out;
+  animation-iteration-count: 1, infinite;
+  animation-fill-mode: forwards, none;
+}
+html.motion .logo .word {
+  opacity: 0;
+  animation: logo-fade 0.4s ease 1.05s forwards;
+}
+html.motion .logo .sub {
+  opacity: 0;
+  animation: logo-fade 0.4s ease 1.4s forwards;
+}
+@keyframes logo-draw { to { stroke-dashoffset: 0; } }
+@keyframes logo-node { to { transform: scale(1); } }
+@keyframes logo-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.14); }
+}
+@keyframes logo-fade { to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html.motion .logo .line,
+  html.motion .logo .node,
+  html.motion .logo .word,
+  html.motion .logo .sub {
+    animation: none;
+    opacity: 1;
+    stroke-dashoffset: 0;
+    transform: none;
+  }
 }

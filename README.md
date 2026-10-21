@@ -9,7 +9,7 @@ Michael Goss designs the work, directs AI-assisted development, and tests the re
 ## Features
 
 - Responsive single-page marketing site
-- Text wordmark in the header while logo options are reviewed
+- Animated Nodes logo in the header and hero, with a static fallback when motion or JavaScript is off
 - Hero, services, work, about, and contact sections
 - Mobile navigation and sticky header
 - Quote request form (opens the visitor’s email client via `mailto:`)
