@@ -142,15 +142,17 @@ if (form && status) {
     event.preventDefault()
     const data = new FormData(form)
     const name = String(data.get('name') || '').trim()
-    const email = String(data.get('email') || '').trim()
-    const topic = String(data.get('topic') || '').trim()
-    const message = String(data.get('message') || '').trim()
-    if (!name || !email || !message) {
-      status.textContent = 'Name, email, and a message are required.'
+    const business = String(data.get('business') || '').trim()
+    const need = String(data.get('need') || '').trim()
+    const site = String(data.get('site') || '').trim()
+    if (!name || !business || !need) {
+      status.textContent = 'Name, business, and what you need are required.'
       return
     }
-    const body = [`Name: ${name}`, `Email: ${email}`, `Topic: ${topic}`, '', message].join('\n')
-    const mailto = `mailto:michael@michaelgossimaging.com?subject=${encodeURIComponent(`Note from ${name}`)}&body=${encodeURIComponent(body)}`
+    const lines = [`Name: ${name}`, `Business: ${business}`, '', need]
+    if (site) lines.push('', `Current site: ${site}`)
+    const body = lines.join('\n')
+    const mailto = `mailto:michael@michaelgossimaging.com?subject=${encodeURIComponent(`Goal from ${name} at ${business}`)}&body=${encodeURIComponent(body)}`
     window.location.href = mailto
     status.textContent = 'Opening your email app. If it does not open, use michael@michaelgossimaging.com.'
   })
