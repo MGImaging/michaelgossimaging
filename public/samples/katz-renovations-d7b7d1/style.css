@@ -115,6 +115,7 @@ main {
 #services,
 #process,
 #area,
+#reviews .section-head,
 #contact,
 #project .section-head {
   width: min(1120px, calc(100% - 40px));
@@ -435,6 +436,151 @@ html.js .cmp-count {
   text-align: center;
 }
 
+.reviews {
+  width: min(1120px, calc(100% - 40px));
+  margin: 28px auto 0;
+}
+
+.review-summary {
+  margin: 14px 0 0;
+  font-size: 1.125rem;
+}
+
+.review-out {
+  margin: 2px 0 0;
+}
+
+.review-out a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-underline-offset: 0.25em;
+}
+
+.review + .review {
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.review-by {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  align-items: baseline;
+  margin: 0 0 12px;
+}
+
+.review-name { font-size: 1rem; }
+
+.review-tag {
+  color: var(--muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.review-text {
+  margin: 0;
+  max-width: 40rem;
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+
+html.js .review-text.is-clamped {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+}
+
+.review-more {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 2px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9375rem;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  cursor: pointer;
+}
+
+.rev-prev,
+.rev-next,
+.rev-count { display: none; }
+
+html.drag .reviews {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  grid-template-areas:
+    "frame frame frame"
+    "prev count next";
+  gap: 8px 10px;
+  align-items: center;
+}
+
+html.drag .rev-prev { grid-area: prev; justify-self: start; }
+html.drag .rev-next { grid-area: next; justify-self: end; }
+html.drag .review-viewport { grid-area: frame; min-width: 0; }
+html.drag .rev-count { grid-area: count; }
+
+html.drag .review-viewport {
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+html.drag .review-viewport.is-dragging { cursor: grabbing; }
+
+html.drag .review-strip {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+html.drag .review {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+html.drag .rev-prev,
+html.drag .rev-next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+html.drag .rev-prev:disabled,
+html.drag .rev-next:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+html.drag .rev-count {
+  display: block;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
 .note-form {
   display: grid;
   gap: 14px;
@@ -717,10 +863,17 @@ html.js .car-bar {
   #services,
   #process,
   #area,
+  #reviews .section-head,
   #contact,
   #project .section-head,
-  .compare {
+  .compare,
+  .reviews {
     width: min(1120px, calc(100% - 80px));
+  }
+  html.drag .reviews {
+    grid-template-areas:
+      "prev frame next"
+      ". count .";
   }
   html.js .compare {
     grid-template-areas:

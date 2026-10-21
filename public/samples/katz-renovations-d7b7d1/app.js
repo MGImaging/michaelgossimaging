@@ -13,6 +13,7 @@
   else {
     if (carousel && viewport) initCarousel(carousel, viewport);
     initCompare();
+    setupReviewClamps(null);
   }
 
   function bootMotion() {
@@ -46,9 +47,207 @@
     var kills = [];
     if (carousel && viewport) kills.push(mountCarousel(opts));
     kills.push(mountCompare(opts));
+    kills.push(mountReviews(opts));
     if (opts.motion) kills.push(mountReveals(opts));
     return function () {
       kills.forEach(function (kill) { if (kill) kill(); });
+    };
+  }
+
+  function setupReviewClamps(onToggle) {
+    var stops = [];
+    var measures = [];
+    document.querySelectorAll(".review").forEach(function (card) {
+      var text = card.querySelector(".review-text");
+      var btn = card.querySelector(".review-more");
+      if (!text || !btn) return;
+
+      function measure() {
+        var expanded = btn.getAttribute("aria-expanded") === "true";
+        text.classList.remove("is-clamped");
+        var full = text.scrollHeight;
+        text.classList.add("is-clamped");
+        var clamped = text.clientHeight;
+        if (full <= clamped + 2) {
+          text.classList.remove("is-clamped");
+          btn.hidden = true;
+          return;
+        }
+        btn.hidden = false;
+        text.classList.toggle("is-clamped", !expanded);
+      }
+
+      function onClick() {
+        var clamped = text.classList.toggle("is-clamped");
+        btn.textContent = clamped ? "Read more" : "Read less";
+        btn.setAttribute("aria-expanded", clamped ? "false" : "true");
+        if (onToggle) onToggle();
+      }
+
+      measure();
+      measures.push(measure);
+      btn.addEventListener("click", onClick);
+      stops.push(function () { btn.removeEventListener("click", onClick); });
+    });
+    function remeasure() { measures.forEach(function (measure) { measure(); }); }
+    remeasure.stop = function () { stops.forEach(function (stop) { stop(); }); };
+    return remeasure;
+  }
+
+  function mountReviews(opts) {
+    var root = document.getElementById("review-slider");
+    var viewport = document.getElementById("review-viewport");
+    var strip = document.getElementById("review-strip");
+    if (!root || !viewport || !strip) return function () {};
+    var cards = Array.prototype.slice.call(strip.querySelectorAll(".review"));
+    var prevBtn = root.querySelector(".rev-prev");
+    var nextBtn = root.querySelector(".rev-next");
+    var countEl = root.querySelector(".rev-count");
+    var live = document.getElementById("rev-live");
+    var total = cards.length;
+    var index = 0;
+    var announced = 0;
+    var alive = true;
+    var ac = new AbortController();
+    var signal = ac.signal;
+
+    function width() { return viewport.clientWidth || 1; }
+
+    function snapX(x) {
+      var w = width();
+      var n = Math.round(-x / w);
+      n = Math.max(0, Math.min(total - 1, n));
+      return -n * w;
+    }
+
+    function fit(i, smooth) {
+      var card = cards[typeof i === "number" ? i : index];
+      if (!card) return;
+      var height = card.offsetHeight;
+      if (smooth && opts.motion) {
+        gsap.to(viewport, { height: height, duration: 0.4, ease: "katz", overwrite: true });
+      } else {
+        gsap.set(viewport, { height: height });
+      }
+    }
+
+    function render(i, announce) {
+      index = Math.max(0, Math.min(total - 1, i));
+      if (countEl) countEl.textContent = (index + 1) + " / " + total;
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === total - 1;
+      cards.forEach(function (card, n) {
+        var current = n === index;
+        card.setAttribute("aria-hidden", current ? "false" : "true");
+        if (current) card.removeAttribute("inert");
+        else card.setAttribute("inert", "");
+      });
+      if (announce && live && index !== announced) {
+        var name = cards[index].querySelector(".review-name");
+        live.textContent = (index + 1) + " of " + total + ". " + (name ? name.textContent.trim() : "") + ".";
+        announced = index;
+      }
+    }
+
+    function sync(announce) {
+      render(Math.round(-Number(gsap.getProperty(strip, "x") || 0) / width()), announce);
+    }
+
+    var drag = Draggable.create(strip, {
+      type: "x",
+      trigger: viewport,
+      bounds: { minX: -((total - 1) * width()), maxX: 0 },
+      inertia: !!opts.motion,
+      throwResistance: 1400,
+      maxDuration: 0.4,
+      minDuration: 0.15,
+      snap: snapX,
+      edgeResistance: 0.85,
+      zIndexBoost: false,
+      allowNativeTouchScrolling: true,
+      dragClickables: false,
+      cursor: "grab",
+      activeCursor: "grabbing",
+      onDragStart: function () { viewport.classList.add("is-dragging"); },
+      onDrag: function () { sync(false); },
+      onThrowUpdate: function () { sync(false); },
+      onDragEnd: function () {
+        viewport.classList.remove("is-dragging");
+        var self = this;
+        if (!opts.motion) {
+          gsap.set(strip, { x: snapX(self.x) });
+          sync(true);
+          fit(index, false);
+          return;
+        }
+        requestAnimationFrame(function () {
+          if (!alive || self.tween) return;
+          gsap.set(strip, { x: snapX(self.x) });
+          sync(true);
+          fit(index, false);
+        });
+      },
+      onThrowComplete: function () { sync(true); fit(index, true); }
+    })[0];
+
+    function go(i, smooth) {
+      var next = Math.max(0, Math.min(total - 1, i));
+      if (drag.tween) drag.tween.kill();
+      gsap.killTweensOf(strip);
+      gsap.to(strip, {
+        x: -next * width(),
+        duration: smooth && opts.motion ? 0.55 : 0,
+        ease: "katz",
+        overwrite: true,
+        onUpdate: function () { sync(false); },
+        onComplete: function () { render(next, true); fit(next, false); }
+      });
+      fit(next, smooth);
+    }
+
+    prevBtn.addEventListener("click", function () { go(index - 1, true); }, { signal: signal });
+    nextBtn.addEventListener("click", function () { go(index + 1, true); }, { signal: signal });
+    root.addEventListener("keydown", function (event) {
+      if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+      if (event.altKey || event.ctrlKey || event.metaKey) return;
+      if (event.target.closest && event.target.closest("button, a")) return;
+      event.preventDefault();
+      go(index + (event.key === "ArrowRight" ? 1 : -1), true);
+    }, { signal: signal });
+
+    var remeasure = setupReviewClamps(function () { fit(index, true); });
+
+    function onResize() {
+      remeasure();
+      drag.applyBounds({ minX: -((total - 1) * width()), maxX: 0 });
+      gsap.set(strip, { x: -index * width() });
+      fit(index, false);
+    }
+    window.addEventListener("resize", onResize);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () {
+        if (!alive) return;
+        remeasure();
+        fit(index, false);
+      });
+    }
+
+    gsap.set(strip, { x: 0 });
+    render(0, false);
+    fit(0, false);
+
+    return function () {
+      alive = false;
+      ac.abort();
+      window.removeEventListener("resize", onResize);
+      remeasure.stop();
+      if (drag) drag.kill();
+      gsap.set(strip, { clearProps: "transform" });
+      gsap.set(viewport, { clearProps: "height" });
+      cards.forEach(function (card) {
+        card.removeAttribute("aria-hidden");
+        card.removeAttribute("inert");
+      });
     };
   }
 
