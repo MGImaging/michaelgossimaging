@@ -278,7 +278,7 @@
       }));
     });
 
-    gsap.from(".hero-copy .lede, .hero-copy .placeholder", {
+    gsap.from(".hero-copy .lede", {
       autoAlpha: 0,
       y: 10,
       duration: 0.7,
