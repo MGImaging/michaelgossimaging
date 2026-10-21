@@ -10,7 +10,9 @@ Michael Goss designs the work, directs AI-assisted development, and tests the re
 
 - Responsive single-page marketing site
 - Animated Nodes logo in the header and hero, with a static fallback when motion or JavaScript is off
-- Hero, services, work, about, and contact sections
+- Project screenshots of Spaces Media, BotScoreboard, and the portfolio
+- Website price of $1,000 one-time, and a custom quote for AI automation
+- Hero, work, process, pricing, about, and contact sections
 - Mobile navigation and sticky header
 - Quote request form (opens the visitor’s email client via `mailto:`)
 - Ink and paper palette with one blue accent
