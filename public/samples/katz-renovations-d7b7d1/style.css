@@ -62,14 +62,14 @@ a { color: inherit; }
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 12px 28px;
-  padding: 22px 20px 18px;
+  gap: 8px 20px;
+  padding: 16px 20px 12px;
   border-bottom: 1px solid var(--line);
 }
 
 .brand {
   display: block;
-  width: min(240px, 72vw);
+  width: min(176px, 54vw);
 }
 
 .brand img { width: 100%; }
@@ -77,13 +77,16 @@ a { color: inherit; }
 nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px 18px;
+  gap: 0 8px;
 }
 
 nav a {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  min-width: 44px;
   min-height: 44px;
+  padding: 0 4px;
   text-decoration: none;
   font-size: 1rem;
 }
@@ -97,12 +100,16 @@ main {
 
 .hero {
   display: grid;
-  gap: 36px;
-  padding: 48px 0 28px;
+  grid-template-areas: "photo" "copy";
+  gap: 22px;
+  padding: 16px 0 8px;
 }
 
+.hero-copy { grid-area: copy; }
+.hero-photo { grid-area: photo; margin: 0; }
+
 .eyebrow {
-  margin: 0 0 16px;
+  margin: 0 0 10px;
   color: var(--muted);
   font-size: 0.8125rem;
   letter-spacing: 0.12em;
@@ -112,13 +119,13 @@ main {
 h1, h2, h3 {
   font-weight: 400;
   letter-spacing: -0.03em;
-  line-height: 1.15;
+  line-height: 1.22;
   margin: 0;
 }
 
 h1 {
-  font-size: clamp(2.125rem, 8vw, 4.25rem);
-  max-width: 11em;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  max-width: 12em;
   text-wrap: balance;
 }
 
@@ -134,7 +141,7 @@ h3 {
 }
 
 .lede {
-  margin: 22px 0 0;
+  margin: 14px 0 0;
   max-width: 36rem;
   font-size: 1.2rem;
   line-height: 1.45;
@@ -152,7 +159,7 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 28px;
+  margin-top: 18px;
 }
 
 .button {
@@ -180,13 +187,17 @@ h3 {
   color: var(--white);
 }
 
-.hero-photo { margin: 0; }
-
 .hero-photo img,
 .gallery img {
   width: 100%;
   border: 1px solid var(--line);
   background: var(--white);
+}
+
+.hero-photo img {
+  max-height: 188px;
+  object-fit: cover;
+  object-position: center 42%;
 }
 
 figcaption {
@@ -277,17 +288,28 @@ blockquote p {
 
 .foot p { margin: 0 0 6px; color: var(--muted); }
 
-.foot a { color: var(--ink); }
+.foot a {
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
 
 @media (min-width: 720px) {
-  .top { padding: 28px 40px 22px; }
-  .brand { width: 280px; }
+  .top { padding: 20px 40px 16px; }
+  .brand { width: 220px; }
   main { width: min(1120px, calc(100% - 80px)); }
   .hero {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-    gap: 48px;
-    align-items: end;
-    padding-top: 72px;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    grid-template-areas: "copy photo";
+    gap: 56px;
+    align-items: start;
+    padding-top: 56px;
+  }
+  .hero-photo img {
+    max-height: none;
+    height: auto;
+    object-fit: fill;
   }
   .actions {
     flex-direction: row;
@@ -306,7 +328,7 @@ blockquote p {
 }
 
 @media (min-width: 1100px) {
-  .hero { gap: 72px; padding-top: 96px; }
+  .hero { gap: 72px; }
   .band { padding: 104px 0; }
 }
 
