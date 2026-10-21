@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Michael Goss Imaging — logo C, animated</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #f3f1ec;
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+    }
+    .logo { width: min(92vw, 520px); height: auto; display: block; }
+    html.motion .logo .line {
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      animation: logo-draw 0.95s ease forwards;
+    }
+    html.motion .logo .node {
+      transform-box: fill-box;
+      transform-origin: center;
+      transform: scale(0);
+      animation: logo-node 0.32s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+    html.motion .logo .n1 { animation-delay: 0.12s; }
+    html.motion .logo .n2 { animation-delay: 0.3s; }
+    html.motion .logo .n3 { animation-delay: 0.48s; }
+    html.motion .logo .n4 { animation-delay: 0.66s; }
+    html.motion .logo .n5 { animation-delay: 0.84s; }
+    html.motion .logo .n3 {
+      animation-name: logo-node, logo-pulse;
+      animation-duration: 0.32s, 2.4s;
+      animation-delay: 0.48s, 2s;
+      animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1), ease-in-out;
+      animation-iteration-count: 1, infinite;
+      animation-fill-mode: forwards, none;
+    }
+    html.motion .logo .word { opacity: 0; animation: logo-fade 0.4s ease 1.05s forwards; }
+    html.motion .logo .sub { opacity: 0; animation: logo-fade 0.4s ease 1.4s forwards; }
+    @keyframes logo-draw { to { stroke-dashoffset: 0; } }
+    @keyframes logo-node { to { transform: scale(1); } }
+    @keyframes logo-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.14); }
+    }
+    @keyframes logo-fade { to { opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) {
+      html.motion .logo .line,
+      html.motion .logo .node,
+      html.motion .logo .word,
+      html.motion .logo .sub {
+        animation: none;
+        opacity: 1;
+        stroke-dashoffset: 0;
+        transform: none;
+      }
+    }
+  </style>
+  <script>
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.documentElement.classList.add("motion");
+    }
+  </script>
+</head>
+<body>
+  <svg class="logo" viewBox="0 0 520 230" role="img" aria-label="Michael Goss Imaging">
+    <rect width="520" height="230" rx="22" fill="#101614"/>
+    <path class="line" pathLength="100" d="M36 58H484" fill="none" stroke="#5f8570" stroke-width="3" stroke-linecap="round"/>
+    <circle class="node n1" cx="52" cy="58" r="7" fill="none" stroke="#d7efe0" stroke-width="2.5"/>
+    <circle class="node n2" cx="156" cy="58" r="7" fill="none" stroke="#d7efe0" stroke-width="2.5"/>
+    <circle class="node n3" cx="260" cy="58" r="12" fill="#9dffc2"/>
+    <circle class="node n4" cx="364" cy="58" r="7" fill="none" stroke="#d7efe0" stroke-width="2.5"/>
+    <circle class="node n5" cx="468" cy="58" r="7" fill="none" stroke="#d7efe0" stroke-width="2.5"/>
+    <text class="word" x="36" y="148" fill="#f4f7f4" font-family="JetBrains Mono, ui-monospace, monospace" font-size="64" font-weight="600" letter-spacing="8">MGI</text>
+    <text class="sub" x="40" y="186" fill="#9dffc2" font-family="JetBrains Mono, ui-monospace, monospace" font-size="18" letter-spacing="1.2">MICHAEL GOSS IMAGING</text>
+  </svg>
+</body>
+</html>

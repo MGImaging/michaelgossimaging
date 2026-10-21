@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" width="960" height="400" role="img" aria-label="Logo option D, editorial">
+  <rect width="960" height="400" fill="#f7f7f5"/>
+  <text x="64" y="292" fill="#161616" font-family="Liberation Serif, Georgia, serif" font-size="260" font-weight="700">M</text>
+  <path d="M430 118l10 22 22 10-22 10-10 22-10-22-22-10 22-10z" fill="#e23b2f"/>
+  <text x="470" y="196" fill="#161616" font-family="Liberation Serif, Georgia, serif" font-size="42">Goss</text>
+  <text x="470" y="248" fill="#161616" font-family="Liberation Sans, Arial, sans-serif" font-size="22" letter-spacing="4">IMAGING</text>
+  <path d="M470 272h250" stroke="#161616" stroke-width="2"/>
+</svg>
