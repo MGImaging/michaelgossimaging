@@ -165,6 +165,9 @@
             </ul>
             <a class="button" data-magnetic href="#contact">Get a free website sample</a>
           </article>
+          <p class="after-offer">
+            <a class="button" data-magnetic href="#contact">Send my project details</a>
+          </p>
         </div>
       </section>
 
@@ -225,7 +228,7 @@
               A repeating job: a schedule, a handoff, a check, a record. I write what the system may and may not do.
               Anything that sends a message or spends money waits for my approval.
             </p>
-            <a class="button" data-magnetic href="mailto:michael@michaelgossimaging.com?subject=AI%20automation">Email me about automation</a>
+            <a class="button" data-magnetic href="#contact">Send my project details</a>
           </article>
           <!--
             PLACEHOLDER: Paid pilot pricing card. Hidden until the price and scope are set.
@@ -506,25 +509,48 @@
             <h2>Send me your site or automation goal.</h2>
             <p class="note">Taking my first client projects. I build a free sample before you pay anything. Email is the way in.</p>
           </div>
-          <form class="card" data-reveal action="mailto:michael@michaelgossimaging.com" method="post" enctype="text/plain">
+          <form class="card" id="lead-form" data-reveal action="https://formsubmit.co/michael@michaelgossimaging.com" method="POST">
+            <input type="hidden" name="_subject" value="New lead from michaelgossimaging.com">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://michaelgossimaging.com/">
+            <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
             <label>
               Name
               <input type="text" name="name" required autocomplete="name">
             </label>
             <label>
-              Business
-              <input type="text" name="business" required autocomplete="organization">
+              Email
+              <input type="email" name="email" required autocomplete="email" inputmode="email">
             </label>
+            <fieldset class="choice">
+              <legend>What do you need?</legend>
+              <div class="segments">
+                <label>
+                  <input type="radio" name="need" value="Website" required>
+                  <span>Website</span>
+                </label>
+                <label>
+                  <input type="radio" name="need" value="Automation">
+                  <span>Automation</span>
+                </label>
+                <label>
+                  <input type="radio" name="need" value="Not sure">
+                  <span>Not sure</span>
+                </label>
+              </div>
+            </fieldset>
             <label>
-              What you need
-              <textarea name="need" required rows="5"></textarea>
+              Message, optional
+              <textarea name="message" rows="3" maxlength="400"></textarea>
             </label>
-            <label>
-              Current site, if you have one
-              <input type="url" name="site" inputmode="url" placeholder="https://" autocomplete="url">
-            </label>
-            <button class="button" data-magnetic type="submit">Send me your site or automation goal.</button>
-            <p class="form-hint">This opens an email to michael@michaelgossimaging.com.</p>
+            <button class="button" data-magnetic type="submit">Send my project details</button>
+            <!--
+              PLACEHOLDER: Book a 20-min call. Hidden until a Cal.com link exists.
+              Do not render this.
+              <a class="button" href="">Book a 20-min call</a>
+            -->
+            <p class="form-mail"><a href="mailto:michael@michaelgossimaging.com">michael@michaelgossimaging.com</a></p>
             <p id="form-status" role="status"></p>
           </form>
         </div>
