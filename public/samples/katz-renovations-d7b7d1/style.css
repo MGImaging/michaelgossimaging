@@ -339,7 +339,7 @@ html.js .stage {
   min-height: 280px;
   overflow: hidden;
   background: #141414;
-  touch-action: none;
+  touch-action: pan-y;
   cursor: ew-resize;
   user-select: none;
 }
@@ -512,11 +512,26 @@ html.js .cmp-count {
   cursor: grab;
 }
 
+.carousel-strip {
+  display: contents;
+}
+
 .carousel-viewport::-webkit-scrollbar { height: 8px; }
 
 html.js .carousel-viewport {
   scroll-snap-type: none;
   scrollbar-width: none;
+}
+
+html.drag .carousel-viewport {
+  display: block;
+  overflow: hidden;
+}
+
+html.drag .carousel-strip {
+  display: flex;
+  height: 100%;
+  width: 100%;
 }
 
 html.js .carousel-viewport::-webkit-scrollbar { display: none; }
@@ -536,6 +551,7 @@ html.js .carousel-viewport { touch-action: pan-y; }
   min-width: 100%;
   height: 100%;
   margin: 0;
+  overflow: hidden;
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
