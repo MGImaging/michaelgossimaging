@@ -87,31 +87,30 @@
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
+    <div class="cursor" aria-hidden="true"></div>
     <header class="top">
       <a class="brand" href="#top">
-        <svg class="logo logo-mark" viewBox="0 0 340 72" role="img" aria-label="Michael Goss Imaging">
-          <rect width="340" height="72" rx="14" fill="#101614"/>
-          <path class="line" pathLength="100" d="M16 36H132" fill="none" stroke="#5f8570" stroke-width="2.2" stroke-linecap="round"/>
-          <circle class="node n1" cx="20" cy="36" r="4" fill="none" stroke="#d7efe0" stroke-width="1.7"/>
-          <circle class="node n2" cx="48" cy="36" r="4" fill="none" stroke="#d7efe0" stroke-width="1.7"/>
-          <circle class="node n3" cx="76" cy="36" r="6.2" fill="#9dffc2"/>
-          <circle class="node n4" cx="104" cy="36" r="4" fill="none" stroke="#d7efe0" stroke-width="1.7"/>
-          <circle class="node n5" cx="132" cy="36" r="4" fill="none" stroke="#d7efe0" stroke-width="1.7"/>
-          <text class="word" x="152" y="34" fill="#f4f7f4" font-family="JetBrains Mono, ui-monospace, monospace" font-size="22" font-weight="600" letter-spacing="1">MGI</text>
-          <text class="sub" x="154" y="54" fill="#9dffc2" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11" letter-spacing="0.4">MICHAEL GOSS IMAGING</text>
+        <svg class="logo logo-mark" viewBox="0 0 210 48" role="img" aria-label="Michael Goss Imaging">
+          <rect width="210" height="48" rx="12" fill="#101614"/>
+          <path class="line" pathLength="100" d="M14 24H132" fill="none" stroke="#5f8570" stroke-width="2" stroke-linecap="round"/>
+          <circle class="node n1" cx="18" cy="24" r="3.5" fill="none" stroke="#d7efe0" stroke-width="1.6"/>
+          <circle class="node n2" cx="46" cy="24" r="3.5" fill="none" stroke="#d7efe0" stroke-width="1.6"/>
+          <circle class="node n3" cx="74" cy="24" r="5.4" fill="#9dffc2"/>
+          <circle class="node n4" cx="102" cy="24" r="3.5" fill="none" stroke="#d7efe0" stroke-width="1.6"/>
+          <circle class="node n5" cx="130" cy="24" r="3.5" fill="none" stroke="#d7efe0" stroke-width="1.6"/>
+          <text class="word" x="146" y="30" fill="#f4f7f4" font-family="JetBrains Mono, ui-monospace, monospace" font-size="18" font-weight="600" letter-spacing="0.8">MGI</text>
         </svg>
       </a>
       <nav aria-label="Primary">
         <a href="#work">Work</a>
-        <a href="#pricing">Pricing</a>
         <a href="#process">Process</a>
-        <a href="#contact">Contact</a>
-        <a class="button nav-mail" href="mailto:michael@michaelgossimaging.com">Email me</a>
+        <a href="#pricing">Pricing</a>
+        <a data-magnetic href="mailto:michael@michaelgossimaging.com">Email me</a>
       </nav>
     </header>
 
     <main id="main">
-      <section class="section hero" id="top">
+      <section class="hero" id="top">
         <div class="shell hero-grid">
           <svg class="logo logo-lockup" viewBox="0 0 520 230" aria-hidden="true">
             <rect width="520" height="230" rx="22" fill="#101614"/>
@@ -122,130 +121,141 @@
             <circle class="node n4" cx="364" cy="58" r="7" fill="none" stroke="#d7efe0" stroke-width="2.5"/>
             <circle class="node n5" cx="468" cy="58" r="7" fill="none" stroke="#d7efe0" stroke-width="2.5"/>
             <text class="word" x="36" y="148" fill="#f4f7f4" font-family="JetBrains Mono, ui-monospace, monospace" font-size="64" font-weight="600" letter-spacing="8">MGI</text>
-            <text class="sub" x="40" y="186" fill="#9dffc2" font-family="JetBrains Mono, ui-monospace, monospace" font-size="18" letter-spacing="1.2">MICHAEL GOSS IMAGING</text>
+            <text class="sub" x="40" y="188" fill="#9dffc2" font-family="JetBrains Mono, ui-monospace, monospace" font-size="24" letter-spacing="1.1">MICHAEL GOSS IMAGING</text>
           </svg>
-          <div class="hero-copy" data-reveal>
-            <p class="kicker">Web design · AI automation</p>
-            <h1>A website that looks like the business.</h1>
-            <p class="lede">
-              I design it. I direct AI coding agents and test everything before it goes live.
-            </p>
+          <h1>
+            <span class="line"><span class="line-inner">A website</span></span>
+            <span class="line"><span class="line-inner">that looks like</span></span>
+            <span class="line"><span class="line-inner">the business.</span></span>
+          </h1>
+          <div class="hero-foot">
+            <p class="lede">I design it. I direct AI coding agents and test everything before it goes live.</p>
             <p class="hero-actions">
-              <a class="button" href="mailto:michael@michaelgossimaging.com">Email me</a>
+              <a class="button" data-magnetic href="mailto:michael@michaelgossimaging.com">Email me</a>
               <a class="text-link" href="#work">See the work</a>
             </p>
-            <p class="price-chip"><a href="#pricing">Websites · $1,000 once</a></p>
           </div>
         </div>
       </section>
 
-      <section class="section" id="work">
-        <div class="shell">
-          <div class="section-head" data-reveal>
-            <p class="kicker">01 — Work</p>
-            <h2>Live projects, shown as they load.</h2>
-            <p class="note">These are my own sites. The pictures are screenshots of the live pages.</p>
-          </div>
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <p>Web design · AI automation · Mobile-first build · Contact options · Search setup · Login handoff ·&nbsp;</p>
+          <p>Web design · AI automation · Mobile-first build · Contact options · Search setup · Login handoff ·&nbsp;</p>
+        </div>
+      </div>
 
-          <article class="case" data-reveal>
-            <a class="browser" href="https://spaces.media" target="_blank" rel="noopener">
-              <span class="chrome">
-                <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-                <span class="url">spaces.media</span>
-              </span>
-              <img src="/images/work/spaces.jpg" width="1280" height="800" alt="Screenshot of the Spaces Media homepage">
-            </a>
-            <div class="case-copy">
+      <section class="work" id="work">
+        <div class="shell section-head" data-reveal>
+          <p class="kicker">01 — Work</p>
+          <h2>Live projects, shown as they load.</h2>
+          <p class="note">These are my own sites. The pictures are screenshots of the live pages.</p>
+        </div>
+
+        <article class="project" data-reveal>
+          <a class="shot" href="https://spaces.media" target="_blank" rel="noopener">
+            <span class="num">01</span>
+            <span class="shot-frame">
+              <img src="/images/work/spaces.jpg" width="1280" height="800" alt="Screenshot of the Spaces Media homepage" fetchpriority="high">
+            </span>
+            <span class="open-label">Open spaces.media</span>
+          </a>
+          <div class="shell project-copy">
+            <div>
               <p class="kicker">I founded this</p>
               <h3><a href="https://spaces.media" target="_blank" rel="noopener">Spaces Media</a></h3>
               <p class="one-line">A 24/7 Web3 radio station that broadcasts on X.</p>
-              <p class="detail">
-                The show schedule, the handoff from one host to the next, and the website are automated.
-                I designed that system, directed the AI-assisted build, and I test it.
-              </p>
-              <p class="more"><a class="text-link" href="https://spaces.media" target="_blank" rel="noopener">Open spaces.media</a></p>
             </div>
-          </article>
+            <p class="detail">
+              The show schedule, the handoff from one host to the next, and the website are automated.
+              I designed that system, directed the AI-assisted build, and I test it.
+            </p>
+          </div>
+        </article>
 
-          <article class="case" data-reveal>
-            <a class="browser" href="https://botscoreboard.com" target="_blank" rel="noopener">
-              <span class="chrome">
-                <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-                <span class="url">botscoreboard.com</span>
-              </span>
-              <img src="/images/work/botscoreboard.jpg" width="1280" height="800" alt="Screenshot of the BotScoreboard homepage, a public trading-bot leaderboard">
-            </a>
-            <div class="case-copy">
+        <article class="project" data-reveal>
+          <a class="shot" href="https://botscoreboard.com" target="_blank" rel="noopener">
+            <span class="num">02</span>
+            <span class="shot-frame">
+              <img src="/images/work/botscoreboard.jpg" width="1280" height="800" alt="Screenshot of the BotScoreboard homepage, a public trading-bot leaderboard" loading="lazy">
+            </span>
+            <span class="open-label">Open botscoreboard.com</span>
+          </a>
+          <div class="shell project-copy">
+            <div>
               <p class="kicker">Public site</p>
               <h3><a href="https://botscoreboard.com" target="_blank" rel="noopener">BotScoreboard</a></h3>
               <p class="one-line">A public leaderboard of Polymarket trading bots, scored from each wallet’s on-chain history after fees.</p>
-              <p class="detail">
-                Losing and idle bots stay on the board. I directed the AI-assisted site and the pipeline behind it, and I test both.
-              </p>
-              <p class="more"><a class="text-link" href="https://botscoreboard.com" target="_blank" rel="noopener">Open botscoreboard.com</a></p>
             </div>
-          </article>
+            <p class="detail">
+              Losing and idle bots stay on the board. I directed the AI-assisted site and the pipeline behind it, and I test both.
+            </p>
+          </div>
+        </article>
 
-          <article class="case" data-reveal>
-            <a class="browser" href="https://mgimaging.github.io/portfolio" target="_blank" rel="noopener">
-              <span class="chrome">
-                <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-                <span class="url">mgimaging.github.io/portfolio</span>
-              </span>
-              <img src="/images/work/portfolio.jpg" width="1280" height="800" alt="Screenshot of my portfolio homepage">
-            </a>
-            <div class="case-copy">
+        <article class="project" data-reveal>
+          <a class="shot" href="https://mgimaging.github.io/portfolio" target="_blank" rel="noopener">
+            <span class="num">03</span>
+            <span class="shot-frame">
+              <img src="/images/work/portfolio.jpg" width="1280" height="800" alt="Screenshot of my portfolio homepage" loading="lazy">
+            </span>
+            <span class="open-label">Open the portfolio</span>
+          </a>
+          <div class="shell project-copy">
+            <div>
               <p class="kicker">How I work</p>
               <h3><a href="https://mgimaging.github.io/portfolio" target="_blank" rel="noopener">Portfolio</a></h3>
               <p class="one-line">A written record of the spec, the controls, and the result for each system.</p>
-              <p class="detail">
-                It includes a paper-trading test I reported as showing no edge. I write the page and keep it current.
-              </p>
-              <p class="more"><a class="text-link" href="https://mgimaging.github.io/portfolio" target="_blank" rel="noopener">Open the portfolio</a></p>
             </div>
-          </article>
-        </div>
+            <p class="detail">
+              It includes a paper-trading test I reported as showing no edge. I write the page and keep it current.
+            </p>
+          </div>
+        </article>
       </section>
 
-      <section class="section" id="process">
-        <div class="shell">
-          <div class="section-head" data-reveal>
+      <section class="process" id="process">
+        <div class="process-sticky">
+          <div class="shell section-head">
             <p class="kicker">02 — How it works</p>
             <h2>Four steps.</h2>
+            <p class="scroll-hint">Scroll to move through the steps.</p>
           </div>
-          <ol class="steps" data-reveal>
-            <li>
-              <span class="num">01</span>
-              <strong>You reach out</strong>
-              <span>Email me about the business and what the site, or the automation, needs to do.</span>
-            </li>
-            <li>
-              <span class="num">02</span>
-              <strong>I build a free sample</strong>
-              <span>A sample of the site, at no charge, so you can see the work.</span>
-            </li>
-            <li>
-              <span class="num">03</span>
-              <strong>You approve</strong>
-              <span>You decide if that sample is the one.</span>
-            </li>
-            <li>
-              <span class="num">04</span>
-              <strong>It goes live</strong>
-              <span>The approved site is published. You own the domain and the logins.</span>
-            </li>
-          </ol>
+          <div class="process-window">
+            <ol class="steps">
+              <li>
+                <span class="num">01</span>
+                <strong>You reach out</strong>
+                <span>Email me about the business and what the site, or the automation, needs to do.</span>
+              </li>
+              <li>
+                <span class="num">02</span>
+                <strong>I build a free sample</strong>
+                <span>A sample of the site, at no charge, so you can see the work.</span>
+              </li>
+              <li>
+                <span class="num">03</span>
+                <strong>You approve</strong>
+                <span>You decide if that sample is the one.</span>
+              </li>
+              <li>
+                <span class="num">04</span>
+                <strong>It goes live</strong>
+                <span>The approved site is published. You own the domain and the logins.</span>
+              </li>
+            </ol>
+          </div>
         </div>
       </section>
 
-      <section class="section" id="pricing">
+      <section class="pricing" id="pricing">
         <div class="shell">
           <div class="section-head" data-reveal>
             <p class="kicker">03 — Pricing</p>
             <h2>A website has a price. Automation is quoted.</h2>
           </div>
-          <div class="prices" data-reveal>
-            <article class="card price-card">
+          <div class="prices">
+            <article class="card price-card price-card-main" data-reveal>
               <p class="kicker">Website</p>
               <p class="amount"><span class="sum">$1,000</span> <span class="once">one-time</span></p>
               <p class="own">You own the domain and the logins.</p>
@@ -256,30 +266,30 @@
                 <li>Basic search setup: a title, a description, and a sitemap</li>
                 <li>Handoff of the logins</li>
               </ul>
-              <a class="button" href="mailto:michael@michaelgossimaging.com?subject=Website">Email me about a website</a>
+              <a class="button" data-magnetic href="mailto:michael@michaelgossimaging.com?subject=Website">Email me about a website</a>
             </article>
-            <article class="card price-card">
+            <article class="card price-card" data-reveal>
               <p class="kicker">AI automation</p>
               <p class="amount"><span class="sum quote">Custom quote</span></p>
               <p class="own">There is no fixed price.</p>
-              <p>
+              <p class="detail">
                 A repeating job: a schedule, a handoff, a check, a record. I write what the system may and may not do.
                 Anything that sends a message or spends money waits for my approval.
               </p>
-              <a class="button" href="mailto:michael@michaelgossimaging.com?subject=AI%20automation">Email me about automation</a>
+              <a class="button" data-magnetic href="mailto:michael@michaelgossimaging.com?subject=AI%20automation">Email me about automation</a>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section" id="about">
-        <div class="shell">
-          <div class="section-head" data-reveal>
+      <section class="about" id="about">
+        <div class="shell about-grid" data-reveal>
+          <div class="section-head">
             <p class="kicker">04 — About</p>
             <h2>Designed, directed, and tested.</h2>
           </div>
-          <div class="about-grid" data-reveal>
-            <p>
+          <div>
+            <p class="about-lead">
               I am in North Dakota. The work is AI-assisted. I design the system, direct AI coding agents, and test everything.
             </p>
             <ul class="method">
@@ -291,14 +301,19 @@
         </div>
       </section>
 
-      <section class="section" id="contact">
+      <section class="close">
         <div class="shell">
+          <p class="kicker">Next</p>
+          <a class="build" data-magnetic href="mailto:michael@michaelgossimaging.com">Let’s build</a>
+          <p class="close-mail"><a href="mailto:michael@michaelgossimaging.com">michael@michaelgossimaging.com</a></p>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <div class="shell contact-grid">
           <div class="section-head" data-reveal>
             <p class="kicker">Contact</p>
             <h2>Email is the way in.</h2>
-            <p class="note">
-              <a href="mailto:michael@michaelgossimaging.com">michael@michaelgossimaging.com</a>
-            </p>
           </div>
           <form class="card" data-reveal action="mailto:michael@michaelgossimaging.com" method="post" enctype="text/plain">
             <label>
@@ -321,7 +336,7 @@
               Message
               <textarea name="message" required rows="5"></textarea>
             </label>
-            <button class="button" type="submit">Send email</button>
+            <button class="button" data-magnetic type="submit">Send email</button>
             <p id="form-status" role="status"></p>
           </form>
         </div>
@@ -330,13 +345,12 @@
 
     <footer class="foot">
       <div class="shell">
-        <p class="kicker">Email</p>
-        <a class="foot-email" href="mailto:michael@michaelgossimaging.com">michael@michaelgossimaging.com</a>
         <div class="foot-row">
           <p>Michael Goss Imaging</p>
           <p><a href="#work">Work</a></p>
+          <p><a href="#process">Process</a></p>
           <p><a href="#pricing">Pricing</a></p>
-          <p><a href="#about">About</a></p>
+          <p><a href="mailto:michael@michaelgossimaging.com">michael@michaelgossimaging.com</a></p>
           <p>© <span id="year">2026</span> Michael Goss Imaging</p>
         </div>
       </div>
