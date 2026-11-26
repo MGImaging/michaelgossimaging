@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Paper &amp; Pour is a small coffee shop on Example Lane. Concept site, not a real business.">
+  <title>Paper &amp; Pour | Coffee</title>
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,450;0,6..72,560;1,6..72,450&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <p class="concept">Concept site by Michael Goss Imaging. Not a real business.</p>
+  <header class="top wrap">
+    <a class="brand" href="#top"><img src="logo.svg" width="36" height="36" alt=""> Paper &amp; Pour</a>
+    <nav aria-label="Primary">
+      <a href="#menu">Menu</a>
+      <a href="#visit">A visit</a>
+      <a href="#area">Find us</a>
+      <a href="#questions">Questions</a>
+      <a href="#note">Note</a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero wrap" id="top">
+      <p class="eyebrow">Coffee shop · Example Lane</p>
+      <h1>Coffee, written down and poured slowly.</h1>
+      <p class="lede">Paper &amp; Pour is a small counter on Example Lane. We pull espresso, brew a short pour-over list, and keep a few things to eat beside the cups.</p>
+      <figure>
+        <img src="hero.jpg" width="1600" height="1067" alt="Three hands holding cups of coffee above a wooden table.">
+      </figure>
+    </section>
+
+    <section class="wrap menu" id="menu">
+      <h2>Menu</h2>
+      <div class="menu-grid">
+        <div>
+          <h3>Coffee</h3>
+          <dl>
+            <div><dt>Drip</dt><dd>$3</dd></div>
+            <div><dt>Espresso</dt><dd>$3</dd></div>
+            <div><dt>Cortado</dt><dd>$4</dd></div>
+            <div><dt>Cappuccino</dt><dd>$4.50</dd></div>
+            <div><dt>Pour-over</dt><dd>$5</dd></div>
+            <div><dt>Cold brew</dt><dd>$4</dd></div>
+          </dl>
+        </div>
+        <div>
+          <h3>Beside the cup</h3>
+          <dl>
+            <div><dt>Tea</dt><dd>$3</dd></div>
+            <div><dt>Hot chocolate</dt><dd>$4</dd></div>
+            <div><dt>Oat or dairy milk</dt><dd>included</dd></div>
+            <div><dt>Butter pastry</dt><dd>$4</dd></div>
+            <div><dt>Toast and jam</dt><dd>$5</dd></div>
+            <div><dt>Fruit and yogurt</dt><dd>$5</dd></div>
+          </dl>
+        </div>
+      </div>
+      <figure class="cups">
+        <img src="cups.jpg" width="1400" height="2100" alt="Eight cups of coffee seen from above on a round wooden stool.">
+      </figure>
+    </section>
+
+    <section class="wrap steps" id="visit">
+      <h2>How a visit goes</h2>
+      <ol>
+        <li><h3>Order at the counter</h3><p>The list is on the board and on this page. Say if you want oat milk or the coffee black.</p></li>
+        <li><h3>We brew it</h3><p>Espresso drinks are pulled to order. Pour-over takes a few extra minutes, and we will say so.</p></li>
+        <li><h3>Stay or walk</h3><p>There are seats by the window. Cups also leave in a paper sleeve if you are already late.</p></li>
+      </ol>
+    </section>
+
+    <section class="wrap" id="area">
+      <h2>Find the shop</h2>
+      <p>42 Example Lane, on the ground floor. We serve the block and anyone walking through it. Hours are Tuesday to Friday, 7 to 3, and Saturday and Sunday, 8 to 3. Monday the shop is dark.</p>
+    </section>
+
+    <section class="wrap" id="questions">
+      <h2>Questions</h2>
+      <div class="faqs">
+        <details>
+          <summary>Do you roast the coffee?</summary>
+          <p>No. We buy from roasters and brew it here. The board names the coffee that is open that week.</p>
+        </details>
+        <details>
+          <summary>Is there a table for a group?</summary>
+          <p>The largest table seats six. For a morning that needs the whole room, write us and we will say if a weekday before open is free.</p>
+        </details>
+        <details>
+          <summary>What about milk and gluten?</summary>
+          <p>Oat milk is always on the bar. Pastries are made with wheat. The yogurt cup is the plate without a pastry.</p>
+        </details>
+        <details>
+          <summary>Is there Wi-Fi?</summary>
+          <p>Yes, the name and password are on a card at the counter. The shop is still a coffee counter first.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="wrap note" id="note">
+      <h2>Write the shop</h2>
+      <p>For a group morning, a question about the board, or a lost cup.</p>
+      <p><a href="tel:+15550100173">(555) 010-0173</a></p>
+      <p><a href="mailto:paper.pour@example.com">paper.pour@example.com</a></p>
+      <form class="note-form" action="sent.html" method="get">
+        <label>Name <input name="name" required maxlength="80" autocomplete="name"></label>
+        <label>Phone or email <input name="contact" required maxlength="120"></label>
+        <label>Note <textarea name="message" required maxlength="800"></textarea></label>
+        <button type="submit">Send a note</button>
+        <p class="form-note" id="concept-note">Concept form, a live version would send to your inbox.</p>
+      </form>
+    </section>
+  </main>
+  <footer class="wrap">
+    <p>Paper &amp; Pour · 42 Example Lane</p>
+    <p>Concept site by Michael Goss Imaging. Not a real business.</p>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>

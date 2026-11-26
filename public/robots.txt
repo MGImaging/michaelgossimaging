@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /samples/
+Disallow: /concepts/
 
 Sitemap: https://michaelgossimaging.com/sitemap.xml
