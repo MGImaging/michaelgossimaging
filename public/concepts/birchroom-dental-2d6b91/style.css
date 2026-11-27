@@ -1,0 +1,71 @@
+:root {
+  --paper: #f4f7f5;
+  --ink: #1c3330;
+  --sage: #6d8b80;
+  --mist: #e6eee9;
+  --white: #ffffff;
+  --display: "Source Serif 4", Georgia, serif;
+  --font: "Figtree", "Avenir Next", sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  overflow-wrap: break-word; margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font); font-size: 1.05rem; line-height: 1.6; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+main a[href^="tel:"], main a[href^="mailto:"] { display: inline-flex; align-items: center; min-height: 44px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; margin: 0; letter-spacing: -0.03em; line-height: 1.15; }
+h1 { font-size: clamp(2.5rem, 6vw, 4.4rem); }
+h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); margin-bottom: 18px; }
+h3 { font-size: 1.35rem; margin-bottom: 8px; }
+p { margin: 0; }
+.skip { position: absolute; left: 12px; top: 0; transform: translateY(-130%); background: var(--ink); color: white; padding: 10px 14px; }
+.skip:focus { transform: none; }
+.concept { margin: 0; background: var(--ink); color: #e7f0ea; text-align: center; font-size: 0.8125rem; padding: 8px 16px; }
+.top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 16px; padding: 16px 20px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; text-decoration: none; font-family: var(--display); font-size: 1.45rem; }
+.brand img { width: 40px; height: 40px; }
+nav { display: flex; flex-wrap: wrap; }
+nav a { min-height: 44px; display: inline-flex; align-items: center; padding: 0 8px; text-decoration: none; }
+.hero { display: grid; gap: 24px; padding: 12px 20px 40px; }
+.hero div { display: grid; gap: 14px; align-content: center; }
+.eyebrow { color: var(--sage); letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.75rem; }
+.hero img { width: 100%; border-radius: 28px; aspect-ratio: 5 / 4; object-fit: cover; }
+.button {
+  justify-self: start; display: inline-flex; align-items: center; min-height: 48px; padding: 0 18px;
+  background: var(--ink); color: white; border-radius: 12px; text-decoration: none; border: 0; font: inherit; cursor: pointer;
+}
+.band { padding: 56px 20px; }
+.soft { background: var(--mist); }
+.grid { display: grid; gap: 14px; }
+.grid article { background: var(--white); border-radius: 18px; padding: 20px; }
+.grid p, .band ol p, #area p, details p { color: #3e534c; }
+.band ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; counter-reset: n; }
+.band ol li { background: white; border-radius: 16px; padding: 18px; }
+.band ol li::before { counter-increment: n; content: counter(n); color: var(--sage); font-size: 0.8rem; letter-spacing: 0.12em; }
+.faqs { display: grid; gap: 10px; }
+details { background: white; border-radius: 14px; padding: 4px 16px; }
+summary { min-height: 48px; display: flex; align-items: center; cursor: pointer; font-weight: 600; }
+.book { display: grid; gap: 22px; }
+.visit-form { display: grid; gap: 12px; max-width: 32rem; }
+.visit-form label { display: grid; gap: 6px; font-size: 0.92rem; }
+.visit-form input, .visit-form textarea {
+  width: 100%; min-height: 48px; border: 1px solid #c9d7d0; border-radius: 12px; padding: 12px 14px;
+  font: inherit; font-size: 1rem; background: white; color: var(--ink);
+}
+.visit-form textarea { min-height: 130px; }
+.form-note { display: none; }
+.form-note:target, .form-note.is-on { display: block; }
+footer { padding: 24px 20px 48px; color: var(--sage); display: grid; gap: 6px; }
+.sent { padding: 64px 20px 80px; max-width: 40rem; display: grid; gap: 16px; }
+.sent a { min-height: 44px; display: inline-flex; align-items: center; }
+:focus-visible { outline: 2px solid var(--sage); outline-offset: 3px; }
+@media (min-width: 860px) {
+  .top, .hero, .band, footer { padding-left: 48px; padding-right: 48px; }
+  .hero { grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; padding-top: 28px; }
+  .grid { grid-template-columns: 1fr 1fr; }
+  .band ol { grid-template-columns: 1fr 1fr; }
+  .book { grid-template-columns: 0.8fr 1.2fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

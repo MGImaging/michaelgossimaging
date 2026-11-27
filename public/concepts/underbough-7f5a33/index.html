@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Underbough is a landscaping crew for lawns, beds, and seasonal planting. Concept site, not a real business.">
+  <title>Underbough | Landscaping</title>
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <p class="concept">Concept site by Michael Goss Imaging. Not a real business.</p>
+  <header class="top">
+    <a class="brand" href="#top"><img src="logo.svg" width="36" height="36" alt=""> Underbough</a>
+    <nav aria-label="Primary">
+      <a href="#services">Work</a>
+      <a href="#process">Process</a>
+      <a href="#area">Area</a>
+      <a href="#questions">Questions</a>
+      <a href="#quote">Quote</a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-media">
+        <img src="hero.jpg" width="1600" height="900" alt="Sunlit lawn grass in the foreground, with buildings soft in the distance.">
+      </div>
+      <div class="hero-panel">
+        <p class="eyebrow">Landscaping crew</p>
+        <h1>Yards, beds, and the edges between them.</h1>
+        <p>Underbough mows, edges, mulches, prunes, and plants for houses in the surrounding neighborhoods. We come to the yard. There is no shop counter.</p>
+        <a class="button" href="#quote">Ask about the yard</a>
+      </div>
+    </section>
+
+    <section class="work" id="services">
+      <article class="work-row">
+        <img src="soil.jpg" width="1400" height="933" alt="A scoop of potting soil, moss, and garden shears on a table.">
+        <div>
+          <h2>Beds and soil</h2>
+          <p>We weed, edge, and mulch existing beds. When a bed is empty, we plant for the season you named, with a note on water for the first weeks.</p>
+        </div>
+      </article>
+      <article class="work-row flip">
+        <div>
+          <h2>Lawns</h2>
+          <p>Mowing, edging along walks, and a blow of the clippings off the hard surfaces. We can come on a route or for a single tidy before an event.</p>
+        </div>
+        <img src="hero.jpg" width="1600" height="900" alt="A close view of green lawn.">
+      </article>
+      <article class="plain">
+        <h2>Pruning</h2>
+        <p>Shrubs and small ornamental trees that have grown into a walk or a window. Large tree removal and stump grinding are outside this crew. We will say that plainly if the tree is too big.</p>
+      </article>
+    </section>
+
+    <section class="band" id="process">
+      <h2>How a job starts</h2>
+      <ol>
+        <li><h3>Walk</h3><p>We look at the yard with you, or from photos if you are away, and mark what is in and out.</p></li>
+        <li><h3>Agree</h3><p>You get a written list: mow, beds, mulch, plants, or pruning. The list is the job.</p></li>
+        <li><h3>Crew day</h3><p>The crew arrives in the window we set. Gates, pets, and where to park are confirmed the day before.</p></li>
+        <li><h3>Next season</h3><p>We leave a short note about what the yard will need next, without signing you up for anything.</p></li>
+      </ol>
+    </section>
+
+    <section class="band" id="area">
+      <h2>Where the crew drives</h2>
+      <p>Surrounding neighborhoods, close enough that the same crew can reach you and the next yard. If the drive is long, we pass. Ask with the nearest cross street. We do not publish a shop address because the work is at your property.</p>
+    </section>
+
+    <section class="band" id="questions">
+      <h2>Questions</h2>
+      <div class="faqs">
+        <details>
+          <summary>Do you need a gate code?</summary>
+          <p>If the crew cannot reach the yard without one, yes. Send it with the booking, and tell us about dogs that meet people at the gate.</p>
+        </details>
+        <details>
+          <summary>Weekly or once?</summary>
+          <p>Either. A route is a repeating mow through the growing season. A single visit is a reset, and it ends when that list is done.</p>
+        </details>
+        <details>
+          <summary>Will you design a whole landscape?</summary>
+          <p>We plant and maintain. A full drawing set for patios, walls, and grading is a different trade, and we will tell you when the job has crossed that line.</p>
+        </details>
+        <details>
+          <summary>What if it rains?</summary>
+          <p>Mowing waits for a drier day. Bed work can continue in light rain. We text when the day moves.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="quote" id="quote">
+      <h2>Ask about the yard</h2>
+      <p>Call or send the rough size of the lawn and what you want done first.</p>
+      <p><a href="tel:+15550100182">(555) 010-0182</a></p>
+      <p><a href="mailto:underbough@example.com">underbough@example.com</a></p>
+      <form class="yard-form" action="sent.html" method="get">
+        <label>Name <input name="name" required maxlength="80" autocomplete="name"></label>
+        <label>Phone or email <input name="contact" required maxlength="120"></label>
+        <label>The yard <textarea name="message" required maxlength="800"></textarea></label>
+        <button class="button" type="submit">Ask about the yard</button>
+        <p class="form-note" id="concept-note">Concept form, a live version would send to your inbox.</p>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <p>Underbough · Landscaping crew</p>
+    <p>Concept site by Michael Goss Imaging. Not a real business.</p>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

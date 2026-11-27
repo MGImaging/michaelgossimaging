@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Linen Chair is a hair studio for cuts and color. Concept site, not a real business.">
+  <title>Linen Chair | Hair studio</title>
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <p class="concept">Concept site by Michael Goss Imaging. Not a real business.</p>
+  <header class="top">
+    <a class="brand" href="#top">Linen Chair</a>
+    <nav aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#area">Studio</a>
+      <a href="#questions">Questions</a>
+      <a href="#book">Book</a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero" id="top">
+      <div>
+        <p class="kicker">Hair studio</p>
+        <h1 class="display">A careful cut. Color that grows out kindly.</h1>
+        <p class="lede">Linen Chair is a one-room studio for haircuts and color. The work is shaped around the hair you already have, and around the time you can spend on it between visits.</p>
+      </div>
+      <figure>
+        <img src="hero.jpg" width="1600" height="1200" alt="A bright hair studio with styling chairs, mirrors, and a long window.">
+      </figure>
+    </section>
+
+    <section class="split" id="services">
+      <div class="sticky-col">
+        <h2>Services</h2>
+        <p>Priced at the visit, after a short talk about length, color, and how the hair behaves at home.</p>
+        <img src="hair.jpg" width="1400" height="935" alt="Long hair seen from behind, with both hands lifted to the crown.">
+      </div>
+      <ul class="service-list">
+        <li><h3>Cut</h3><p>A dry consult, then the cut. Fringe, layers, or a blunt shape. We finish so you can see the line in the mirror.</p></li>
+        <li><h3>Color</h3><p>Root color, a gloss, or a lighter piece through the mid-lengths. We talk about the grow-out before the color is mixed.</p></li>
+        <li><h3>Cut and color</h3><p>Both in one visit when the schedule allows a long chair. Color first, then the cut once the hair is dry.</p></li>
+        <li><h3>Shape only</h3><p>A fringe trim or a small clean-up between full cuts. Bring a photo only if it helps the words.</p></li>
+      </ul>
+    </section>
+
+    <section class="band" id="process">
+      <h2>In the chair</h2>
+      <ol>
+        <li><span>01</span><h3>Conversation</h3><p>We look at the hair dry, ask what you want to keep, and say if the idea needs more than one visit.</p></li>
+        <li><span>02</span><h3>The work</h3><p>Color is applied in sections you can follow. A cut is checked in the mirror before it is dried.</p></li>
+        <li><span>03</span><h3>Home notes</h3><p>You leave with how to wash it this week, not with a shopping list you did not ask for.</p></li>
+      </ol>
+    </section>
+
+    <section class="band" id="area">
+      <h2>The studio</h2>
+      <p>16 Example Court. Linen Chair sees clients from the court and the nearby blocks. The room has three chairs. One stylist works at a time, so the schedule is the schedule.</p>
+    </section>
+
+    <section class="band" id="questions">
+      <h2>Questions</h2>
+      <div class="faqs">
+        <details>
+          <summary>How long is a color visit?</summary>
+          <p>A gloss is often a short afternoon. A root retouch with a cut is longer. We give a time when we book, based on the hair, not a single number for everyone.</p>
+        </details>
+        <details>
+          <summary>I have not had a haircut in a long while.</summary>
+          <p>That is a normal first visit. We decide together how much length to take, and we can stop shorter of a big change.</p>
+        </details>
+        <details>
+          <summary>Do you use a particular color line?</summary>
+          <p>We use professional color chosen for the hair in the chair. The bowl is mixed for that visit.</p>
+        </details>
+        <details>
+          <summary>Can I bring a child to sit with me?</summary>
+          <p>A quiet seat is fine. The room is small, so a long visit with several children is better on a quieter weekday.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="band book" id="book">
+      <h2>Request a chair</h2>
+      <p>Call, email, or send the form. Say whether you want a cut, color, or both, and a day that suits you.</p>
+      <p><a href="tel:+15550100136">(555) 010-0136</a> · <a href="mailto:linen.chair@example.com">linen.chair@example.com</a></p>
+      <form class="book-form" action="sent.html" method="get">
+        <label>Name <input name="name" required maxlength="80" autocomplete="name"></label>
+        <label>Phone or email <input name="contact" required maxlength="120"></label>
+        <label>What you want <textarea name="message" required maxlength="800"></textarea></label>
+        <button type="submit">Request a chair</button>
+        <p class="form-note" id="concept-note">Concept form, a live version would send to your inbox.</p>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <p>Linen Chair · 16 Example Court</p>
+    <p>Concept site by Michael Goss Imaging. Not a real business.</p>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

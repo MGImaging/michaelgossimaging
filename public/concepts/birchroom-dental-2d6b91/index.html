@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Birchroom Dental explains exams, cleanings, and repairs in plain language. Concept site, not a real business.">
+  <title>Birchroom Dental</title>
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <p class="concept">Concept site by Michael Goss Imaging. Not a real business.</p>
+  <header class="top">
+    <a class="brand" href="#top"><img src="logo.svg" width="40" height="40" alt=""> Birchroom</a>
+    <nav aria-label="Primary">
+      <a href="#care">Care</a>
+      <a href="#process">A visit</a>
+      <a href="#area">Office</a>
+      <a href="#questions">Questions</a>
+      <a href="#book">Book</a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero" id="top">
+      <div>
+        <p class="eyebrow">Dental office</p>
+        <h1>Dentistry explained in plain words.</h1>
+        <p>Birchroom is a general dental office for exams, cleanings, and the repairs that follow. We say what we see, what it means, and what can wait.</p>
+        <a class="button" href="#book">Request a visit</a>
+      </div>
+      <figure>
+        <img src="hero.jpg" width="1400" height="936" alt="A bright dental room with a treatment chair, a window, and white cabinets.">
+      </figure>
+    </section>
+
+    <section class="band" id="care">
+      <h2>Care we provide</h2>
+      <div class="grid">
+        <article><h3>Exams and cleanings</h3><p>A look at teeth and gums, cleaning, and a conversation about what to watch. X-rays are taken when they add something the eye cannot see.</p></article>
+        <article><h3>Fillings</h3><p>A small repair when decay is limited to part of a tooth. We numb the area, remove the decay, and fill the space.</p></article>
+        <article><h3>Crowns</h3><p>When a tooth needs more than a filling, a crown covers what remains. The plan, including a temporary, is explained before we start.</p></article>
+        <article><h3>Tooth pain</h3><p>Call if a tooth hurts, breaks, or swells. We fit an urgent visit into the book when a chair is open that day. We do not promise a same-hour seat.</p></article>
+      </div>
+    </section>
+
+    <section class="band soft" id="process">
+      <h2>What a first visit includes</h2>
+      <ol>
+        <li><h3>Paperwork</h3><p>Health history and the reason you came. Bring a list of medicines if you have one.</p></li>
+        <li><h3>Exam</h3><p>We look, we listen, and we take images only where they change the decision.</p></li>
+        <li><h3>A plan you can read</h3><p>You leave with what we recommend now, what can wait, and the order we would do it.</p></li>
+        <li><h3>The next chair</h3><p>Treatment is a separate visit unless the repair is small and you want it the same day.</p></li>
+      </ol>
+    </section>
+
+    <section class="band" id="area">
+      <h2>The office</h2>
+      <p>300 Sample Boulevard. Birchroom sees patients from the nearby neighborhoods. The door is at street level. If you need a quieter appointment, ask for the first chair of the day.</p>
+    </section>
+
+    <section class="band soft" id="questions">
+      <h2>Questions</h2>
+      <div class="faqs">
+        <details>
+          <summary>What should I bring?</summary>
+          <p>A photo ID, your health history, and any dental plan card you want us to note. We can record the plan. Coverage itself is between you and the plan.</p>
+        </details>
+        <details>
+          <summary>I get nervous in the chair.</summary>
+          <p>Tell us. We explain each step before it happens, and we stop if you raise a hand. There is no extra performance around that.</p>
+        </details>
+        <details>
+          <summary>How often is a cleaning?</summary>
+          <p>Many people come twice a year. Gums that need closer watching may be asked back sooner. We say why.</p>
+        </details>
+        <details>
+          <summary>Do you whiten teeth?</summary>
+          <p>We can talk through take-home trays when the teeth are healthy enough for them. Whitening does not repair decay, and the shade change varies.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="band book" id="book">
+      <div>
+        <h2>Request a visit</h2>
+        <p>Call or send a note with new-patient or tooth pain in the first line.</p>
+        <p><a href="tel:+15550100157">(555) 010-0157</a></p>
+        <p><a href="mailto:birchroom@example.com">birchroom@example.com</a></p>
+        <p>300 Sample Boulevard</p>
+      </div>
+      <form class="visit-form" action="sent.html" method="get">
+        <label>Name <input name="name" required maxlength="80" autocomplete="name"></label>
+        <label>Phone or email <input name="contact" required maxlength="120"></label>
+        <label>Reason for the visit <textarea name="message" required maxlength="800"></textarea></label>
+        <button class="button" type="submit">Request a visit</button>
+        <p class="form-note" id="concept-note">Concept form, a live version would send to your inbox.</p>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <p>Birchroom Dental · 300 Sample Boulevard</p>
+    <p>Concept site by Michael Goss Imaging. Not a real business.</p>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
