@@ -230,7 +230,10 @@ dd { margin: 0; color: var(--muted); }
 details { border-bottom: 1px solid var(--line); }
 summary { min-height: 48px; display: flex; align-items: center; cursor: pointer; font-weight: 600; }
 details p { color: var(--muted); margin-block: 0; padding-block: 0 16px; }
-.note .wrap { display: grid; gap: 16px; }
+.note .wrap { display: grid; gap: 16px; justify-items: center; text-align: center; }
+.note .wrap > p { max-width: 32rem; margin: 0 auto; }
+.note .contact-open { justify-self: center; }
+.note .note-form { width: 100%; max-width: 32rem; text-align: left; }
 .note h2 { margin-block: 0 8px; }
 .note-form { display: grid; gap: 16px; margin-block-start: 0; }
 .note-form label { display: grid; gap: 8px; }
