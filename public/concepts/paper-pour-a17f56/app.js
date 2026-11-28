@@ -193,7 +193,7 @@
       driftTitle(title);
     });
 
-    if (traveler && stops.length > 1) {
+    if (!narrow && traveler && stops.length > 1) {
       var states = stops.map(function (stop) { return Flip.getState(stop); });
       var cupTl = gsap.timeline({
         scrollTrigger: {
@@ -214,25 +214,31 @@
     }
 
     if (gallery) {
-      var items = gallery.querySelectorAll(".gallery-item");
       gallery.classList.add("is-spread");
-      void gallery.offsetWidth;
-      var spread = Flip.getState(items);
-      gallery.classList.remove("is-spread");
-      void gallery.offsetWidth;
-      Flip.to(spread, {
-        absolute: false,
-        simple: true,
-        scale: true,
-        ease: "none",
-        stagger: narrow ? 0.015 : 0.04,
-        scrollTrigger: {
-          trigger: gallery,
-          start: "top 85%",
-          end: narrow ? "top 35%" : "center center",
-          scrub: true,
-          immediateRender: false
-        }
+      var items = gsap.utils.toArray(gallery.querySelectorAll(".gallery-item"));
+      var box = gallery.getBoundingClientRect();
+      items.forEach(function (el) {
+        var rect = el.getBoundingClientRect();
+        var cx = box.left + box.width / 2;
+        var cy = box.top + box.height / 2;
+        var ix = rect.left + rect.width / 2;
+        var iy = rect.top + rect.height / 2;
+        var roomX = Math.max(0, Math.min(rect.left - box.left, box.right - rect.right) - 2);
+        var roomY = Math.max(0, Math.min(rect.top - box.top, box.bottom - rect.bottom) - 2);
+        var dx = Math.max(-roomX, Math.min(roomX, (cx - ix) * 0.7));
+        var dy = Math.max(-roomY, Math.min(roomY, (cy - iy) * 0.45));
+        gsap.fromTo(el, { x: dx, y: dy, scale: narrow ? 0.92 : 0.86 }, {
+          x: 0,
+          y: 0,
+          scale: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: gallery,
+            start: "top 82%",
+            end: narrow ? "top 46%" : "center 58%",
+            scrub: true
+          }
+        });
       });
     }
 
@@ -254,11 +260,20 @@
       });
     }
 
+    function refresh() { ScrollTrigger.refresh(); }
+    window.addEventListener("load", refresh);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh);
+    document.querySelectorAll("#gallery img, .hero img, .cups img").forEach(function (img) {
+      if (img.complete) return;
+      img.addEventListener("load", refresh, { once: true });
+    });
+
     return function () {
+      window.removeEventListener("load", refresh);
       if (gallery) gallery.classList.add("is-spread");
       if (h1) restoreText(h1);
       titles.forEach(restoreText);
-      gsap.set(".menu-grid > section, #traveler", { clearProps: "all" });
+      gsap.set(".menu-grid > section, .gallery-item, #traveler", { clearProps: "all" });
     };
   });
 })();
