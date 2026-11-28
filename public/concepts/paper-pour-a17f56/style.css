@@ -89,7 +89,7 @@ footer { padding: 10px 0 48px; color: var(--muted); display: grid; gap: 6px; }
   .menu-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
   .menu-board { padding: 18px; }
   .hero img { height: 400px; border-radius: 200px; object-position: center 40%; }
-  .cups { max-width: 420px; margin-left: auto; }
+  .cups { max-width: 420px; margin-inline: auto; }
   .cups img { height: 280px; border-radius: 140px 140px 22px 22px; }
 }
 @media (prefers-reduced-motion: reduce) {
