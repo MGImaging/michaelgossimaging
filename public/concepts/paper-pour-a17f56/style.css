@@ -89,13 +89,13 @@ nav a { min-height: 44px; display: inline-flex; align-items: center; padding: 0 
   content: "";
   position: absolute;
   left: 50%;
-  top: 24px;
+  top: 0;
   width: 10px;
   height: 10px;
-  margin-left: -5px;
+  margin: -5px 0 0 -5px;
   border-radius: 50%;
   background: var(--clay);
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
 }
 .band-ink::before { background: #e0a070; }
@@ -119,7 +119,7 @@ nav a { min-height: 44px; display: inline-flex; align-items: center; padding: 0 
   border-radius: 28px;
   padding: 16px 16px 16px 72px;
 }
-.pour-gallery { overflow: hidden; }
+.pour-gallery { overflow: hidden; overflow: clip visible; }
 .pour-gallery h2 { margin-block: 0 24px; }
 .counter {
   background: #fffaf4;
