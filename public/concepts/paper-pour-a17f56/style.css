@@ -89,12 +89,14 @@ nav a { min-height: 44px; display: inline-flex; align-items: center; padding: 0 
   content: "";
   position: absolute;
   left: 50%;
-  top: 0;
-  width: 9px;
-  height: 9px;
-  margin: -4px 0 0 -4px;
+  top: 24px;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
   border-radius: 50%;
   background: var(--clay);
+  z-index: 1;
+  pointer-events: none;
 }
 .band-ink::before { background: #e0a070; }
 #area { box-shadow: inset 0 1px 0 var(--line); }
