@@ -90,13 +90,120 @@
     });
   }
 
+  (function setupPolaroids() {
+    var root = document.getElementById("pour-gallery");
+    if (!root || !window.gsap) return;
+    var stage = root.querySelector(".polaroid-stage");
+    var prints = root.querySelectorAll(".polaroid");
+    var dots = root.querySelectorAll(".polaroid-dot");
+    var prev = root.querySelector(".polaroid-prev");
+    var next = root.querySelector(".polaroid-next");
+    if (!stage || !prints.length) return;
+
+    var slots = [
+      { x: -0.26, y: -0.2, r: -11 },
+      { x: 0.26, y: -0.18, r: 9 },
+      { x: -0.24, y: 0.22, r: 7 },
+      { x: 0.24, y: 0.2, r: -8 },
+      { x: 0.0, y: 0.26, r: 4 }
+    ];
+    var current = 0;
+    var tracking = false;
+    var moved = false;
+    var originX = 0;
+    var originY = 0;
+
+    function place(index, instant) {
+      var w = stage.clientWidth;
+      var h = stage.clientHeight;
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      prints.forEach(function (el, i) {
+        var on = i === index;
+        var slot = slots[i] || slots[0];
+        gsap.set(el, { zIndex: on ? 5 : 1 });
+        var vars = {
+          xPercent: -50,
+          yPercent: -50,
+          x: on ? 0 : slot.x * w,
+          y: on ? 0 : slot.y * h,
+          rotation: on ? 0 : slot.r,
+          scale: on ? 1.04 : 0.72,
+          transformOrigin: "50% 50%"
+        };
+        if (instant || reduce) gsap.set(el, vars);
+        else gsap.to(el, Object.assign({ duration: 0.5, ease: "power2.out", overwrite: "auto" }, vars));
+      });
+    }
+
+    function paint() {
+      prints.forEach(function (el, i) {
+        if (i === current) el.setAttribute("aria-current", "true");
+        else el.removeAttribute("aria-current");
+      });
+      dots.forEach(function (dot, i) {
+        var on = i === current;
+        dot.classList.toggle("is-selected", on);
+        if (on) dot.setAttribute("aria-current", "true");
+        else dot.removeAttribute("aria-current");
+      });
+    }
+
+    function go(index) {
+      var count = prints.length;
+      current = (index % count + count) % count;
+      place(current, false);
+      paint();
+    }
+
+    stage.classList.add("is-ready");
+    place(0, true);
+    paint();
+
+    prints.forEach(function (el, i) {
+      el.addEventListener("click", function () {
+        if (moved) return;
+        go(i);
+      });
+    });
+    if (prev) prev.addEventListener("click", function () { go(current - 1); });
+    if (next) next.addEventListener("click", function () { go(current + 1); });
+    dots.forEach(function (dot, i) {
+      dot.addEventListener("click", function () { go(i); });
+    });
+    root.addEventListener("keydown", function (event) {
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        go(current + 1);
+      } else if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        go(current - 1);
+      }
+    });
+    stage.addEventListener("pointerdown", function (event) {
+      if (event.pointerType === "mouse" && event.button !== 0) return;
+      tracking = true;
+      moved = false;
+      originX = event.clientX;
+      originY = event.clientY;
+    });
+    stage.addEventListener("pointerup", function (event) {
+      if (!tracking) return;
+      tracking = false;
+      var dx = event.clientX - originX;
+      var dy = event.clientY - originY;
+      if (Math.abs(dx) >= 36 && Math.abs(dx) > Math.abs(dy)) {
+        moved = true;
+        go(dx < 0 ? current + 1 : current - 1);
+      }
+    });
+    stage.addEventListener("pointercancel", function () { tracking = false; });
+    window.addEventListener("resize", function () { place(current, true); });
+  })();
+
   // Motion adapted from Codrops tutorials, not copied wholesale:
-  // One Element Scroll (Flip waypoints), Scroll-based Layout Animations (Flip reflow),
-  // Text Character Animations (masked letters on a timeline), Scroll Text Motion (scroll-linked type).
+  // One Element Scroll (Flip waypoints) and Text Character Animations (masked letters).
   // https://github.com/codrops/OneElementScroll
-  // https://github.com/codrops/ScrollBasedLayoutAnimations
   // https://github.com/codrops/TextCharacterAnimations
-  // https://github.com/codrops/ScrollTextMotion
   // Lenis is skipped: a second scroll loop is jumpy on a phone, and native scroll stays calmer.
   if (!window.gsap || !window.ScrollTrigger || !window.Flip) return;
   gsap.registerPlugin(ScrollTrigger, Flip);
@@ -246,7 +353,6 @@
   var mm = gsap.matchMedia();
   mm.add("(prefers-reduced-motion: no-preference)", function () {
     var narrow = window.matchMedia("(max-width: 719px)").matches;
-    var gallery = document.getElementById("pour-gallery");
     var traveler = document.getElementById("traveler");
     var stops = gsap.utils.toArray("[data-cup]");
     var h1 = document.querySelector(".hero h1");
@@ -280,35 +386,6 @@
       });
     }
 
-    if (gallery) {
-      gallery.classList.add("is-spread");
-      var items = gsap.utils.toArray(gallery.querySelectorAll(".gallery-item"));
-      var box = gallery.getBoundingClientRect();
-      items.forEach(function (el) {
-        var rect = el.getBoundingClientRect();
-        var cx = box.left + box.width / 2;
-        var cy = box.top + box.height / 2;
-        var ix = rect.left + rect.width / 2;
-        var iy = rect.top + rect.height / 2;
-        var roomX = Math.max(0, Math.min(rect.left - box.left, box.right - rect.right) - 2);
-        var roomY = Math.max(0, Math.min(rect.top - box.top, box.bottom - rect.bottom) - 2);
-        var dx = Math.max(-roomX, Math.min(roomX, (cx - ix) * 0.7));
-        var dy = Math.max(-roomY, Math.min(roomY, (cy - iy) * 0.45));
-        gsap.fromTo(el, { x: dx, y: dy, scale: narrow ? 0.92 : 0.86 }, {
-          x: 0,
-          y: 0,
-          scale: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: gallery,
-            start: "top 82%",
-            end: narrow ? "top 46%" : "center 58%",
-            scrub: true
-          }
-        });
-      });
-    }
-
     function refresh() { ScrollTrigger.refresh(); }
     window.addEventListener("load", refresh);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh);
@@ -319,10 +396,9 @@
 
     return function () {
       window.removeEventListener("load", refresh);
-      if (gallery) gallery.classList.add("is-spread");
       if (h1) restoreText(h1);
       titles.forEach(restoreText);
-      gsap.set(".menu-board, .menu-grid > section, .menu-grid h3, .menu-grid dl > div, .gallery-item, #traveler", { clearProps: "all" });
+      gsap.set(".menu-board, .menu-grid > section, .menu-grid h3, .menu-grid dl > div, #traveler", { clearProps: "all" });
     };
   });
 })();
