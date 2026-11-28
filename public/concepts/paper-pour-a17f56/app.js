@@ -245,14 +245,14 @@
     mask.appendChild(line);
     title.appendChild(mask);
 
-    gsap.set(board, { autoAlpha: 0, y: 18, scale: 0.97, transformOrigin: "50% 0%" });
+    gsap.set(board, { autoAlpha: 0.9, y: 18, scale: 0.97, transformOrigin: "50% 0%" });
     gsap.set(line, { yPercent: 110 });
     cards.forEach(function (card) {
       var heading = card.querySelector("h3");
       var rows = card.querySelectorAll("dl > div");
-      gsap.set(card, { autoAlpha: 0 });
-      if (heading) gsap.set(heading, { autoAlpha: 0, y: 8 });
-      gsap.set(rows, { autoAlpha: 0, y: 6 });
+      gsap.set(card, { autoAlpha: 1 });
+      if (heading) gsap.set(heading, { autoAlpha: 0.6, y: 8 });
+      gsap.set(rows, { autoAlpha: 0.6, y: 6 });
     });
 
     var tl = gsap.timeline({
