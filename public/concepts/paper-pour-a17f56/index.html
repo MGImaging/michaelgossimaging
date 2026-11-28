@@ -22,7 +22,7 @@
       <a href="#visit">A visit</a>
       <a href="#area">Find us</a>
       <a href="#questions">Questions</a>
-      <a href="#note">Note</a>
+      <a href="#note">Contact</a>
     </nav>
   </header>
   <main id="main">
@@ -119,7 +119,8 @@
       <p>For a group morning, a question about the board, or a lost cup.</p>
       <p><a href="tel:+15550100173">(555) 010-0173</a></p>
       <p><a href="mailto:paper.pour@example.com">paper.pour@example.com</a></p>
-      <form class="note-form" action="sent.html" method="get">
+      <button type="button" class="contact-open" id="contact-open">Contact us</button>
+      <form class="note-form" id="note-form" action="sent.html" method="get">
         <label>Name <input name="name" required maxlength="80" autocomplete="name"></label>
         <label>Phone or email <input name="contact" required maxlength="120"></label>
         <label>Note <textarea name="message" required maxlength="800"></textarea></label>
@@ -132,6 +133,21 @@
     <p>Paper &amp; Pour · 42 Example Lane</p>
     <p>Concept site by Michael Goss Imaging. Not a real business.</p>
   </footer>
+  <dialog class="contact-dialog" id="contact-dialog" aria-labelledby="contact-title" aria-modal="true">
+    <div class="contact-shade" data-close></div>
+    <div class="contact-card">
+      <div class="contact-head">
+        <h2 id="contact-title">Contact us</h2>
+        <button type="button" class="contact-x" data-close aria-label="Close">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6 L18 18 M18 6 L6 18" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </button>
+      </div>
+      <div id="contact-slot"></div>
+    </div>
+  </dialog>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
