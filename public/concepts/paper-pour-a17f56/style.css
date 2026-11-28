@@ -304,17 +304,17 @@ footer { padding: 10px 0 48px; color: var(--muted); display: grid; gap: 6px; }
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding-top: 10px;
+    padding-top: 7px;
   }
   .brand {
     flex-direction: column;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
     font-size: clamp(2.15rem, 8vw, 2.7rem);
     line-height: 1;
     text-align: center;
   }
-  .brand img { width: 130px; height: 130px; }
+  .brand img { width: 91px; height: 91px; }
   nav { justify-content: center; }
 }
 @media (max-width: 719px) {
