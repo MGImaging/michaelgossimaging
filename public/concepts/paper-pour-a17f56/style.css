@@ -27,27 +27,19 @@ p { margin: 0; }
 nav { display: flex; flex-wrap: wrap; }
 nav a { min-height: 44px; display: inline-flex; align-items: center; padding: 0 8px; text-decoration: none; }
 .hero { padding: 24px 0 56px; display: grid; gap: 18px; }
-.hero .wrap { position: relative; }
-.lockup {
-  display: grid;
-  justify-items: center;
-  gap: 14px;
-  margin: 10px auto 22px;
-  text-align: center;
+.eyebrow { margin: 0 0 8px; }
+.directions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  color: var(--clay);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
 }
-.lockup-mark {
-  width: 150px;
-  height: 150px;
-}
-.lockup-name {
-  margin: 0;
-  max-width: 100%;
-  font-family: var(--display);
-  font-weight: 560;
-  font-size: clamp(2.35rem, 10.5vw, 4.5rem);
-  letter-spacing: -0.03em;
-  line-height: 0.95;
-}
+.directions svg { width: 14px; height: 14px; flex: 0 0 14px; }
 .visit-mark, .cup-row { display: flex; align-items: center; gap: 14px; }
 .cup-row { justify-content: flex-start; margin: -6px 0 14px; }
 .scroll-title { white-space: nowrap; }
@@ -306,6 +298,25 @@ footer { padding: 10px 0 48px; color: var(--muted); display: grid; gap: 6px; }
 .sent { padding: 64px 0 80px; display: grid; gap: 14px; }
 .sent a { min-height: 44px; display: inline-flex; align-items: center; }
 :focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; }
+@media (max-width: 640px) {
+  .top {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 10px;
+  }
+  .brand {
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    font-size: clamp(2.15rem, 8vw, 2.7rem);
+    line-height: 1;
+    text-align: center;
+  }
+  .brand img { width: 130px; height: 130px; }
+  nav { justify-content: center; }
+}
 @media (max-width: 719px) {
   .cup-row,
   .visit-mark .cup-stop { display: none; }
@@ -318,7 +329,6 @@ footer { padding: 10px 0 48px; color: var(--muted); display: grid; gap: 6px; }
   .counter { margin-left: 72px; }
   .counter-viewport { height: 340px; }
   .counter-slide { flex-basis: 68%; }
-  .lockup-mark { width: 200px; height: 200px; }
   .hero figure { height: 400px; border-radius: 200px; }
   .hero figure img { height: 100%; border-radius: 0; object-position: center 40%; }
   .cups { max-width: 420px; margin-inline: auto; }

@@ -302,8 +302,6 @@
     var titles = gsap.utils.toArray(".scroll-title");
 
     if (h1) pourHeadline(h1);
-    var lockup = document.querySelector(".lockup");
-    if (lockup) gsap.from(lockup, { autoAlpha: 0, y: 16, duration: 0.75, ease: "power2.out" });
     titles.forEach(function (title) {
       if (title.closest("#menu")) return;
       if (narrow) return;
