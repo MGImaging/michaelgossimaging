@@ -90,13 +90,63 @@
     });
   }
 
+  (function setupCounter() {
+    var root = document.getElementById("pour-gallery");
+    if (!root || !window.EmblaCarousel) return;
+    var viewport = root.querySelector(".counter-viewport");
+    var slides = root.querySelectorAll(".counter-slide");
+    var dots = root.querySelectorAll(".counter-dot");
+    var prev = root.querySelector(".counter-prev");
+    var next = root.querySelector(".counter-next");
+    if (!viewport || !slides.length) return;
+
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    viewport.scrollLeft = 0;
+    viewport.classList.add("is-ready");
+    var embla = window.EmblaCarousel(viewport, {
+      loop: true,
+      align: "center",
+      containScroll: false,
+      duration: reduce ? 8 : 25
+    });
+
+    function paint() {
+      var selected = embla.selectedScrollSnap();
+      slides.forEach(function (slide, index) {
+        slide.classList.toggle("is-selected", index === selected);
+      });
+      dots.forEach(function (dot, index) {
+        var on = index === selected;
+        dot.classList.toggle("is-selected", on);
+        if (on) dot.setAttribute("aria-current", "true");
+        else dot.removeAttribute("aria-current");
+      });
+    }
+
+    if (prev) prev.addEventListener("click", function () { embla.scrollPrev(); });
+    if (next) next.addEventListener("click", function () { embla.scrollNext(); });
+    dots.forEach(function (dot, index) {
+      dot.addEventListener("click", function () { embla.scrollTo(index); });
+    });
+    root.addEventListener("keydown", function (event) {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        embla.scrollPrev();
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        embla.scrollNext();
+      }
+    });
+    embla.on("select", paint);
+    embla.on("reInit", paint);
+    paint();
+    window.addEventListener("load", function () { embla.reInit(); });
+  })();
+
   // Motion adapted from Codrops tutorials, not copied wholesale:
-  // One Element Scroll (Flip waypoints), Scroll-based Layout Animations (Flip reflow),
-  // Text Character Animations (masked letters on a timeline), Scroll Text Motion (scroll-linked type).
+  // One Element Scroll (Flip waypoints) and Text Character Animations (masked letters).
   // https://github.com/codrops/OneElementScroll
-  // https://github.com/codrops/ScrollBasedLayoutAnimations
   // https://github.com/codrops/TextCharacterAnimations
-  // https://github.com/codrops/ScrollTextMotion
   // Lenis is skipped: a second scroll loop is jumpy on a phone, and native scroll stays calmer.
   if (!window.gsap || !window.ScrollTrigger || !window.Flip) return;
   gsap.registerPlugin(ScrollTrigger, Flip);
@@ -246,7 +296,6 @@
   var mm = gsap.matchMedia();
   mm.add("(prefers-reduced-motion: no-preference)", function () {
     var narrow = window.matchMedia("(max-width: 719px)").matches;
-    var gallery = document.getElementById("pour-gallery");
     var traveler = document.getElementById("traveler");
     var stops = gsap.utils.toArray("[data-cup]");
     var h1 = document.querySelector(".hero h1");
@@ -280,35 +329,6 @@
       });
     }
 
-    if (gallery) {
-      gallery.classList.add("is-spread");
-      var items = gsap.utils.toArray(gallery.querySelectorAll(".gallery-item"));
-      var box = gallery.getBoundingClientRect();
-      items.forEach(function (el) {
-        var rect = el.getBoundingClientRect();
-        var cx = box.left + box.width / 2;
-        var cy = box.top + box.height / 2;
-        var ix = rect.left + rect.width / 2;
-        var iy = rect.top + rect.height / 2;
-        var roomX = Math.max(0, Math.min(rect.left - box.left, box.right - rect.right) - 2);
-        var roomY = Math.max(0, Math.min(rect.top - box.top, box.bottom - rect.bottom) - 2);
-        var dx = Math.max(-roomX, Math.min(roomX, (cx - ix) * 0.7));
-        var dy = Math.max(-roomY, Math.min(roomY, (cy - iy) * 0.45));
-        gsap.fromTo(el, { x: dx, y: dy, scale: narrow ? 0.92 : 0.86 }, {
-          x: 0,
-          y: 0,
-          scale: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: gallery,
-            start: "top 82%",
-            end: narrow ? "top 46%" : "center 58%",
-            scrub: true
-          }
-        });
-      });
-    }
-
     function refresh() { ScrollTrigger.refresh(); }
     window.addEventListener("load", refresh);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh);
@@ -319,10 +339,9 @@
 
     return function () {
       window.removeEventListener("load", refresh);
-      if (gallery) gallery.classList.add("is-spread");
       if (h1) restoreText(h1);
       titles.forEach(restoreText);
-      gsap.set(".menu-board, .menu-grid > section, .menu-grid h3, .menu-grid dl > div, .gallery-item, #traveler", { clearProps: "all" });
+      gsap.set(".menu-board, .menu-grid > section, .menu-grid h3, .menu-grid dl > div, #traveler", { clearProps: "all" });
     };
   });
 })();
