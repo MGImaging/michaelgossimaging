@@ -27,7 +27,19 @@
   </header>
   <main id="main">
     <section class="hero wrap" id="top">
-      <p class="eyebrow">Coffee shop · Example Lane</p>
+      <div class="hero-mark">
+        <div class="cup-stop" data-cup>
+          <div class="traveler" id="traveler" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+              <rect width="64" height="64" rx="32" fill="#2c1b14"/>
+              <path d="M22 26h20v6a10 10 0 0 1-20 0v-6z" stroke="#f6efe4" stroke-width="2.4"/>
+              <path d="M42 30h4a4 4 0 0 1 0 8h-4" stroke="#f6efe4" stroke-width="2.4"/>
+              <path d="M28 18c0 3-2 4-2 6M34 16c0 3-2 4-2 6" stroke="#e0a070" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <p class="eyebrow">Coffee shop · Example Lane</p>
+      </div>
       <h1>Coffee, written down and poured slowly.</h1>
       <p class="lede">Paper &amp; Pour is a small counter on Example Lane. We pull espresso, brew a short pour-over list, and keep a few things to eat beside the cups.</p>
       <figure>
@@ -35,8 +47,20 @@
       </figure>
     </section>
 
+    <section class="wrap pour-gallery" id="gallery">
+      <h2>On the counter</h2>
+      <div class="gallery is-spread" id="pour-gallery">
+        <figure class="gallery-item"><img src="gallery-1.jpg" width="900" height="1200" alt="Three lattes on a wooden table among potted plants."></figure>
+        <figure class="gallery-item"><img src="gallery-2.jpg" width="900" height="1200" alt="Portafilters holding espresso, ground coffee, and roasted beans."></figure>
+        <figure class="gallery-item"><img src="gallery-3.jpg" width="900" height="1200" alt="Coffee beans, grounds, and a cup of latte art on wooden boards."></figure>
+        <figure class="gallery-item"><img src="gallery-4.jpg" width="900" height="900" alt="A kettle pouring water through a paper filter into a glass server."></figure>
+        <figure class="gallery-item"><img src="gallery-5.jpg" width="900" height="1200" alt="A white cup of black coffee seen from above on a wood table."></figure>
+      </div>
+    </section>
+
     <section class="wrap menu" id="menu">
-      <h2>Menu</h2>
+      <h2 class="scroll-title">Menu</h2>
+      <div class="cup-row"><div class="cup-stop" data-cup aria-hidden="true"></div></div>
       <div class="menu-board">
         <div class="menu-grid">
           <section>
@@ -79,7 +103,10 @@
     </section>
 
     <section class="wrap steps" id="visit">
-      <h2>How a visit goes</h2>
+      <div class="visit-mark">
+        <div class="cup-stop" data-cup aria-hidden="true"></div>
+        <h2 class="scroll-title">How a visit goes</h2>
+      </div>
       <ol>
         <li><h3>Order at the counter</h3><p>The list is on the board and on this page. Say if you want oat milk or the coffee black.</p></li>
         <li><h3>We brew it</h3><p>Espresso drinks are pulled to order. Pour-over takes a few extra minutes, and we will say so.</p></li>
@@ -147,7 +174,7 @@
   </dialog>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/Flip.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

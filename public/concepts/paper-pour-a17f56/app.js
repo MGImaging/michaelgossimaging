@@ -90,86 +90,175 @@
     });
   }
 
-  if (!window.gsap || !window.ScrollTrigger || !window.SplitText) return;
-  gsap.registerPlugin(ScrollTrigger, SplitText);
+  // Motion adapted from Codrops tutorials, not copied wholesale:
+  // One Element Scroll (Flip waypoints), Scroll-based Layout Animations (Flip reflow),
+  // Text Character Animations (masked letters on a timeline), Scroll Text Motion (scroll-linked type).
+  // https://github.com/codrops/OneElementScroll
+  // https://github.com/codrops/ScrollBasedLayoutAnimations
+  // https://github.com/codrops/TextCharacterAnimations
+  // https://github.com/codrops/ScrollTextMotion
+  // Lenis is skipped: a second scroll loop is jumpy on a phone, and native scroll stays calmer.
+  if (!window.gsap || !window.ScrollTrigger || !window.Flip) return;
+  gsap.registerPlugin(ScrollTrigger, Flip);
   ScrollTrigger.config({ ignoreMobileResize: true });
+
+  function plainText(el) {
+    return el.dataset.plain || el.textContent;
+  }
+
+  function restoreText(el) {
+    if (el && el.dataset.plain) el.textContent = el.dataset.plain;
+  }
+
+  function pourHeadline(h1) {
+    restoreText(h1);
+    var text = h1.textContent;
+    h1.dataset.plain = text;
+    h1.textContent = "";
+    h1.setAttribute("aria-label", text.replace(/\s+/g, " ").trim());
+    var letters = [];
+    text.split(/(\s+)/).forEach(function (part) {
+      if (!part) return;
+      if (/^\s+$/.test(part)) {
+        h1.appendChild(document.createTextNode(part));
+        return;
+      }
+      var word = document.createElement("span");
+      word.className = "pour-word";
+      part.split("").forEach(function (ch) {
+        var mask = document.createElement("span");
+        mask.className = "pour-mask";
+        var letter = document.createElement("span");
+        letter.className = "pour-letter";
+        letter.textContent = ch;
+        mask.appendChild(letter);
+        word.appendChild(mask);
+        letters.push(letter);
+      });
+      h1.appendChild(word);
+    });
+    return gsap.timeline().fromTo(letters, { yPercent: -130 }, {
+      yPercent: 0,
+      duration: 1.15,
+      ease: "power2.out",
+      stagger: 0.028
+    });
+  }
+
+  function driftTitle(el) {
+    restoreText(el);
+    var text = el.textContent;
+    el.dataset.plain = text;
+    el.textContent = "";
+    var letters = [];
+    text.split("").forEach(function (ch) {
+      if (ch === " ") {
+        el.appendChild(document.createTextNode(" "));
+        return;
+      }
+      var letter = document.createElement("span");
+      letter.className = "drift-letter";
+      letter.textContent = ch;
+      el.appendChild(letter);
+      letters.push(letter);
+    });
+    gsap.fromTo(letters, {
+      yPercent: function (index) { return index % 2 ? 22 : -22; }
+    }, {
+      yPercent: 0,
+      ease: "none",
+      stagger: 0.03,
+      scrollTrigger: {
+        trigger: el,
+        start: "top 92%",
+        end: "top 58%",
+        scrub: true
+      }
+    });
+  }
 
   var mm = gsap.matchMedia();
   mm.add("(prefers-reduced-motion: no-preference)", function () {
-    var split = SplitText.create("main .hero h1", {
-      type: "lines",
-      mask: "lines",
-      autoSplit: true,
-      aria: "auto",
-      onSplit: function (self) {
-        return gsap.from(self.lines, {
-          yPercent: 110,
-          duration: 0.9,
-          stagger: 0.07,
-          ease: "power2.out"
-        });
-      }
-    });
-
-    gsap.fromTo(".hero img", { scale: 1.045 }, {
-      scale: 1,
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".hero",
-        start: "top 80%",
-        end: "bottom top",
-        scrub: 0.6
-      }
-    });
-
+    var narrow = window.matchMedia("(max-width: 719px)").matches;
+    var gallery = document.getElementById("pour-gallery");
+    var traveler = document.getElementById("traveler");
+    var stops = gsap.utils.toArray("[data-cup]");
+    var h1 = document.querySelector(".hero h1");
+    var titles = gsap.utils.toArray(".scroll-title");
     var cards = gsap.utils.toArray(".menu-grid > section");
-    ScrollTrigger.batch(cards, {
-      start: "top 88%",
-      once: true,
-      onEnter: function (batch) {
-        gsap.from(batch, {
-          autoAlpha: 0,
-          y: 16,
-          duration: 0.75,
-          stagger: 0.1,
-          ease: "power2.out",
-          clearProps: "opacity,visibility,transform"
-        });
-      }
+
+    if (h1) pourHeadline(h1);
+    titles.forEach(function (title, index) {
+      if (narrow && index > 0) return;
+      driftTitle(title);
     });
 
-    ScrollTrigger.batch(".cups img", {
-      start: "top 90%",
-      once: true,
-      onEnter: function (batch) {
-        gsap.from(batch, {
-          autoAlpha: 0,
-          y: 18,
-          duration: 0.9,
-          ease: "power2.out",
-          clearProps: "opacity,visibility,transform"
-        });
-      }
-    });
+    if (traveler && stops.length > 1) {
+      var states = stops.map(function (stop) { return Flip.getState(stop); });
+      var cupTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: stops[0],
+          start: "center center",
+          endTrigger: stops[stops.length - 1],
+          end: "center center",
+          scrub: narrow ? 0.4 : true,
+          invalidateOnRefresh: true
+        }
+      });
+      states.forEach(function (state, index) {
+        cupTl.add(Flip.fit(traveler, state, {
+          duration: 1,
+          ease: index === 0 ? "none" : "sine.inOut"
+        }), index ? "+=0.35" : 0);
+      });
+    }
 
-    var hoverOff = [];
-    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-      cards.forEach(function (card) {
-        function enter() { gsap.to(card, { y: -4, duration: 0.35, ease: "power2.out", overwrite: "auto" }); }
-        function leave() { gsap.to(card, { y: 0, duration: 0.4, ease: "power2.out", overwrite: "auto" }); }
-        card.addEventListener("pointerenter", enter);
-        card.addEventListener("pointerleave", leave);
-        hoverOff.push(function () {
-          card.removeEventListener("pointerenter", enter);
-          card.removeEventListener("pointerleave", leave);
-        });
+    if (gallery) {
+      var items = gallery.querySelectorAll(".gallery-item");
+      gallery.classList.add("is-spread");
+      void gallery.offsetWidth;
+      var spread = Flip.getState(items);
+      gallery.classList.remove("is-spread");
+      void gallery.offsetWidth;
+      Flip.to(spread, {
+        absolute: false,
+        simple: true,
+        scale: true,
+        ease: "none",
+        stagger: narrow ? 0.015 : 0.04,
+        scrollTrigger: {
+          trigger: gallery,
+          start: "top 85%",
+          end: narrow ? "top 35%" : "center center",
+          scrub: true,
+          immediateRender: false
+        }
+      });
+    }
+
+    if (cards.length) {
+      var rise = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".menu-board",
+          start: "top 88%",
+          end: narrow ? "top 48%" : "top 32%",
+          scrub: 0.35
+        }
+      });
+      cards.forEach(function (cardEl, index) {
+        rise.fromTo(cardEl, { clipPath: "inset(100% 0% 0% 0%)" }, {
+          clipPath: "inset(0% 0% 0% 0%)",
+          ease: "none",
+          duration: 0.55
+        }, index * 0.12);
       });
     }
 
     return function () {
-      hoverOff.forEach(function (off) { off(); });
-      if (split && split.revert) split.revert();
-      gsap.set(".hero img, .menu-grid > section, .cups img", { clearProps: "all" });
+      if (gallery) gallery.classList.add("is-spread");
+      if (h1) restoreText(h1);
+      titles.forEach(restoreText);
+      gsap.set(".menu-grid > section, #traveler", { clearProps: "all" });
     };
   });
 })();
