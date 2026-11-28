@@ -90,6 +90,12 @@ nav a { min-height: 44px; display: inline-flex; align-items: center; padding: 0 
   width: 100%;
   text-align: center;
 }
+.menu-title-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.menu-title-line { display: inline-block; }
 .menu-board {
   background: #fffaf4;
   border: 1px solid var(--line);

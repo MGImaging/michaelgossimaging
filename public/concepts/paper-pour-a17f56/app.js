@@ -177,6 +177,72 @@
     });
   }
 
+  function playMenu() {
+    var board = document.querySelector(".menu-board");
+    var title = document.querySelector("#menu h2");
+    var cards = gsap.utils.toArray(".menu-grid > section");
+    if (!board || !title || !cards.length) return;
+
+    var text = title.textContent.trim();
+    title.dataset.plain = text;
+    title.textContent = "";
+    title.setAttribute("aria-label", text);
+    var mask = document.createElement("span");
+    mask.className = "menu-title-mask";
+    var line = document.createElement("span");
+    line.className = "menu-title-line";
+    line.textContent = text;
+    mask.appendChild(line);
+    title.appendChild(mask);
+
+    gsap.set(board, { autoAlpha: 0, y: 18, scale: 0.97, transformOrigin: "50% 0%" });
+    gsap.set(line, { yPercent: 110 });
+    cards.forEach(function (card) {
+      var heading = card.querySelector("h3");
+      var rows = card.querySelectorAll("dl > div");
+      gsap.set(card, { autoAlpha: 0 });
+      if (heading) gsap.set(heading, { autoAlpha: 0, y: 8 });
+      gsap.set(rows, { autoAlpha: 0, y: 6 });
+    });
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#menu",
+        start: "top 75%",
+        toggleActions: "play none none none",
+        once: true
+      }
+    });
+
+    tl.to(board, {
+      autoAlpha: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.5,
+      ease: "power2.out"
+    }, 0);
+
+    tl.to(line, {
+      yPercent: 0,
+      duration: 0.48,
+      ease: "power2.out"
+    }, 0.22);
+
+    var cursor = 0.42;
+    cards.forEach(function (card) {
+      var heading = card.querySelector("h3");
+      var rows = gsap.utils.toArray(card.querySelectorAll("dl > div"));
+      tl.to(card, { autoAlpha: 1, duration: 0.28, ease: "power2.out" }, cursor);
+      if (heading) {
+        tl.to(heading, { autoAlpha: 1, y: 0, duration: 0.32, ease: "power2.out" }, cursor + 0.08);
+      }
+      rows.forEach(function (row, i) {
+        tl.to(row, { autoAlpha: 1, y: 0, duration: 0.3, ease: "power2.out" }, cursor + 0.16 + i * 0.1);
+      });
+      cursor += 0.42;
+    });
+  }
+
   var mm = gsap.matchMedia();
   mm.add("(prefers-reduced-motion: no-preference)", function () {
     var narrow = window.matchMedia("(max-width: 719px)").matches;
@@ -185,13 +251,14 @@
     var stops = gsap.utils.toArray("[data-cup]");
     var h1 = document.querySelector(".hero h1");
     var titles = gsap.utils.toArray(".scroll-title");
-    var cards = gsap.utils.toArray(".menu-grid > section");
 
     if (h1) pourHeadline(h1);
-    titles.forEach(function (title, index) {
-      if (narrow && index > 0) return;
+    titles.forEach(function (title) {
+      if (title.closest("#menu")) return;
+      if (narrow) return;
       driftTitle(title);
     });
+    playMenu();
 
     if (!narrow && traveler && stops.length > 1) {
       var states = stops.map(function (stop) { return Flip.getState(stop); });
@@ -242,24 +309,6 @@
       });
     }
 
-    if (cards.length) {
-      var rise = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".menu-board",
-          start: "top 88%",
-          end: narrow ? "top 48%" : "top 32%",
-          scrub: 0.35
-        }
-      });
-      cards.forEach(function (cardEl, index) {
-        rise.fromTo(cardEl, { clipPath: "inset(100% 0% 0% 0%)" }, {
-          clipPath: "inset(0% 0% 0% 0%)",
-          ease: "none",
-          duration: 0.55
-        }, index * 0.12);
-      });
-    }
-
     function refresh() { ScrollTrigger.refresh(); }
     window.addEventListener("load", refresh);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh);
@@ -273,7 +322,7 @@
       if (gallery) gallery.classList.add("is-spread");
       if (h1) restoreText(h1);
       titles.forEach(restoreText);
-      gsap.set(".menu-grid > section, .gallery-item, #traveler", { clearProps: "all" });
+      gsap.set(".menu-board, .menu-grid > section, .menu-grid h3, .menu-grid dl > div, .gallery-item, #traveler", { clearProps: "all" });
     };
   });
 })();
